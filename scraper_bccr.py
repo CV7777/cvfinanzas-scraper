@@ -155,7 +155,7 @@ def scrape_bccr():
                     data["monto_total"] = nums[-1]
 
     if not data["promedio_ponderado"]:
-    print("  ⚠ No hay datos disponibles aún para hoy (el BCCR publica a las 13:05 y 17:00).")
+        print("  Sin datos disponibles aun para hoy (el BCCR publica a las 13:05 y 17:00).")
         return None
 
     return {
