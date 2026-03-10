@@ -1,0 +1,29 @@
+name: CV Finanzas - Scraper MONEX
+
+on:
+  schedule:
+    - cron: '05 19 * * 1-5'  # 13:05 Costa Rica (UTC-6) - lunes a viernes
+    - cron: '00 23 * * 1-5'  # 17:00 Costa Rica (UTC-6) - lunes a viernes
+  workflow_dispatch:          # permite correrlo manualmente cuando quieras
+
+jobs:
+  scraper:
+    runs-on: ubuntu-latest
+    env:
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install requests beautifulsoup4 pytz lxml
+
+      - name: Correr scraper
+        run: python scraper_bccr.py
