@@ -1,0 +1,4478 @@
+{
+  "actualizado": "2026-03-10 11:02:42",
+  "datos": [
+    {
+      "fecha": 45507,
+      "promedio_ponderado": 510.02,
+      "monto_total": 32772000,
+      "minimo": 509.89,
+      "maximo": 510.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45359.7083333333
+    },
+    {
+      "fecha": 45599,
+      "promedio_ponderado": 509,
+      "monto_total": 67436000,
+      "minimo": 508,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45362.7083333333
+    },
+    {
+      "fecha": 45629,
+      "promedio_ponderado": 507.97,
+      "monto_total": 61112000,
+      "minimo": 507.7,
+      "maximo": 508.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45363.7083333333
+    },
+    {
+      "fecha": "13/03/2024",
+      "promedio_ponderado": 507.06,
+      "monto_total": 86375000,
+      "minimo": 506.95,
+      "maximo": 509,
+      "sesion": 0.708333333333333,
+      "timestamp": 45364.7083333333
+    },
+    {
+      "fecha": "14/03/2024",
+      "promedio_ponderado": 505.99,
+      "monto_total": 80046000,
+      "minimo": 505.25,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45365.7083333333
+    },
+    {
+      "fecha": "15/03/2024",
+      "promedio_ponderado": 505.15,
+      "monto_total": 85198000,
+      "minimo": 504.9,
+      "maximo": 505.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45366.7083333333
+    },
+    {
+      "fecha": "18/03/2024",
+      "promedio_ponderado": 504.4,
+      "monto_total": 62020000,
+      "minimo": 497,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45369.7083333333
+    },
+    {
+      "fecha": "19/03/2024",
+      "promedio_ponderado": 504.3,
+      "monto_total": 81483000,
+      "minimo": 503,
+      "maximo": 504.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45370.7083333333
+    },
+    {
+      "fecha": "20/03/2024",
+      "promedio_ponderado": 504.09,
+      "monto_total": 63891000,
+      "minimo": 500,
+      "maximo": 504.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45371.7083333333
+    },
+    {
+      "fecha": "21/03/2024",
+      "promedio_ponderado": 503.94,
+      "monto_total": 70899000,
+      "minimo": 502,
+      "maximo": 504,
+      "sesion": 0.708333333333333,
+      "timestamp": 45372.7083333333
+    },
+    {
+      "fecha": "22/03/2024",
+      "promedio_ponderado": 503.99,
+      "monto_total": 29956000,
+      "minimo": 503.5,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45373.7083333333
+    },
+    {
+      "fecha": "25/03/2024",
+      "promedio_ponderado": 503.87,
+      "monto_total": 72043000,
+      "minimo": 503.55,
+      "maximo": 504.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45376.7083333333
+    },
+    {
+      "fecha": "26/03/2024",
+      "promedio_ponderado": 504.27,
+      "monto_total": 31393000,
+      "minimo": 504,
+      "maximo": 505.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45377.7083333333
+    },
+    {
+      "fecha": "27/03/2024",
+      "promedio_ponderado": 503.85,
+      "monto_total": 51371000,
+      "minimo": 503.5,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45378.7083333333
+    },
+    {
+      "fecha": 45295,
+      "promedio_ponderado": 504.32,
+      "monto_total": 27010000,
+      "minimo": 503,
+      "maximo": 504.85,
+      "sesion": 0.708333333333333,
+      "timestamp": 45383.7083333333
+    },
+    {
+      "fecha": 45326,
+      "promedio_ponderado": 505.15,
+      "monto_total": 39732000,
+      "minimo": 503.8,
+      "maximo": 505.86,
+      "sesion": 0.708333333333333,
+      "timestamp": 45384.7083333333
+    },
+    {
+      "fecha": 45355,
+      "promedio_ponderado": 504.99,
+      "monto_total": 56566000,
+      "minimo": 503,
+      "maximo": 505.9,
+      "sesion": 0.708333333333333,
+      "timestamp": 45385.7083333333
+    },
+    {
+      "fecha": 45386,
+      "promedio_ponderado": 503.82,
+      "monto_total": 81676000,
+      "minimo": 503.5,
+      "maximo": 504.76,
+      "sesion": 0.708333333333333,
+      "timestamp": 45386.7083333333
+    },
+    {
+      "fecha": 45416,
+      "promedio_ponderado": 504.29,
+      "monto_total": 38364000,
+      "minimo": 503,
+      "maximo": 504.6,
+      "sesion": 0.708333333333333,
+      "timestamp": 45387.7083333333
+    },
+    {
+      "fecha": 45508,
+      "promedio_ponderado": 503.51,
+      "monto_total": 57452000,
+      "minimo": 500,
+      "maximo": 504.3,
+      "sesion": 0.708333333333333,
+      "timestamp": 45390.7083333333
+    },
+    {
+      "fecha": 45539,
+      "promedio_ponderado": 502.75,
+      "monto_total": 65282000,
+      "minimo": 502.5,
+      "maximo": 504,
+      "sesion": 0.708333333333333,
+      "timestamp": 45391.7083333333
+    },
+    {
+      "fecha": 45569,
+      "promedio_ponderado": 502.4,
+      "monto_total": 62701000,
+      "minimo": 502,
+      "maximo": 502.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 45392.7083333333
+    },
+    {
+      "fecha": 45600,
+      "promedio_ponderado": 502.21,
+      "monto_total": 58318000,
+      "minimo": 502,
+      "maximo": 502.9,
+      "sesion": 0.708333333333333,
+      "timestamp": 45393.7083333333
+    },
+    {
+      "fecha": 45630,
+      "promedio_ponderado": 502.21,
+      "monto_total": 47798000,
+      "minimo": 502.11,
+      "maximo": 503,
+      "sesion": 0.708333333333333,
+      "timestamp": 45394.7083333333
+    },
+    {
+      "fecha": "16/04/2024",
+      "promedio_ponderado": 502.06,
+      "monto_total": 57300000,
+      "minimo": 502,
+      "maximo": 502.49,
+      "sesion": 0.708333333333333,
+      "timestamp": 45398.7083333333
+    },
+    {
+      "fecha": "17/04/2024",
+      "promedio_ponderado": 501.97,
+      "monto_total": 73544000,
+      "minimo": 501,
+      "maximo": 502.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45399.7083333333
+    },
+    {
+      "fecha": "18/04/2024",
+      "promedio_ponderado": 501.89,
+      "monto_total": 65021000,
+      "minimo": 501.84,
+      "maximo": 501.97,
+      "sesion": 0.708333333333333,
+      "timestamp": 45400.7083333333
+    },
+    {
+      "fecha": "19/04/2024",
+      "promedio_ponderado": 501.95,
+      "monto_total": 27750000,
+      "minimo": 501.79,
+      "maximo": 502,
+      "sesion": 0.708333333333333,
+      "timestamp": 45401.7083333333
+    },
+    {
+      "fecha": "22/04/2024",
+      "promedio_ponderado": 502.76,
+      "monto_total": 25715000,
+      "minimo": 501.85,
+      "maximo": 503.06,
+      "sesion": 0.708333333333333,
+      "timestamp": 45404.7083333333
+    },
+    {
+      "fecha": "23/04/2024",
+      "promedio_ponderado": 503.15,
+      "monto_total": 33981000,
+      "minimo": 502,
+      "maximo": 503.9,
+      "sesion": 0.708333333333333,
+      "timestamp": 45405.7083333333
+    },
+    {
+      "fecha": "24/04/2024",
+      "promedio_ponderado": 503.3,
+      "monto_total": 42806000,
+      "minimo": 502.75,
+      "maximo": 503.6,
+      "sesion": 0.708333333333333,
+      "timestamp": 45406.7083333333
+    },
+    {
+      "fecha": "25/04/2024",
+      "promedio_ponderado": 503.1,
+      "monto_total": 34786000,
+      "minimo": 502.49,
+      "maximo": 504.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45407.7083333333
+    },
+    {
+      "fecha": "26/04/2024",
+      "promedio_ponderado": 504.46,
+      "monto_total": 43440000,
+      "minimo": 503,
+      "maximo": 505.05,
+      "sesion": 0.708333333333333,
+      "timestamp": 45408.7083333333
+    },
+    {
+      "fecha": "29/04/2024",
+      "promedio_ponderado": 508.47,
+      "monto_total": 20310000,
+      "minimo": 503.2,
+      "maximo": 509.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45411.7083333333
+    },
+    {
+      "fecha": "30/04/2024",
+      "promedio_ponderado": 509.19,
+      "monto_total": 22470000,
+      "minimo": 506.5,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45412.7083333333
+    },
+    {
+      "fecha": 45327,
+      "promedio_ponderado": 509.45,
+      "monto_total": 30562000,
+      "minimo": 508.15,
+      "maximo": 509.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45414.7083333333
+    },
+    {
+      "fecha": 45356,
+      "promedio_ponderado": 510.03,
+      "monto_total": 16482000,
+      "minimo": 509,
+      "maximo": 511,
+      "sesion": 0.708333333333333,
+      "timestamp": 45415.7083333333
+    },
+    {
+      "fecha": 45448,
+      "promedio_ponderado": 511.31,
+      "monto_total": 17198000,
+      "minimo": 507,
+      "maximo": 511.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45418.7083333333
+    },
+    {
+      "fecha": 45478,
+      "promedio_ponderado": 512.01,
+      "monto_total": 29877000,
+      "minimo": 511,
+      "maximo": 512.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45419.7083333333
+    },
+    {
+      "fecha": 45509,
+      "promedio_ponderado": 512.6,
+      "monto_total": 28789000,
+      "minimo": 511.75,
+      "maximo": 512.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45420.7083333333
+    },
+    {
+      "fecha": 45540,
+      "promedio_ponderado": 512.9,
+      "monto_total": 33285000,
+      "minimo": 511,
+      "maximo": 513.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45421.7083333333
+    },
+    {
+      "fecha": 45570,
+      "promedio_ponderado": 512.52,
+      "monto_total": 28588000,
+      "minimo": 512,
+      "maximo": 512.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45422.7083333333
+    },
+    {
+      "fecha": "13/05/2024",
+      "promedio_ponderado": 512.11,
+      "monto_total": 44318000,
+      "minimo": 511,
+      "maximo": 513,
+      "sesion": 0.708333333333333,
+      "timestamp": 45425.7083333333
+    },
+    {
+      "fecha": "14/05/2024",
+      "promedio_ponderado": 510.67,
+      "monto_total": 64062000,
+      "minimo": 510.5,
+      "maximo": 511.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45426.7083333333
+    },
+    {
+      "fecha": "15/05/2024",
+      "promedio_ponderado": 509.94,
+      "monto_total": 41043000,
+      "minimo": 509.7,
+      "maximo": 510.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 45427.7083333333
+    },
+    {
+      "fecha": "16/05/2024",
+      "promedio_ponderado": 510.08,
+      "monto_total": 27543000,
+      "minimo": 509.7,
+      "maximo": 510.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45428.7083333333
+    },
+    {
+      "fecha": "17/05/2024",
+      "promedio_ponderado": 511.88,
+      "monto_total": 28005000,
+      "minimo": 510,
+      "maximo": 512.45,
+      "sesion": 0.708333333333333,
+      "timestamp": 45429.7083333333
+    },
+    {
+      "fecha": "20/05/2024",
+      "promedio_ponderado": 513.35,
+      "monto_total": 33929000,
+      "minimo": 511.55,
+      "maximo": 513.41,
+      "sesion": 0.708333333333333,
+      "timestamp": 45432.7083333333
+    },
+    {
+      "fecha": "21/05/2024",
+      "promedio_ponderado": 514.38,
+      "monto_total": 22239000,
+      "minimo": 512.4,
+      "maximo": 514.65,
+      "sesion": 0.708333333333333,
+      "timestamp": 45433.7083333333
+    },
+    {
+      "fecha": "22/05/2024",
+      "promedio_ponderado": 515.64,
+      "monto_total": 12287000,
+      "minimo": 513,
+      "maximo": 516,
+      "sesion": 0.708333333333333,
+      "timestamp": 45434.7083333333
+    },
+    {
+      "fecha": "23/05/2024",
+      "promedio_ponderado": 517.01,
+      "monto_total": 7255000,
+      "minimo": 515,
+      "maximo": 517.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45435.7083333333
+    },
+    {
+      "fecha": "24/05/2024",
+      "promedio_ponderado": 518.57,
+      "monto_total": 17978000,
+      "minimo": 516.1,
+      "maximo": 520.44,
+      "sesion": 0.708333333333333,
+      "timestamp": 45436.7083333333
+    },
+    {
+      "fecha": "27/05/2024",
+      "promedio_ponderado": 522.09,
+      "monto_total": 10463000,
+      "minimo": 519.15,
+      "maximo": 522.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45439.7083333333
+    },
+    {
+      "fecha": "28/05/2024",
+      "promedio_ponderado": 524.48,
+      "monto_total": 46556000,
+      "minimo": 522,
+      "maximo": 524.98,
+      "sesion": 0.708333333333333,
+      "timestamp": 45440.7083333333
+    },
+    {
+      "fecha": "29/05/2024",
+      "promedio_ponderado": 525.05,
+      "monto_total": 25662000,
+      "minimo": 524.25,
+      "maximo": 526,
+      "sesion": 0.708333333333333,
+      "timestamp": 45441.7083333333
+    },
+    {
+      "fecha": "30/05/2024",
+      "promedio_ponderado": 527.49,
+      "monto_total": 12119000,
+      "minimo": 525.01,
+      "maximo": 528.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45442.7083333333
+    },
+    {
+      "fecha": "31/05/2024",
+      "promedio_ponderado": 531.55,
+      "monto_total": 15271000,
+      "minimo": 527.5,
+      "maximo": 535,
+      "sesion": 0.708333333333333,
+      "timestamp": 45443.7083333333
+    },
+    {
+      "fecha": 45357,
+      "promedio_ponderado": 531.38,
+      "monto_total": 9071000,
+      "minimo": 529.5,
+      "maximo": 533.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45446.7083333333
+    },
+    {
+      "fecha": 45388,
+      "promedio_ponderado": 529.65,
+      "monto_total": 30798000,
+      "minimo": 529.01,
+      "maximo": 531.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 45447.7083333333
+    },
+    {
+      "fecha": 45418,
+      "promedio_ponderado": 529.49,
+      "monto_total": 31592000,
+      "minimo": 528.75,
+      "maximo": 530.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45448.7083333333
+    },
+    {
+      "fecha": 45449,
+      "promedio_ponderado": 530.96,
+      "monto_total": 37911000,
+      "minimo": 526.94,
+      "maximo": 531.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45449.7083333333
+    },
+    {
+      "fecha": 45479,
+      "promedio_ponderado": 535.02,
+      "monto_total": 29025000,
+      "minimo": 530,
+      "maximo": 536,
+      "sesion": 0.708333333333333,
+      "timestamp": 45450.7083333333
+    },
+    {
+      "fecha": 45571,
+      "promedio_ponderado": 531.15,
+      "monto_total": 46449000,
+      "minimo": 530.5,
+      "maximo": 536,
+      "sesion": 0.708333333333333,
+      "timestamp": 45453.7083333333
+    },
+    {
+      "fecha": 45602,
+      "promedio_ponderado": 527.04,
+      "monto_total": 37387000,
+      "minimo": 526.85,
+      "maximo": 530,
+      "sesion": 0.708333333333333,
+      "timestamp": 45454.7083333333
+    },
+    {
+      "fecha": 45632,
+      "promedio_ponderado": 525.75,
+      "monto_total": 66963000,
+      "minimo": 523,
+      "maximo": 526.98,
+      "sesion": 0.708333333333333,
+      "timestamp": 45455.7083333333
+    },
+    {
+      "fecha": "13/06/2024",
+      "promedio_ponderado": 524.09,
+      "monto_total": 45954000,
+      "minimo": 522,
+      "maximo": 525,
+      "sesion": 0.708333333333333,
+      "timestamp": 45456.7083333333
+    },
+    {
+      "fecha": "14/06/2024",
+      "promedio_ponderado": 522.15,
+      "monto_total": 39326000,
+      "minimo": 521,
+      "maximo": 525.24,
+      "sesion": 0.708333333333333,
+      "timestamp": 45457.7083333333
+    },
+    {
+      "fecha": "17/06/2024",
+      "promedio_ponderado": 520.91,
+      "monto_total": 77991000,
+      "minimo": 518,
+      "maximo": 521,
+      "sesion": 0.708333333333333,
+      "timestamp": 45460.7083333333
+    },
+    {
+      "fecha": "18/06/2024",
+      "promedio_ponderado": 519.06,
+      "monto_total": 32153000,
+      "minimo": 518.8,
+      "maximo": 520.01,
+      "sesion": 0.708333333333333,
+      "timestamp": 45461.7083333333
+    },
+    {
+      "fecha": "19/06/2024",
+      "promedio_ponderado": 519.48,
+      "monto_total": 15505000,
+      "minimo": 519,
+      "maximo": 520,
+      "sesion": 0.708333333333333,
+      "timestamp": 45462.7083333333
+    },
+    {
+      "fecha": "20/06/2024",
+      "promedio_ponderado": 522.73,
+      "monto_total": 21316000,
+      "minimo": 518.01,
+      "maximo": 523.4,
+      "sesion": 0.708333333333333,
+      "timestamp": 45463.7083333333
+    },
+    {
+      "fecha": "21/06/2024",
+      "promedio_ponderado": 526.42,
+      "monto_total": 18054000,
+      "minimo": 523.9,
+      "maximo": 526.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45464.7083333333
+    },
+    {
+      "fecha": "24/06/2024",
+      "promedio_ponderado": 525.19,
+      "monto_total": 109574000,
+      "minimo": 524.1,
+      "maximo": 527.67,
+      "sesion": 0.708333333333333,
+      "timestamp": 45467.7083333333
+    },
+    {
+      "fecha": "25/06/2024",
+      "promedio_ponderado": 522.92,
+      "monto_total": 69465000,
+      "minimo": 522.2,
+      "maximo": 524.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45468.7083333333
+    },
+    {
+      "fecha": "26/06/2024",
+      "promedio_ponderado": 526.19,
+      "monto_total": 24691000,
+      "minimo": 522.9,
+      "maximo": 529,
+      "sesion": 0.708333333333333,
+      "timestamp": 45469.7083333333
+    },
+    {
+      "fecha": "27/06/2024",
+      "promedio_ponderado": 528.21,
+      "monto_total": 36633000,
+      "minimo": 525,
+      "maximo": 529.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45470.7083333333
+    },
+    {
+      "fecha": "28/06/2024",
+      "promedio_ponderado": 528.27,
+      "monto_total": 40546000,
+      "minimo": 526,
+      "maximo": 529.4,
+      "sesion": 0.708333333333333,
+      "timestamp": 45471.7083333333
+    },
+    {
+      "fecha": 45298,
+      "promedio_ponderado": 526.87,
+      "monto_total": 25742000,
+      "minimo": 526.66,
+      "maximo": 527.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45474.7083333333
+    },
+    {
+      "fecha": 45329,
+      "promedio_ponderado": 527.33,
+      "monto_total": 40766000,
+      "minimo": 525,
+      "maximo": 528,
+      "sesion": 0.708333333333333,
+      "timestamp": 45475.7083333333
+    },
+    {
+      "fecha": 45358,
+      "promedio_ponderado": 527.53,
+      "monto_total": 18463000,
+      "minimo": 524,
+      "maximo": 529.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45476.7083333333
+    },
+    {
+      "fecha": 45389,
+      "promedio_ponderado": 531.29,
+      "monto_total": 16631000,
+      "minimo": 525.25,
+      "maximo": 531.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45477.7083333333
+    },
+    {
+      "fecha": 45419,
+      "promedio_ponderado": 533.49,
+      "monto_total": 37724000,
+      "minimo": 527.6,
+      "maximo": 535.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45478.7083333333
+    },
+    {
+      "fecha": 45511,
+      "promedio_ponderado": 530.85,
+      "monto_total": 55225000,
+      "minimo": 530,
+      "maximo": 534,
+      "sesion": 0.708333333333333,
+      "timestamp": 45481.7083333333
+    },
+    {
+      "fecha": 45542,
+      "promedio_ponderado": 527.35,
+      "monto_total": 93703000,
+      "minimo": 526.25,
+      "maximo": 532,
+      "sesion": 0.708333333333333,
+      "timestamp": 45482.7083333333
+    },
+    {
+      "fecha": 45572,
+      "promedio_ponderado": 524.66,
+      "monto_total": 47092000,
+      "minimo": 523,
+      "maximo": 527,
+      "sesion": 0.708333333333333,
+      "timestamp": 45483.7083333333
+    },
+    {
+      "fecha": 45603,
+      "promedio_ponderado": 524,
+      "monto_total": 31658000,
+      "minimo": 522.75,
+      "maximo": 525,
+      "sesion": 0.708333333333333,
+      "timestamp": 45484.7083333333
+    },
+    {
+      "fecha": 45633,
+      "promedio_ponderado": 525.63,
+      "monto_total": 40794000,
+      "minimo": 523.2,
+      "maximo": 527,
+      "sesion": 0.708333333333333,
+      "timestamp": 45485.7083333333
+    },
+    {
+      "fecha": "15/07/2024",
+      "promedio_ponderado": 524.52,
+      "monto_total": 45999000,
+      "minimo": 524,
+      "maximo": 526,
+      "sesion": 0.708333333333333,
+      "timestamp": 45488.7083333333
+    },
+    {
+      "fecha": "16/07/2024",
+      "promedio_ponderado": 523.72,
+      "monto_total": 37400000,
+      "minimo": 523,
+      "maximo": 524.18,
+      "sesion": 0.708333333333333,
+      "timestamp": 45489.7083333333
+    },
+    {
+      "fecha": "17/07/2024",
+      "promedio_ponderado": 523.96,
+      "monto_total": 24114000,
+      "minimo": 523,
+      "maximo": 524.9,
+      "sesion": 0.708333333333333,
+      "timestamp": 45490.7083333333
+    },
+    {
+      "fecha": "18/07/2024",
+      "promedio_ponderado": 528.13,
+      "monto_total": 25444000,
+      "minimo": 523,
+      "maximo": 529.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 45491.7083333333
+    },
+    {
+      "fecha": "19/07/2024",
+      "promedio_ponderado": 530.39,
+      "monto_total": 33509000,
+      "minimo": 527,
+      "maximo": 531.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45492.7083333333
+    },
+    {
+      "fecha": "22/07/2024",
+      "promedio_ponderado": 529.43,
+      "monto_total": 44824000,
+      "minimo": 528.6,
+      "maximo": 531,
+      "sesion": 0.708333333333333,
+      "timestamp": 45495.7083333333
+    },
+    {
+      "fecha": "23/07/2024",
+      "promedio_ponderado": 526.04,
+      "monto_total": 58786000,
+      "minimo": 525,
+      "maximo": 528,
+      "sesion": 0.708333333333333,
+      "timestamp": 45496.7083333333
+    },
+    {
+      "fecha": "24/07/2024",
+      "promedio_ponderado": 525.73,
+      "monto_total": 23639000,
+      "minimo": 524.5,
+      "maximo": 526.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45497.7083333333
+    },
+    {
+      "fecha": "26/07/2024",
+      "promedio_ponderado": 526.13,
+      "monto_total": 57947000,
+      "minimo": 522.13,
+      "maximo": 527.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45499.7083333333
+    },
+    {
+      "fecha": "29/07/2024",
+      "promedio_ponderado": 525.84,
+      "monto_total": 33290000,
+      "minimo": 525,
+      "maximo": 526.05,
+      "sesion": 0.708333333333333,
+      "timestamp": 45502.7083333333
+    },
+    {
+      "fecha": "30/07/2024",
+      "promedio_ponderado": 524.39,
+      "monto_total": 37550000,
+      "minimo": 523.95,
+      "maximo": 526.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45503.7083333333
+    },
+    {
+      "fecha": "31/07/2024",
+      "promedio_ponderado": 523.84,
+      "monto_total": 28011000,
+      "minimo": 523.65,
+      "maximo": 525.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45504.7083333333
+    },
+    {
+      "fecha": 45299,
+      "promedio_ponderado": 524.31,
+      "monto_total": 10616000,
+      "minimo": 522.9,
+      "maximo": 527,
+      "sesion": 0.708333333333333,
+      "timestamp": 45505.7083333333
+    },
+    {
+      "fecha": 45420,
+      "promedio_ponderado": 524.27,
+      "monto_total": 45538000,
+      "minimo": 521.01,
+      "maximo": 525,
+      "sesion": 0.708333333333333,
+      "timestamp": 45509.7083333333
+    },
+    {
+      "fecha": 45451,
+      "promedio_ponderado": 525.51,
+      "monto_total": 2158000,
+      "minimo": 524,
+      "maximo": 526.05,
+      "sesion": 0.708333333333333,
+      "timestamp": 45510.7083333333
+    },
+    {
+      "fecha": 45481,
+      "promedio_ponderado": 529.53,
+      "monto_total": 24551000,
+      "minimo": 524,
+      "maximo": 531,
+      "sesion": 0.708333333333333,
+      "timestamp": 45511.7083333333
+    },
+    {
+      "fecha": 45512,
+      "promedio_ponderado": 529.79,
+      "monto_total": 35546000,
+      "minimo": 528,
+      "maximo": 530.36,
+      "sesion": 0.708333333333333,
+      "timestamp": 45512.7083333333
+    },
+    {
+      "fecha": 45543,
+      "promedio_ponderado": 530.17,
+      "monto_total": 14164000,
+      "minimo": 527,
+      "maximo": 530.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45513.7083333333
+    },
+    {
+      "fecha": 45634,
+      "promedio_ponderado": 527.14,
+      "monto_total": 50866000,
+      "minimo": 526.05,
+      "maximo": 528.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45516.7083333333
+    },
+    {
+      "fecha": "13/08/2024",
+      "promedio_ponderado": 522.8,
+      "monto_total": 90525000,
+      "minimo": 522,
+      "maximo": 526.49,
+      "sesion": 0.708333333333333,
+      "timestamp": 45517.7083333333
+    },
+    {
+      "fecha": "14/08/2024",
+      "promedio_ponderado": 519.55,
+      "monto_total": 49834000,
+      "minimo": 518.9,
+      "maximo": 523,
+      "sesion": 0.708333333333333,
+      "timestamp": 45518.7083333333
+    },
+    {
+      "fecha": "16/08/2024",
+      "promedio_ponderado": 519.72,
+      "monto_total": 37139000,
+      "minimo": 519,
+      "maximo": 520.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45520.7083333333
+    },
+    {
+      "fecha": "19/08/2024",
+      "promedio_ponderado": 521.92,
+      "monto_total": 33169000,
+      "minimo": 519.5,
+      "maximo": 522.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45523.7083333333
+    },
+    {
+      "fecha": "20/08/2024",
+      "promedio_ponderado": 523.85,
+      "monto_total": 34102000,
+      "minimo": 519.01,
+      "maximo": 524.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45524.7083333333
+    },
+    {
+      "fecha": "21/08/2024",
+      "promedio_ponderado": 523.05,
+      "monto_total": 62061000,
+      "minimo": 522.6,
+      "maximo": 524,
+      "sesion": 0.708333333333333,
+      "timestamp": 45525.7083333333
+    },
+    {
+      "fecha": "22/08/2024",
+      "promedio_ponderado": 523.03,
+      "monto_total": 36790000,
+      "minimo": 521.15,
+      "maximo": 524.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45526.7083333333
+    },
+    {
+      "fecha": "23/08/2024",
+      "promedio_ponderado": 526.03,
+      "monto_total": 20710000,
+      "minimo": 522.75,
+      "maximo": 527.05,
+      "sesion": 0.708333333333333,
+      "timestamp": 45527.7083333333
+    },
+    {
+      "fecha": "26/08/2024",
+      "promedio_ponderado": 524.03,
+      "monto_total": 34396000,
+      "minimo": 522,
+      "maximo": 525,
+      "sesion": 0.708333333333333,
+      "timestamp": 45530.7083333333
+    },
+    {
+      "fecha": "27/08/2024",
+      "promedio_ponderado": 519.64,
+      "monto_total": 75789000,
+      "minimo": 519.25,
+      "maximo": 523.84,
+      "sesion": 0.708333333333333,
+      "timestamp": 45531.7083333333
+    },
+    {
+      "fecha": "28/08/2024",
+      "promedio_ponderado": 519.05,
+      "monto_total": 46495000,
+      "minimo": 514,
+      "maximo": 522.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45532.7083333333
+    },
+    {
+      "fecha": "29/08/2024",
+      "promedio_ponderado": 519.42,
+      "monto_total": 27884000,
+      "minimo": 515,
+      "maximo": 519.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45533.7083333333
+    },
+    {
+      "fecha": "30/08/2024",
+      "promedio_ponderado": 520.41,
+      "monto_total": 30082000,
+      "minimo": 519.2,
+      "maximo": 521,
+      "sesion": 0.708333333333333,
+      "timestamp": 45534.7083333333
+    },
+    {
+      "fecha": 45331,
+      "promedio_ponderado": 519.93,
+      "monto_total": 28827000,
+      "minimo": 519.05,
+      "maximo": 520.35,
+      "sesion": 0.708333333333333,
+      "timestamp": 45537.7083333333
+    },
+    {
+      "fecha": 45360,
+      "promedio_ponderado": 519.4,
+      "monto_total": 32590000,
+      "minimo": 518.8,
+      "maximo": 520,
+      "sesion": 0.708333333333333,
+      "timestamp": 45538.7083333333
+    },
+    {
+      "fecha": 45391,
+      "promedio_ponderado": 521.71,
+      "monto_total": 31598000,
+      "minimo": 519,
+      "maximo": 522.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45539.7083333333
+    },
+    {
+      "fecha": 45421,
+      "promedio_ponderado": 523.01,
+      "monto_total": 41577000,
+      "minimo": 521,
+      "maximo": 523.85,
+      "sesion": 0.708333333333333,
+      "timestamp": 45540.7083333333
+    },
+    {
+      "fecha": 45452,
+      "promedio_ponderado": 521.73,
+      "monto_total": 26023000,
+      "minimo": 520.5,
+      "maximo": 523.3,
+      "sesion": 0.708333333333333,
+      "timestamp": 45541.7083333333
+    },
+    {
+      "fecha": 45544,
+      "promedio_ponderado": 520.37,
+      "monto_total": 38678000,
+      "minimo": 519.6,
+      "maximo": 521,
+      "sesion": 0.708333333333333,
+      "timestamp": 45544.7083333333
+    },
+    {
+      "fecha": 45574,
+      "promedio_ponderado": 519.01,
+      "monto_total": 37606000,
+      "minimo": 518,
+      "maximo": 520.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45545.7083333333
+    },
+    {
+      "fecha": 45605,
+      "promedio_ponderado": 517.91,
+      "monto_total": 55942000,
+      "minimo": 517.5,
+      "maximo": 518.85,
+      "sesion": 0.708333333333333,
+      "timestamp": 45546.7083333333
+    },
+    {
+      "fecha": 45635,
+      "promedio_ponderado": 519.76,
+      "monto_total": 25105000,
+      "minimo": 518,
+      "maximo": 520.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45547.7083333333
+    },
+    {
+      "fecha": "13/09/2024",
+      "promedio_ponderado": 518.59,
+      "monto_total": 33935000,
+      "minimo": 517.25,
+      "maximo": 520,
+      "sesion": 0.708333333333333,
+      "timestamp": 45548.7083333333
+    },
+    {
+      "fecha": "16/09/2024",
+      "promedio_ponderado": 519.06,
+      "monto_total": 36091000,
+      "minimo": 518,
+      "maximo": 520,
+      "sesion": 0.708333333333333,
+      "timestamp": 45551.7083333333
+    },
+    {
+      "fecha": "17/09/2024",
+      "promedio_ponderado": 519.3,
+      "monto_total": 44739000,
+      "minimo": 518,
+      "maximo": 520.29,
+      "sesion": 0.708333333333333,
+      "timestamp": 45552.7083333333
+    },
+    {
+      "fecha": "18/09/2024",
+      "promedio_ponderado": 519.7,
+      "monto_total": 47974000,
+      "minimo": 519.3,
+      "maximo": 520.72,
+      "sesion": 0.708333333333333,
+      "timestamp": 45553.7083333333
+    },
+    {
+      "fecha": "19/09/2024",
+      "promedio_ponderado": 519.5,
+      "monto_total": 47449000,
+      "minimo": 518.05,
+      "maximo": 520.05,
+      "sesion": 0.708333333333333,
+      "timestamp": 45554.7083333333
+    },
+    {
+      "fecha": "20/09/2024",
+      "promedio_ponderado": 521.5,
+      "monto_total": 20079000,
+      "minimo": 518.15,
+      "maximo": 522.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45555.7083333333
+    },
+    {
+      "fecha": "23/09/2024",
+      "promedio_ponderado": 519.98,
+      "monto_total": 36428000,
+      "minimo": 519,
+      "maximo": 521.07,
+      "sesion": 0.708333333333333,
+      "timestamp": 45558.7083333333
+    },
+    {
+      "fecha": "24/09/2024",
+      "promedio_ponderado": 520.35,
+      "monto_total": 23849000,
+      "minimo": 519,
+      "maximo": 521,
+      "sesion": 0.708333333333333,
+      "timestamp": 45559.7083333333
+    },
+    {
+      "fecha": "25/09/2024",
+      "promedio_ponderado": 518.45,
+      "monto_total": 57029000,
+      "minimo": 517.52,
+      "maximo": 520.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45560.7083333333
+    },
+    {
+      "fecha": "26/09/2024",
+      "promedio_ponderado": 521.8,
+      "monto_total": 20935000,
+      "minimo": 518,
+      "maximo": 522.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45561.7083333333
+    },
+    {
+      "fecha": "27/09/2024",
+      "promedio_ponderado": 521.03,
+      "monto_total": 30719000,
+      "minimo": 518,
+      "maximo": 521.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45562.7083333333
+    },
+    {
+      "fecha": "30/09/2024",
+      "promedio_ponderado": 518.76,
+      "monto_total": 50768000,
+      "minimo": 518,
+      "maximo": 520,
+      "sesion": 0.708333333333333,
+      "timestamp": 45565.7083333333
+    },
+    {
+      "fecha": 45301,
+      "promedio_ponderado": 518.38,
+      "monto_total": 21445000,
+      "minimo": 517.7,
+      "maximo": 519.67,
+      "sesion": 0.708333333333333,
+      "timestamp": 45566.7083333333
+    },
+    {
+      "fecha": 45332,
+      "promedio_ponderado": 518.8,
+      "monto_total": 21683000,
+      "minimo": 517.5,
+      "maximo": 519.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45567.7083333333
+    },
+    {
+      "fecha": 45361,
+      "promedio_ponderado": 519.94,
+      "monto_total": 24017000,
+      "minimo": 518.01,
+      "maximo": 520.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45568.7083333333
+    },
+    {
+      "fecha": 45392,
+      "promedio_ponderado": 521.24,
+      "monto_total": 63070000,
+      "minimo": 519.02,
+      "maximo": 521.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45569.7083333333
+    },
+    {
+      "fecha": 45483,
+      "promedio_ponderado": 518.81,
+      "monto_total": 36509000,
+      "minimo": 517.75,
+      "maximo": 520.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45572.7083333333
+    },
+    {
+      "fecha": 45514,
+      "promedio_ponderado": 517.21,
+      "monto_total": 36571000,
+      "minimo": 516,
+      "maximo": 519,
+      "sesion": 0.708333333333333,
+      "timestamp": 45573.7083333333
+    },
+    {
+      "fecha": 45545,
+      "promedio_ponderado": 517.33,
+      "monto_total": 35528000,
+      "minimo": 517.1,
+      "maximo": 519.02,
+      "sesion": 0.708333333333333,
+      "timestamp": 45574.7083333333
+    },
+    {
+      "fecha": 45575,
+      "promedio_ponderado": 516.73,
+      "monto_total": 29763000,
+      "minimo": 516.5,
+      "maximo": 517.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45575.7083333333
+    },
+    {
+      "fecha": 45606,
+      "promedio_ponderado": 516.31,
+      "monto_total": 24369000,
+      "minimo": 515.3,
+      "maximo": 517.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45576.7083333333
+    },
+    {
+      "fecha": "14/10/2024",
+      "promedio_ponderado": 515.34,
+      "monto_total": 39656000,
+      "minimo": 515,
+      "maximo": 516.9,
+      "sesion": 0.708333333333333,
+      "timestamp": 45579.7083333333
+    },
+    {
+      "fecha": "15/10/2024",
+      "promedio_ponderado": 515.17,
+      "monto_total": 44776000,
+      "minimo": 514.75,
+      "maximo": 517,
+      "sesion": 0.708333333333333,
+      "timestamp": 45580.7083333333
+    },
+    {
+      "fecha": "16/10/2024",
+      "promedio_ponderado": 514.91,
+      "monto_total": 56167000,
+      "minimo": 514,
+      "maximo": 517,
+      "sesion": 0.708333333333333,
+      "timestamp": 45581.7083333333
+    },
+    {
+      "fecha": "17/10/2024",
+      "promedio_ponderado": 515.16,
+      "monto_total": 19196000,
+      "minimo": 513,
+      "maximo": 516.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45582.7083333333
+    },
+    {
+      "fecha": "18/10/2024",
+      "promedio_ponderado": 515.69,
+      "monto_total": 23782000,
+      "minimo": 514.16,
+      "maximo": 516.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45583.7083333333
+    },
+    {
+      "fecha": "21/10/2024",
+      "promedio_ponderado": 516.64,
+      "monto_total": 25729000,
+      "minimo": 514.5,
+      "maximo": 516.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45586.7083333333
+    },
+    {
+      "fecha": "22/10/2024",
+      "promedio_ponderado": 515.38,
+      "monto_total": 57161000,
+      "minimo": 514.75,
+      "maximo": 516.49,
+      "sesion": 0.708333333333333,
+      "timestamp": 45587.7083333333
+    },
+    {
+      "fecha": "23/10/2024",
+      "promedio_ponderado": 515.7,
+      "monto_total": 24479000,
+      "minimo": 510.35,
+      "maximo": 516.15,
+      "sesion": 0.708333333333333,
+      "timestamp": 45588.7083333333
+    },
+    {
+      "fecha": "24/10/2024",
+      "promedio_ponderado": 515.76,
+      "monto_total": 18327000,
+      "minimo": 515.26,
+      "maximo": 516,
+      "sesion": 0.708333333333333,
+      "timestamp": 45589.7083333333
+    },
+    {
+      "fecha": "25/10/2024",
+      "promedio_ponderado": 514.95,
+      "monto_total": 28335000,
+      "minimo": 511.01,
+      "maximo": 516,
+      "sesion": 0.708333333333333,
+      "timestamp": 45590.7083333333
+    },
+    {
+      "fecha": "28/10/2024",
+      "promedio_ponderado": 513.47,
+      "monto_total": 27788000,
+      "minimo": 512.9,
+      "maximo": 516,
+      "sesion": 0.708333333333333,
+      "timestamp": 45593.7083333333
+    },
+    {
+      "fecha": "29/10/2024",
+      "promedio_ponderado": 513.32,
+      "monto_total": 20908000,
+      "minimo": 512.85,
+      "maximo": 514,
+      "sesion": 0.708333333333333,
+      "timestamp": 45594.7083333333
+    },
+    {
+      "fecha": "30/10/2024",
+      "promedio_ponderado": 512.99,
+      "monto_total": 23520000,
+      "minimo": 512.8,
+      "maximo": 514,
+      "sesion": 0.708333333333333,
+      "timestamp": 45595.7083333333
+    },
+    {
+      "fecha": "31/10/2024",
+      "promedio_ponderado": 513.58,
+      "monto_total": 8810000,
+      "minimo": 510.26,
+      "maximo": 515.3,
+      "sesion": 0.708333333333333,
+      "timestamp": 45596.7083333333
+    },
+    {
+      "fecha": 45302,
+      "promedio_ponderado": 513.14,
+      "monto_total": 28214000,
+      "minimo": 511.01,
+      "maximo": 514,
+      "sesion": 0.708333333333333,
+      "timestamp": 45597.7083333333
+    },
+    {
+      "fecha": 45393,
+      "promedio_ponderado": 513.33,
+      "monto_total": 42541000,
+      "minimo": 513,
+      "maximo": 515,
+      "sesion": 0.708333333333333,
+      "timestamp": 45600.7083333333
+    },
+    {
+      "fecha": 45423,
+      "promedio_ponderado": 511.17,
+      "monto_total": 66597000,
+      "minimo": 510.9,
+      "maximo": 513,
+      "sesion": 0.708333333333333,
+      "timestamp": 45601.7083333333
+    },
+    {
+      "fecha": 45454,
+      "promedio_ponderado": 511.56,
+      "monto_total": 22039000,
+      "minimo": 511,
+      "maximo": 512,
+      "sesion": 0.708333333333333,
+      "timestamp": 45602.7083333333
+    },
+    {
+      "fecha": 45484,
+      "promedio_ponderado": 513.62,
+      "monto_total": 19707000,
+      "minimo": 510.8,
+      "maximo": 515,
+      "sesion": 0.708333333333333,
+      "timestamp": 45603.7083333333
+    },
+    {
+      "fecha": 45515,
+      "promedio_ponderado": 513.92,
+      "monto_total": 13304000,
+      "minimo": 513.01,
+      "maximo": 514.35,
+      "sesion": 0.708333333333333,
+      "timestamp": 45604.7083333333
+    },
+    {
+      "fecha": 45607,
+      "promedio_ponderado": 512.41,
+      "monto_total": 36349000,
+      "minimo": 512,
+      "maximo": 512.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45607.7083333333
+    },
+    {
+      "fecha": 45637,
+      "promedio_ponderado": 511,
+      "monto_total": 53583000,
+      "minimo": 510.03,
+      "maximo": 512,
+      "sesion": 0.708333333333333,
+      "timestamp": 45608.7083333333
+    },
+    {
+      "fecha": "13/11/2024",
+      "promedio_ponderado": 510.39,
+      "monto_total": 32278000,
+      "minimo": 510.05,
+      "maximo": 511,
+      "sesion": 0.708333333333333,
+      "timestamp": 45609.7083333333
+    },
+    {
+      "fecha": "14/11/2024",
+      "promedio_ponderado": 509.38,
+      "monto_total": 36960000,
+      "minimo": 509,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45610.7083333333
+    },
+    {
+      "fecha": "15/11/2024",
+      "promedio_ponderado": 509.35,
+      "monto_total": 25763000,
+      "minimo": 505.13,
+      "maximo": 509.55,
+      "sesion": 0.708333333333333,
+      "timestamp": 45611.7083333333
+    },
+    {
+      "fecha": "18/11/2024",
+      "promedio_ponderado": 508.64,
+      "monto_total": 49594000,
+      "minimo": 508,
+      "maximo": 509.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45614.7083333333
+    },
+    {
+      "fecha": "19/11/2024",
+      "promedio_ponderado": 508.75,
+      "monto_total": 23629000,
+      "minimo": 507.95,
+      "maximo": 509.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45615.7083333333
+    },
+    {
+      "fecha": "20/11/2024",
+      "promedio_ponderado": 510.81,
+      "monto_total": 24391000,
+      "minimo": 508,
+      "maximo": 511.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45616.7083333333
+    },
+    {
+      "fecha": "21/11/2024",
+      "promedio_ponderado": 511.24,
+      "monto_total": 26479000,
+      "minimo": 509.01,
+      "maximo": 512,
+      "sesion": 0.708333333333333,
+      "timestamp": 45617.7083333333
+    },
+    {
+      "fecha": "22/11/2024",
+      "promedio_ponderado": 511.16,
+      "monto_total": 42802000,
+      "minimo": 509,
+      "maximo": 512.82,
+      "sesion": 0.708333333333333,
+      "timestamp": 45618.7083333333
+    },
+    {
+      "fecha": "25/11/2024",
+      "promedio_ponderado": 511.74,
+      "monto_total": 55511000,
+      "minimo": 510.55,
+      "maximo": 512,
+      "sesion": 0.708333333333333,
+      "timestamp": 45621.7083333333
+    },
+    {
+      "fecha": "26/11/2024",
+      "promedio_ponderado": 511.39,
+      "monto_total": 56438000,
+      "minimo": 510.51,
+      "maximo": 512,
+      "sesion": 0.708333333333333,
+      "timestamp": 45622.7083333333
+    },
+    {
+      "fecha": "27/11/2024",
+      "promedio_ponderado": 510.04,
+      "monto_total": 48093000,
+      "minimo": 509.4,
+      "maximo": 511.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45623.7083333333
+    },
+    {
+      "fecha": "28/11/2024",
+      "promedio_ponderado": 508.99,
+      "monto_total": 18598000,
+      "minimo": 507.9,
+      "maximo": 510.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45624.7083333333
+    },
+    {
+      "fecha": "29/11/2024",
+      "promedio_ponderado": 509.76,
+      "monto_total": 8225000,
+      "minimo": 507.05,
+      "maximo": 510.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45625.7083333333
+    },
+    {
+      "fecha": 45334,
+      "promedio_ponderado": 508.05,
+      "monto_total": 32713000,
+      "minimo": 507.8,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45628.7083333333
+    },
+    {
+      "fecha": 45363,
+      "promedio_ponderado": 507.35,
+      "monto_total": 40097000,
+      "minimo": 506.85,
+      "maximo": 509,
+      "sesion": 0.708333333333333,
+      "timestamp": 45629.7083333333
+    },
+    {
+      "fecha": 45394,
+      "promedio_ponderado": 505.36,
+      "monto_total": 90302000,
+      "minimo": 505,
+      "maximo": 508,
+      "sesion": 0.708333333333333,
+      "timestamp": 45630.7083333333
+    },
+    {
+      "fecha": 45424,
+      "promedio_ponderado": 505.71,
+      "monto_total": 38816000,
+      "minimo": 505,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45631.7083333333
+    },
+    {
+      "fecha": 45455,
+      "promedio_ponderado": 504.99,
+      "monto_total": 31534000,
+      "minimo": 504,
+      "maximo": 506,
+      "sesion": 0.708333333333333,
+      "timestamp": 45632.7083333333
+    },
+    {
+      "fecha": 45547,
+      "promedio_ponderado": 504.18,
+      "monto_total": 48384000,
+      "minimo": 504.01,
+      "maximo": 504.85,
+      "sesion": 0.708333333333333,
+      "timestamp": 45635.7083333333
+    },
+    {
+      "fecha": 45577,
+      "promedio_ponderado": 504.36,
+      "monto_total": 30758000,
+      "minimo": 503,
+      "maximo": 504.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45636.7083333333
+    },
+    {
+      "fecha": 45608,
+      "promedio_ponderado": 504.87,
+      "monto_total": 37815000,
+      "minimo": 504.5,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45637.7083333333
+    },
+    {
+      "fecha": 45638,
+      "promedio_ponderado": 504.64,
+      "monto_total": 68259000,
+      "minimo": 504.45,
+      "maximo": 505.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45638.7083333333
+    },
+    {
+      "fecha": "13/12/2024",
+      "promedio_ponderado": 504.81,
+      "monto_total": 55828000,
+      "minimo": 504.2,
+      "maximo": 505.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45639.7083333333
+    },
+    {
+      "fecha": "16/12/2024",
+      "promedio_ponderado": 503.94,
+      "monto_total": 35045000,
+      "minimo": 503.5,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45642.7083333333
+    },
+    {
+      "fecha": "17/12/2024",
+      "promedio_ponderado": 504.17,
+      "monto_total": 31623000,
+      "minimo": 503.5,
+      "maximo": 504.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45643.7083333333
+    },
+    {
+      "fecha": "18/12/2024",
+      "promedio_ponderado": 506.55,
+      "monto_total": 33020000,
+      "minimo": 503.5,
+      "maximo": 507.91,
+      "sesion": 0.708333333333333,
+      "timestamp": 45644.7083333333
+    },
+    {
+      "fecha": "19/12/2024",
+      "promedio_ponderado": 508.67,
+      "monto_total": 46264000,
+      "minimo": 506,
+      "maximo": 509.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45645.7083333333
+    },
+    {
+      "fecha": "20/12/2024",
+      "promedio_ponderado": 507.38,
+      "monto_total": 75014000,
+      "minimo": 506.25,
+      "maximo": 508.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45646.7083333333
+    },
+    {
+      "fecha": "23/12/2024",
+      "promedio_ponderado": 507.78,
+      "monto_total": 35693000,
+      "minimo": 504,
+      "maximo": 508.15,
+      "sesion": 0.708333333333333,
+      "timestamp": 45649.7083333333
+    },
+    {
+      "fecha": "24/12/2024",
+      "promedio_ponderado": 508.64,
+      "monto_total": 32468000,
+      "minimo": 507.5,
+      "maximo": 509.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45650.7083333333
+    },
+    {
+      "fecha": "26/12/2024",
+      "promedio_ponderado": 509.32,
+      "monto_total": 26491000,
+      "minimo": 508.5,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45652.7083333333
+    },
+    {
+      "fecha": "27/12/2024",
+      "promedio_ponderado": 510.23,
+      "monto_total": 18678000,
+      "minimo": 509,
+      "maximo": 513,
+      "sesion": 0.708333333333333,
+      "timestamp": 45653.7083333333
+    },
+    {
+      "fecha": "30/12/2024",
+      "promedio_ponderado": 511.27,
+      "monto_total": 23840000,
+      "minimo": 509,
+      "maximo": 513.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 45656.7083333333
+    },
+    {
+      "fecha": 45689,
+      "promedio_ponderado": 509.74,
+      "monto_total": 30455000,
+      "minimo": 506.54,
+      "maximo": 512.77,
+      "sesion": 0.708333333333333,
+      "timestamp": 45659.7083333333
+    },
+    {
+      "fecha": 45717,
+      "promedio_ponderado": 509.35,
+      "monto_total": 31864000,
+      "minimo": 508.52,
+      "maximo": 509.9,
+      "sesion": 0.708333333333333,
+      "timestamp": 45660.7083333333
+    },
+    {
+      "fecha": 45809,
+      "promedio_ponderado": 508.82,
+      "monto_total": 44472000,
+      "minimo": 508.5,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45663.7083333333
+    },
+    {
+      "fecha": 45839,
+      "promedio_ponderado": 507.66,
+      "monto_total": 56015000,
+      "minimo": 507.5,
+      "maximo": 508.45,
+      "sesion": 0.708333333333333,
+      "timestamp": 45664.7083333333
+    },
+    {
+      "fecha": 45870,
+      "promedio_ponderado": 505.94,
+      "monto_total": 27369000,
+      "minimo": 505.02,
+      "maximo": 508.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45665.7083333333
+    },
+    {
+      "fecha": 45901,
+      "promedio_ponderado": 505.03,
+      "monto_total": 46449000,
+      "minimo": 504.8,
+      "maximo": 506,
+      "sesion": 0.708333333333333,
+      "timestamp": 45666.7083333333
+    },
+    {
+      "fecha": 45931,
+      "promedio_ponderado": 505.56,
+      "monto_total": 42225000,
+      "minimo": 504.9,
+      "maximo": 506.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45667.7083333333
+    },
+    {
+      "fecha": "13/01/2025",
+      "promedio_ponderado": 504.1,
+      "monto_total": 30211000,
+      "minimo": 501,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45670.7083333333
+    },
+    {
+      "fecha": "14/01/2025",
+      "promedio_ponderado": 502.17,
+      "monto_total": 40257000,
+      "minimo": 501.9,
+      "maximo": 504,
+      "sesion": 0.708333333333333,
+      "timestamp": 45671.7083333333
+    },
+    {
+      "fecha": "15/01/2025",
+      "promedio_ponderado": 502.2,
+      "monto_total": 10399000,
+      "minimo": 501.05,
+      "maximo": 503,
+      "sesion": 0.708333333333333,
+      "timestamp": 45672.7083333333
+    },
+    {
+      "fecha": "16/01/2025",
+      "promedio_ponderado": 504.02,
+      "monto_total": 35291000,
+      "minimo": 500,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45673.7083333333
+    },
+    {
+      "fecha": "17/01/2025",
+      "promedio_ponderado": 504.44,
+      "monto_total": 31051000,
+      "minimo": 503.81,
+      "maximo": 504.6,
+      "sesion": 0.708333333333333,
+      "timestamp": 45674.7083333333
+    },
+    {
+      "fecha": "20/01/2025",
+      "promedio_ponderado": 505.51,
+      "monto_total": 37613000,
+      "minimo": 503.5,
+      "maximo": 505.85,
+      "sesion": 0.708333333333333,
+      "timestamp": 45677.7083333333
+    },
+    {
+      "fecha": "21/01/2025",
+      "promedio_ponderado": 505.15,
+      "monto_total": 25814000,
+      "minimo": 503,
+      "maximo": 509,
+      "sesion": 0.708333333333333,
+      "timestamp": 45678.7083333333
+    },
+    {
+      "fecha": "22/01/2025",
+      "promedio_ponderado": 504.63,
+      "monto_total": 37180000,
+      "minimo": 503.5,
+      "maximo": 505.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45679.7083333333
+    },
+    {
+      "fecha": "23/01/2025",
+      "promedio_ponderado": 506.22,
+      "monto_total": 25772000,
+      "minimo": 504.2,
+      "maximo": 506.65,
+      "sesion": 0.708333333333333,
+      "timestamp": 45680.7083333333
+    },
+    {
+      "fecha": "24/01/2025",
+      "promedio_ponderado": 508.72,
+      "monto_total": 15789000,
+      "minimo": 501.21,
+      "maximo": 509.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45681.7083333333
+    },
+    {
+      "fecha": "27/01/2025",
+      "promedio_ponderado": 509.06,
+      "monto_total": 36390000,
+      "minimo": 506,
+      "maximo": 509.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45684.7083333333
+    },
+    {
+      "fecha": "28/01/2025",
+      "promedio_ponderado": 506.66,
+      "monto_total": 62728000,
+      "minimo": 505.35,
+      "maximo": 508.9,
+      "sesion": 0.708333333333333,
+      "timestamp": 45685.7083333333
+    },
+    {
+      "fecha": "29/01/2025",
+      "promedio_ponderado": 507.7,
+      "monto_total": 8577000,
+      "minimo": 504,
+      "maximo": 508.94,
+      "sesion": 0.708333333333333,
+      "timestamp": 45686.7083333333
+    },
+    {
+      "fecha": "30/01/2025",
+      "promedio_ponderado": 508.96,
+      "monto_total": 14087000,
+      "minimo": 504,
+      "maximo": 509.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45687.7083333333
+    },
+    {
+      "fecha": "31/01/2025",
+      "promedio_ponderado": 509.43,
+      "monto_total": 26044000,
+      "minimo": 508,
+      "maximo": 509.65,
+      "sesion": 0.708333333333333,
+      "timestamp": 45688.7083333333
+    },
+    {
+      "fecha": 45718,
+      "promedio_ponderado": 509.51,
+      "monto_total": 16417000,
+      "minimo": 504.14,
+      "maximo": 509.9,
+      "sesion": 0.708333333333333,
+      "timestamp": 45691.7083333333
+    },
+    {
+      "fecha": 45749,
+      "promedio_ponderado": 509.08,
+      "monto_total": 50521000,
+      "minimo": 508,
+      "maximo": 509.14,
+      "sesion": 0.708333333333333,
+      "timestamp": 45692.7083333333
+    },
+    {
+      "fecha": 45779,
+      "promedio_ponderado": 509.18,
+      "monto_total": 58125000,
+      "minimo": 504.51,
+      "maximo": 509.65,
+      "sesion": 0.708333333333333,
+      "timestamp": 45693.7083333333
+    },
+    {
+      "fecha": 45810,
+      "promedio_ponderado": 509.44,
+      "monto_total": 26036000,
+      "minimo": 508.05,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45694.7083333333
+    },
+    {
+      "fecha": 45840,
+      "promedio_ponderado": 509.83,
+      "monto_total": 19209000,
+      "minimo": 507.5,
+      "maximo": 509.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45695.7083333333
+    },
+    {
+      "fecha": 45932,
+      "promedio_ponderado": 509.04,
+      "monto_total": 23923000,
+      "minimo": 508.75,
+      "maximo": 510.6,
+      "sesion": 0.708333333333333,
+      "timestamp": 45698.7083333333
+    },
+    {
+      "fecha": 45963,
+      "promedio_ponderado": 509.23,
+      "monto_total": 23688000,
+      "minimo": 508.5,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45699.7083333333
+    },
+    {
+      "fecha": 45993,
+      "promedio_ponderado": 507.27,
+      "monto_total": 47110000,
+      "minimo": 506.75,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45700.7083333333
+    },
+    {
+      "fecha": "13/02/2025",
+      "promedio_ponderado": 507.84,
+      "monto_total": 30249000,
+      "minimo": 507,
+      "maximo": 508.15,
+      "sesion": 0.708333333333333,
+      "timestamp": 45701.7083333333
+    },
+    {
+      "fecha": "14/02/2025",
+      "promedio_ponderado": 507.03,
+      "monto_total": 47188000,
+      "minimo": 505.5,
+      "maximo": 507.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45702.7083333333
+    },
+    {
+      "fecha": "17/02/2025",
+      "promedio_ponderado": 506.78,
+      "monto_total": 24521000,
+      "minimo": 506,
+      "maximo": 507.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45705.7083333333
+    },
+    {
+      "fecha": "18/02/2025",
+      "promedio_ponderado": 506.62,
+      "monto_total": 35573000,
+      "minimo": 505,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45706.7083333333
+    },
+    {
+      "fecha": "19/02/2025",
+      "promedio_ponderado": 505.31,
+      "monto_total": 39045000,
+      "minimo": 505,
+      "maximo": 506,
+      "sesion": 0.708333333333333,
+      "timestamp": 45707.7083333333
+    },
+    {
+      "fecha": "20/02/2025",
+      "promedio_ponderado": 507.61,
+      "monto_total": 33807000,
+      "minimo": 505,
+      "maximo": 507.94,
+      "sesion": 0.708333333333333,
+      "timestamp": 45708.7083333333
+    },
+    {
+      "fecha": "21/02/2025",
+      "promedio_ponderado": 506.99,
+      "monto_total": 49439000,
+      "minimo": 506.8,
+      "maximo": 508,
+      "sesion": 0.708333333333333,
+      "timestamp": 45709.7083333333
+    },
+    {
+      "fecha": "24/02/2025",
+      "promedio_ponderado": 507,
+      "monto_total": 40830000,
+      "minimo": 506,
+      "maximo": 507.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45712.7083333333
+    },
+    {
+      "fecha": "25/02/2025",
+      "promedio_ponderado": 507.7,
+      "monto_total": 76145000,
+      "minimo": 506,
+      "maximo": 508,
+      "sesion": 0.708333333333333,
+      "timestamp": 45713.7083333333
+    },
+    {
+      "fecha": "26/02/2025",
+      "promedio_ponderado": 506.83,
+      "monto_total": 58006000,
+      "minimo": 505.25,
+      "maximo": 507.05,
+      "sesion": 0.708333333333333,
+      "timestamp": 45714.7083333333
+    },
+    {
+      "fecha": "27/02/2025",
+      "promedio_ponderado": 506.53,
+      "monto_total": 41150000,
+      "minimo": 506,
+      "maximo": 506.85,
+      "sesion": 0.708333333333333,
+      "timestamp": 45715.7083333333
+    },
+    {
+      "fecha": "28/02/2025",
+      "promedio_ponderado": 504.75,
+      "monto_total": 41406000,
+      "minimo": 501.01,
+      "maximo": 506.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45716.7083333333
+    },
+    {
+      "fecha": 45719,
+      "promedio_ponderado": 505.77,
+      "monto_total": 20600000,
+      "minimo": 501,
+      "maximo": 505.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45719.7083333333
+    },
+    {
+      "fecha": 45750,
+      "promedio_ponderado": 505.78,
+      "monto_total": 43519000,
+      "minimo": 505.3,
+      "maximo": 506.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45720.7083333333
+    },
+    {
+      "fecha": 45780,
+      "promedio_ponderado": 505.09,
+      "monto_total": 54143000,
+      "minimo": 504.75,
+      "maximo": 506.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45721.7083333333
+    },
+    {
+      "fecha": 45811,
+      "promedio_ponderado": 505.18,
+      "monto_total": 20565000,
+      "minimo": 504.5,
+      "maximo": 505.85,
+      "sesion": 0.708333333333333,
+      "timestamp": 45722.7083333333
+    },
+    {
+      "fecha": 45841,
+      "promedio_ponderado": 505.44,
+      "monto_total": 53438000,
+      "minimo": 504.6,
+      "maximo": 506,
+      "sesion": 0.708333333333333,
+      "timestamp": 45723.7083333333
+    },
+    {
+      "fecha": 45933,
+      "promedio_ponderado": 503.36,
+      "monto_total": 50481000,
+      "minimo": 503,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45726.7083333333
+    },
+    {
+      "fecha": 45964,
+      "promedio_ponderado": 501.39,
+      "monto_total": 42291000,
+      "minimo": 499.25,
+      "maximo": 503,
+      "sesion": 0.708333333333333,
+      "timestamp": 45727.7083333333
+    },
+    {
+      "fecha": 45994,
+      "promedio_ponderado": 501.03,
+      "monto_total": 36815000,
+      "minimo": 500,
+      "maximo": 501.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45728.7083333333
+    },
+    {
+      "fecha": "13/03/2025",
+      "promedio_ponderado": 499.9,
+      "monto_total": 29523000,
+      "minimo": 499.31,
+      "maximo": 500.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 45729.7083333333
+    },
+    {
+      "fecha": "14/03/2025",
+      "promedio_ponderado": 500.08,
+      "monto_total": 40920000,
+      "minimo": 500,
+      "maximo": 500.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45730.7083333333
+    },
+    {
+      "fecha": "17/03/2025",
+      "promedio_ponderado": 499.85,
+      "monto_total": 75215000,
+      "minimo": 499.65,
+      "maximo": 501,
+      "sesion": 0.708333333333333,
+      "timestamp": 45733.7083333333
+    },
+    {
+      "fecha": "18/03/2025",
+      "promedio_ponderado": 500.28,
+      "monto_total": 22620000,
+      "minimo": 499.85,
+      "maximo": 500.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 45734.7083333333
+    },
+    {
+      "fecha": "19/03/2025",
+      "promedio_ponderado": 499.84,
+      "monto_total": 22211000,
+      "minimo": 499.5,
+      "maximo": 501,
+      "sesion": 0.708333333333333,
+      "timestamp": 45735.7083333333
+    },
+    {
+      "fecha": "20/03/2025",
+      "promedio_ponderado": 501.07,
+      "monto_total": 49731000,
+      "minimo": 499.76,
+      "maximo": 501.6,
+      "sesion": 0.708333333333333,
+      "timestamp": 45736.7083333333
+    },
+    {
+      "fecha": "21/03/2025",
+      "promedio_ponderado": 500.03,
+      "monto_total": 70497000,
+      "minimo": 499.8,
+      "maximo": 501.3,
+      "sesion": 0.708333333333333,
+      "timestamp": 45737.7083333333
+    },
+    {
+      "fecha": "24/03/2025",
+      "promedio_ponderado": 500.27,
+      "monto_total": 54342000,
+      "minimo": 499.85,
+      "maximo": 501,
+      "sesion": 0.708333333333333,
+      "timestamp": 45740.7083333333
+    },
+    {
+      "fecha": "25/03/2025",
+      "promedio_ponderado": 499.72,
+      "monto_total": 74685000,
+      "minimo": 499.4,
+      "maximo": 500,
+      "sesion": 0.708333333333333,
+      "timestamp": 45741.7083333333
+    },
+    {
+      "fecha": "26/03/2025",
+      "promedio_ponderado": 500.16,
+      "monto_total": 19310000,
+      "minimo": 499.8,
+      "maximo": 500.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45742.7083333333
+    },
+    {
+      "fecha": "27/03/2025",
+      "promedio_ponderado": 501.77,
+      "monto_total": 32481000,
+      "minimo": 500,
+      "maximo": 502.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45743.7083333333
+    },
+    {
+      "fecha": "28/03/2025",
+      "promedio_ponderado": 502.43,
+      "monto_total": 35095000,
+      "minimo": 500.5,
+      "maximo": 502.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45744.7083333333
+    },
+    {
+      "fecha": "31/03/2025",
+      "promedio_ponderado": 503.25,
+      "monto_total": 44739000,
+      "minimo": 500,
+      "maximo": 503.55,
+      "sesion": 0.708333333333333,
+      "timestamp": 45747.7083333333
+    },
+    {
+      "fecha": 45661,
+      "promedio_ponderado": 504.23,
+      "monto_total": 43545000,
+      "minimo": 502.15,
+      "maximo": 504.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45748.7083333333
+    },
+    {
+      "fecha": 45692,
+      "promedio_ponderado": 504.75,
+      "monto_total": 35323000,
+      "minimo": 503.76,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45749.7083333333
+    },
+    {
+      "fecha": 45720,
+      "promedio_ponderado": 507.32,
+      "monto_total": 36231000,
+      "minimo": 502.79,
+      "maximo": 507.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45750.7083333333
+    },
+    {
+      "fecha": 45751,
+      "promedio_ponderado": 509.29,
+      "monto_total": 46292000,
+      "minimo": 507.27,
+      "maximo": 509.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45751.7083333333
+    },
+    {
+      "fecha": 45842,
+      "promedio_ponderado": 511.43,
+      "monto_total": 59708000,
+      "minimo": 509.07,
+      "maximo": 511.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45754.7083333333
+    },
+    {
+      "fecha": 45873,
+      "promedio_ponderado": 510.4,
+      "monto_total": 49826000,
+      "minimo": 509.99,
+      "maximo": 513,
+      "sesion": 0.708333333333333,
+      "timestamp": 45755.7083333333
+    },
+    {
+      "fecha": 45904,
+      "promedio_ponderado": 509.04,
+      "monto_total": 79758000,
+      "minimo": 508.8,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45756.7083333333
+    },
+    {
+      "fecha": 45934,
+      "promedio_ponderado": 507.77,
+      "monto_total": 70245000,
+      "minimo": 501,
+      "maximo": 508.26,
+      "sesion": 0.708333333333333,
+      "timestamp": 45757.7083333333
+    },
+    {
+      "fecha": "14/04/2025",
+      "promedio_ponderado": 505.34,
+      "monto_total": 96323000,
+      "minimo": 504.55,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45761.7083333333
+    },
+    {
+      "fecha": "15/04/2025",
+      "promedio_ponderado": 504.16,
+      "monto_total": 62985000,
+      "minimo": 503.96,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45762.7083333333
+    },
+    {
+      "fecha": "16/04/2025",
+      "promedio_ponderado": 504.15,
+      "monto_total": 32714000,
+      "minimo": 502.85,
+      "maximo": 504.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45763.7083333333
+    },
+    {
+      "fecha": "21/04/2025",
+      "promedio_ponderado": 504.14,
+      "monto_total": 58815000,
+      "minimo": 503.5,
+      "maximo": 504.37,
+      "sesion": 0.708333333333333,
+      "timestamp": 45768.7083333333
+    },
+    {
+      "fecha": "22/04/2025",
+      "promedio_ponderado": 505.25,
+      "monto_total": 39638000,
+      "minimo": 503.9,
+      "maximo": 505.57,
+      "sesion": 0.708333333333333,
+      "timestamp": 45769.7083333333
+    },
+    {
+      "fecha": "23/04/2025",
+      "promedio_ponderado": 506.03,
+      "monto_total": 22303000,
+      "minimo": 505,
+      "maximo": 506.6,
+      "sesion": 0.708333333333333,
+      "timestamp": 45770.7083333333
+    },
+    {
+      "fecha": "24/04/2025",
+      "promedio_ponderado": 506.42,
+      "monto_total": 59802000,
+      "minimo": 506.35,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45771.7083333333
+    },
+    {
+      "fecha": "25/04/2025",
+      "promedio_ponderado": 507.06,
+      "monto_total": 11042000,
+      "minimo": 506,
+      "maximo": 507.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45772.7083333333
+    },
+    {
+      "fecha": "28/04/2025",
+      "promedio_ponderado": 506.76,
+      "monto_total": 34015000,
+      "minimo": 506,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45775.7083333333
+    },
+    {
+      "fecha": "29/04/2025",
+      "promedio_ponderado": 506.21,
+      "monto_total": 33341000,
+      "minimo": 505.25,
+      "maximo": 506.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45776.7083333333
+    },
+    {
+      "fecha": "30/04/2025",
+      "promedio_ponderado": 506.7,
+      "monto_total": 35196000,
+      "minimo": 504.28,
+      "maximo": 506.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45777.7083333333
+    },
+    {
+      "fecha": 45693,
+      "promedio_ponderado": 506.68,
+      "monto_total": 11594000,
+      "minimo": 505.4,
+      "maximo": 507.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45779.7083333333
+    },
+    {
+      "fecha": 45782,
+      "promedio_ponderado": 508.27,
+      "monto_total": 7899000,
+      "minimo": 506,
+      "maximo": 508.85,
+      "sesion": 0.708333333333333,
+      "timestamp": 45782.7083333333
+    },
+    {
+      "fecha": 45813,
+      "promedio_ponderado": 509.22,
+      "monto_total": 57149000,
+      "minimo": 508.27,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45783.7083333333
+    },
+    {
+      "fecha": 45843,
+      "promedio_ponderado": 508.99,
+      "monto_total": 37727000,
+      "minimo": 508,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45784.7083333333
+    },
+    {
+      "fecha": 45874,
+      "promedio_ponderado": 508.84,
+      "monto_total": 52638000,
+      "minimo": 508.5,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45785.7083333333
+    },
+    {
+      "fecha": 45905,
+      "promedio_ponderado": 508.31,
+      "monto_total": 37836000,
+      "minimo": 508,
+      "maximo": 509,
+      "sesion": 0.708333333333333,
+      "timestamp": 45786.7083333333
+    },
+    {
+      "fecha": 45996,
+      "promedio_ponderado": 507.74,
+      "monto_total": 71205000,
+      "minimo": 507.6,
+      "maximo": 508.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45789.7083333333
+    },
+    {
+      "fecha": "13/05/2025",
+      "promedio_ponderado": 506.81,
+      "monto_total": 48288000,
+      "minimo": 506.45,
+      "maximo": 507.72,
+      "sesion": 0.708333333333333,
+      "timestamp": 45790.7083333333
+    },
+    {
+      "fecha": "14/05/2025",
+      "promedio_ponderado": 505.17,
+      "monto_total": 68264000,
+      "minimo": 505,
+      "maximo": 506.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45791.7083333333
+    },
+    {
+      "fecha": "15/05/2025",
+      "promedio_ponderado": 504.63,
+      "monto_total": 39837000,
+      "minimo": 504.5,
+      "maximo": 505.05,
+      "sesion": 0.708333333333333,
+      "timestamp": 45792.7083333333
+    },
+    {
+      "fecha": "16/05/2025",
+      "promedio_ponderado": 504.16,
+      "monto_total": 9331000,
+      "minimo": 503,
+      "maximo": 504.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45793.7083333333
+    },
+    {
+      "fecha": "19/05/2025",
+      "promedio_ponderado": 504.97,
+      "monto_total": 22206000,
+      "minimo": 504.07,
+      "maximo": 505.22,
+      "sesion": 0.708333333333333,
+      "timestamp": 45796.7083333333
+    },
+    {
+      "fecha": "20/05/2025",
+      "promedio_ponderado": 506.39,
+      "monto_total": 38405000,
+      "minimo": 505.05,
+      "maximo": 506.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 45797.7083333333
+    },
+    {
+      "fecha": "21/05/2025",
+      "promedio_ponderado": 508.33,
+      "monto_total": 31423000,
+      "minimo": 506.6,
+      "maximo": 508.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45798.7083333333
+    },
+    {
+      "fecha": "22/05/2025",
+      "promedio_ponderado": 508.53,
+      "monto_total": 39051000,
+      "minimo": 506.99,
+      "maximo": 508.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45799.7083333333
+    },
+    {
+      "fecha": "23/05/2025",
+      "promedio_ponderado": 509.64,
+      "monto_total": 31919000,
+      "minimo": 507.01,
+      "maximo": 509.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45800.7083333333
+    },
+    {
+      "fecha": "26/05/2025",
+      "promedio_ponderado": 509.9,
+      "monto_total": 13824000,
+      "minimo": 508,
+      "maximo": 510.45,
+      "sesion": 0.708333333333333,
+      "timestamp": 45803.7083333333
+    },
+    {
+      "fecha": "27/05/2025",
+      "promedio_ponderado": 509.7,
+      "monto_total": 70360000,
+      "minimo": 508.51,
+      "maximo": 510.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45804.7083333333
+    },
+    {
+      "fecha": "28/05/2025",
+      "promedio_ponderado": 508.39,
+      "monto_total": 38150000,
+      "minimo": 507.5,
+      "maximo": 509.3,
+      "sesion": 0.708333333333333,
+      "timestamp": 45805.7083333333
+    },
+    {
+      "fecha": "29/05/2025",
+      "promedio_ponderado": 507.86,
+      "monto_total": 19660000,
+      "minimo": 506.83,
+      "maximo": 508.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45806.7083333333
+    },
+    {
+      "fecha": "30/05/2025",
+      "promedio_ponderado": 506.91,
+      "monto_total": 22092000,
+      "minimo": 506.12,
+      "maximo": 507.61,
+      "sesion": 0.708333333333333,
+      "timestamp": 45807.7083333333
+    },
+    {
+      "fecha": 45694,
+      "promedio_ponderado": 508.51,
+      "monto_total": 22694000,
+      "minimo": 506,
+      "maximo": 509,
+      "sesion": 0.708333333333333,
+      "timestamp": 45810.7083333333
+    },
+    {
+      "fecha": 45722,
+      "promedio_ponderado": 509.53,
+      "monto_total": 40814000,
+      "minimo": 506.78,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45811.7083333333
+    },
+    {
+      "fecha": 45753,
+      "promedio_ponderado": 510.57,
+      "monto_total": 28898000,
+      "minimo": 507.8,
+      "maximo": 512,
+      "sesion": 0.708333333333333,
+      "timestamp": 45812.7083333333
+    },
+    {
+      "fecha": 45783,
+      "promedio_ponderado": 509.67,
+      "monto_total": 42021000,
+      "minimo": 509.4,
+      "maximo": 511,
+      "sesion": 0.708333333333333,
+      "timestamp": 45813.7083333333
+    },
+    {
+      "fecha": 45814,
+      "promedio_ponderado": 508.39,
+      "monto_total": 62051000,
+      "minimo": 508,
+      "maximo": 509.33,
+      "sesion": 0.708333333333333,
+      "timestamp": 45814.7083333333
+    },
+    {
+      "fecha": 45906,
+      "promedio_ponderado": 507.05,
+      "monto_total": 43194000,
+      "minimo": 506.04,
+      "maximo": 508.4,
+      "sesion": 0.708333333333333,
+      "timestamp": 45817.7083333333
+    },
+    {
+      "fecha": 45936,
+      "promedio_ponderado": 505.6,
+      "monto_total": 59815000,
+      "minimo": 505.32,
+      "maximo": 508.55,
+      "sesion": 0.708333333333333,
+      "timestamp": 45818.7083333333
+    },
+    {
+      "fecha": 45967,
+      "promedio_ponderado": 504.32,
+      "monto_total": 39077000,
+      "minimo": 504.1,
+      "maximo": 505.3,
+      "sesion": 0.708333333333333,
+      "timestamp": 45819.7083333333
+    },
+    {
+      "fecha": 45997,
+      "promedio_ponderado": 504.42,
+      "monto_total": 29150000,
+      "minimo": 503,
+      "maximo": 505.02,
+      "sesion": 0.708333333333333,
+      "timestamp": 45820.7083333333
+    },
+    {
+      "fecha": "13/06/2025",
+      "promedio_ponderado": 503.63,
+      "monto_total": 20653000,
+      "minimo": 502.5,
+      "maximo": 504,
+      "sesion": 0.708333333333333,
+      "timestamp": 45821.7083333333
+    },
+    {
+      "fecha": "16/06/2025",
+      "promedio_ponderado": 504.5,
+      "monto_total": 36206000,
+      "minimo": 502.6,
+      "maximo": 504.65,
+      "sesion": 0.708333333333333,
+      "timestamp": 45824.7083333333
+    },
+    {
+      "fecha": "17/06/2025",
+      "promedio_ponderado": 505.6,
+      "monto_total": 39426000,
+      "minimo": 503.7,
+      "maximo": 506,
+      "sesion": 0.708333333333333,
+      "timestamp": 45825.7083333333
+    },
+    {
+      "fecha": "18/06/2025",
+      "promedio_ponderado": 506.72,
+      "monto_total": 58217000,
+      "minimo": 502,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45826.7083333333
+    },
+    {
+      "fecha": "19/06/2025",
+      "promedio_ponderado": 508.04,
+      "monto_total": 12293000,
+      "minimo": 506.64,
+      "maximo": 511,
+      "sesion": 0.708333333333333,
+      "timestamp": 45827.7083333333
+    },
+    {
+      "fecha": "20/06/2025",
+      "promedio_ponderado": 509.11,
+      "monto_total": 13248000,
+      "minimo": 507,
+      "maximo": 509.38,
+      "sesion": 0.708333333333333,
+      "timestamp": 45828.7083333333
+    },
+    {
+      "fecha": "23/06/2025",
+      "promedio_ponderado": 507.33,
+      "monto_total": 54894000,
+      "minimo": 505,
+      "maximo": 509,
+      "sesion": 0.708333333333333,
+      "timestamp": 45831.7083333333
+    },
+    {
+      "fecha": "24/06/2025",
+      "promedio_ponderado": 505.92,
+      "monto_total": 81239000,
+      "minimo": 505.7,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45832.7083333333
+    },
+    {
+      "fecha": "25/06/2025",
+      "promedio_ponderado": 505.41,
+      "monto_total": 81906000,
+      "minimo": 504.75,
+      "maximo": 506.35,
+      "sesion": 0.708333333333333,
+      "timestamp": 45833.7083333333
+    },
+    {
+      "fecha": "26/06/2025",
+      "promedio_ponderado": 505.95,
+      "monto_total": 28842000,
+      "minimo": 505,
+      "maximo": 506.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45834.7083333333
+    },
+    {
+      "fecha": "27/06/2025",
+      "promedio_ponderado": 507.27,
+      "monto_total": 48036000,
+      "minimo": 503.29,
+      "maximo": 507.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45835.7083333333
+    },
+    {
+      "fecha": "30/06/2025",
+      "promedio_ponderado": 506.23,
+      "monto_total": 45946000,
+      "minimo": 505,
+      "maximo": 508,
+      "sesion": 0.708333333333333,
+      "timestamp": 45838.7083333333
+    },
+    {
+      "fecha": 45664,
+      "promedio_ponderado": 505.92,
+      "monto_total": 34090000,
+      "minimo": 504.01,
+      "maximo": 506.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45839.7083333333
+    },
+    {
+      "fecha": 45695,
+      "promedio_ponderado": 505.77,
+      "monto_total": 23116000,
+      "minimo": 504,
+      "maximo": 506.18,
+      "sesion": 0.708333333333333,
+      "timestamp": 45840.7083333333
+    },
+    {
+      "fecha": 45723,
+      "promedio_ponderado": 505.59,
+      "monto_total": 29907000,
+      "minimo": 505,
+      "maximo": 506.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45841.7083333333
+    },
+    {
+      "fecha": 45754,
+      "promedio_ponderado": 506.45,
+      "monto_total": 26229000,
+      "minimo": 504.01,
+      "maximo": 508,
+      "sesion": 0.708333333333333,
+      "timestamp": 45842.7083333333
+    },
+    {
+      "fecha": 45845,
+      "promedio_ponderado": 504.26,
+      "monto_total": 68729000,
+      "minimo": 504,
+      "maximo": 506.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45845.7083333333
+    },
+    {
+      "fecha": 45876,
+      "promedio_ponderado": 504.73,
+      "monto_total": 26041000,
+      "minimo": 504,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45846.7083333333
+    },
+    {
+      "fecha": 45907,
+      "promedio_ponderado": 505.04,
+      "monto_total": 25358000,
+      "minimo": 504.5,
+      "maximo": 505.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45847.7083333333
+    },
+    {
+      "fecha": 45937,
+      "promedio_ponderado": 505.97,
+      "monto_total": 33670000,
+      "minimo": 504.6,
+      "maximo": 506.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45848.7083333333
+    },
+    {
+      "fecha": 45968,
+      "promedio_ponderado": 505.01,
+      "monto_total": 15501000,
+      "minimo": 500,
+      "maximo": 506.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 45849.7083333333
+    },
+    {
+      "fecha": "14/07/2025",
+      "promedio_ponderado": 504.08,
+      "monto_total": 29027000,
+      "minimo": 502.02,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45852.7083333333
+    },
+    {
+      "fecha": "15/07/2025",
+      "promedio_ponderado": 504.17,
+      "monto_total": 27950000,
+      "minimo": 503.3,
+      "maximo": 505.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45853.7083333333
+    },
+    {
+      "fecha": "16/07/2025",
+      "promedio_ponderado": 504.48,
+      "monto_total": 42282000,
+      "minimo": 503.5,
+      "maximo": 505.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45854.7083333333
+    },
+    {
+      "fecha": "17/07/2025",
+      "promedio_ponderado": 504.5,
+      "monto_total": 56016000,
+      "minimo": 503.95,
+      "maximo": 505.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45855.7083333333
+    },
+    {
+      "fecha": "18/07/2025",
+      "promedio_ponderado": 504.48,
+      "monto_total": 14206000,
+      "minimo": 504,
+      "maximo": 505.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45856.7083333333
+    },
+    {
+      "fecha": "21/07/2025",
+      "promedio_ponderado": 505.09,
+      "monto_total": 28246000,
+      "minimo": 504.3,
+      "maximo": 505.26,
+      "sesion": 0.708333333333333,
+      "timestamp": 45859.7083333333
+    },
+    {
+      "fecha": "22/07/2025",
+      "promedio_ponderado": 505.53,
+      "monto_total": 30866000,
+      "minimo": 504.5,
+      "maximo": 505.67,
+      "sesion": 0.708333333333333,
+      "timestamp": 45860.7083333333
+    },
+    {
+      "fecha": "23/07/2025",
+      "promedio_ponderado": 506.2,
+      "monto_total": 30112000,
+      "minimo": 505.7,
+      "maximo": 506.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45861.7083333333
+    },
+    {
+      "fecha": "24/07/2025",
+      "promedio_ponderado": 507.01,
+      "monto_total": 24018000,
+      "minimo": 505.5,
+      "maximo": 507.18,
+      "sesion": 0.708333333333333,
+      "timestamp": 45862.7083333333
+    },
+    {
+      "fecha": "28/07/2025",
+      "promedio_ponderado": 507.19,
+      "monto_total": 43607000,
+      "minimo": 506.03,
+      "maximo": 508.55,
+      "sesion": 0.708333333333333,
+      "timestamp": 45866.7083333333
+    },
+    {
+      "fecha": "29/07/2025",
+      "promedio_ponderado": 506.81,
+      "monto_total": 50955000,
+      "minimo": 505,
+      "maximo": 507.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45867.7083333333
+    },
+    {
+      "fecha": "30/07/2025",
+      "promedio_ponderado": 506.85,
+      "monto_total": 13704000,
+      "minimo": 505,
+      "maximo": 507.04,
+      "sesion": 0.708333333333333,
+      "timestamp": 45868.7083333333
+    },
+    {
+      "fecha": "31/07/2025",
+      "promedio_ponderado": 507.17,
+      "monto_total": 15852000,
+      "minimo": 505.5,
+      "maximo": 507.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45869.7083333333
+    },
+    {
+      "fecha": 45665,
+      "promedio_ponderado": 506.89,
+      "monto_total": 16516000,
+      "minimo": 506,
+      "maximo": 507.35,
+      "sesion": 0.708333333333333,
+      "timestamp": 45870.7083333333
+    },
+    {
+      "fecha": 45755,
+      "promedio_ponderado": 507.08,
+      "monto_total": 8631000,
+      "minimo": 506,
+      "maximo": 507.4,
+      "sesion": 0.708333333333333,
+      "timestamp": 45873.7083333333
+    },
+    {
+      "fecha": 45785,
+      "promedio_ponderado": 507.83,
+      "monto_total": 26748000,
+      "minimo": 505,
+      "maximo": 508,
+      "sesion": 0.708333333333333,
+      "timestamp": 45874.7083333333
+    },
+    {
+      "fecha": 45816,
+      "promedio_ponderado": 508.07,
+      "monto_total": 44395000,
+      "minimo": 506.5,
+      "maximo": 508.4,
+      "sesion": 0.708333333333333,
+      "timestamp": 45875.7083333333
+    },
+    {
+      "fecha": 45846,
+      "promedio_ponderado": 506.78,
+      "monto_total": 46948000,
+      "minimo": 506,
+      "maximo": 507.55,
+      "sesion": 0.708333333333333,
+      "timestamp": 45876.7083333333
+    },
+    {
+      "fecha": 45877,
+      "promedio_ponderado": 506.59,
+      "monto_total": 24432000,
+      "minimo": 506,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45877.7083333333
+    },
+    {
+      "fecha": 45969,
+      "promedio_ponderado": 506.54,
+      "monto_total": 37546000,
+      "minimo": 505.85,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45880.7083333333
+    },
+    {
+      "fecha": 45999,
+      "promedio_ponderado": 506.02,
+      "monto_total": 50574000,
+      "minimo": 505.79,
+      "maximo": 506.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45881.7083333333
+    },
+    {
+      "fecha": "13/08/2025",
+      "promedio_ponderado": 505.57,
+      "monto_total": 33211000,
+      "minimo": 505,
+      "maximo": 506.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45882.7083333333
+    },
+    {
+      "fecha": "14/08/2025",
+      "promedio_ponderado": 504.24,
+      "monto_total": 65233000,
+      "minimo": 501.51,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45883.7083333333
+    },
+    {
+      "fecha": "18/08/2025",
+      "promedio_ponderado": 504.89,
+      "monto_total": 20144000,
+      "minimo": 503,
+      "maximo": 505.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45887.7083333333
+    },
+    {
+      "fecha": "19/08/2025",
+      "promedio_ponderado": 504.35,
+      "monto_total": 51491000,
+      "minimo": 503.8,
+      "maximo": 506,
+      "sesion": 0.708333333333333,
+      "timestamp": 45888.7083333333
+    },
+    {
+      "fecha": "20/08/2025",
+      "promedio_ponderado": 503.85,
+      "monto_total": 65605000,
+      "minimo": 503.25,
+      "maximo": 505.36,
+      "sesion": 0.708333333333333,
+      "timestamp": 45889.7083333333
+    },
+    {
+      "fecha": "21/08/2025",
+      "promedio_ponderado": 503.33,
+      "monto_total": 27725000,
+      "minimo": 503.09,
+      "maximo": 505.3,
+      "sesion": 0.708333333333333,
+      "timestamp": 45890.7083333333
+    },
+    {
+      "fecha": "22/08/2025",
+      "promedio_ponderado": 504.25,
+      "monto_total": 26816000,
+      "minimo": 503.5,
+      "maximo": 505.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45891.7083333333
+    },
+    {
+      "fecha": "25/08/2025",
+      "promedio_ponderado": 505.96,
+      "monto_total": 25472000,
+      "minimo": 504.1,
+      "maximo": 506.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45894.7083333333
+    },
+    {
+      "fecha": "26/08/2025",
+      "promedio_ponderado": 505.97,
+      "monto_total": 58329000,
+      "minimo": 505,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45895.7083333333
+    },
+    {
+      "fecha": "27/08/2025",
+      "promedio_ponderado": 505.78,
+      "monto_total": 22958000,
+      "minimo": 503.42,
+      "maximo": 506.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45896.7083333333
+    },
+    {
+      "fecha": "28/08/2025",
+      "promedio_ponderado": 506.33,
+      "monto_total": 12476000,
+      "minimo": 503.01,
+      "maximo": 507.05,
+      "sesion": 0.708333333333333,
+      "timestamp": 45897.7083333333
+    },
+    {
+      "fecha": "29/08/2025",
+      "promedio_ponderado": 506.46,
+      "monto_total": 30295000,
+      "minimo": 504.56,
+      "maximo": 506.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 45898.7083333333
+    },
+    {
+      "fecha": 45666,
+      "promedio_ponderado": 507.11,
+      "monto_total": 7301000,
+      "minimo": 502.55,
+      "maximo": 507.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45901.7083333333
+    },
+    {
+      "fecha": 45697,
+      "promedio_ponderado": 508.02,
+      "monto_total": 38448000,
+      "minimo": 507,
+      "maximo": 508.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45902.7083333333
+    },
+    {
+      "fecha": 45725,
+      "promedio_ponderado": 508.11,
+      "monto_total": 32565000,
+      "minimo": 507,
+      "maximo": 508.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45903.7083333333
+    },
+    {
+      "fecha": 45756,
+      "promedio_ponderado": 507.52,
+      "monto_total": 74067000,
+      "minimo": 507.2,
+      "maximo": 508.15,
+      "sesion": 0.708333333333333,
+      "timestamp": 45904.7083333333
+    },
+    {
+      "fecha": 45786,
+      "promedio_ponderado": 506.85,
+      "monto_total": 32012000,
+      "minimo": 505.15,
+      "maximo": 507.93,
+      "sesion": 0.708333333333333,
+      "timestamp": 45905.7083333333
+    },
+    {
+      "fecha": 45878,
+      "promedio_ponderado": 505.91,
+      "monto_total": 27008000,
+      "minimo": 505,
+      "maximo": 507.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45908.7083333333
+    },
+    {
+      "fecha": 45909,
+      "promedio_ponderado": 505.55,
+      "monto_total": 57525000,
+      "minimo": 505.01,
+      "maximo": 506.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45909.7083333333
+    },
+    {
+      "fecha": 45939,
+      "promedio_ponderado": 505.1,
+      "monto_total": 13652000,
+      "minimo": 503.44,
+      "maximo": 506,
+      "sesion": 0.708333333333333,
+      "timestamp": 45910.7083333333
+    },
+    {
+      "fecha": 45970,
+      "promedio_ponderado": 504.95,
+      "monto_total": 29765000,
+      "minimo": 504.5,
+      "maximo": 505.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45911.7083333333
+    },
+    {
+      "fecha": 46000,
+      "promedio_ponderado": 504.19,
+      "monto_total": 31926000,
+      "minimo": 503.9,
+      "maximo": 510,
+      "sesion": 0.708333333333333,
+      "timestamp": 45912.7083333333
+    },
+    {
+      "fecha": "16/09/2025",
+      "promedio_ponderado": 504.05,
+      "monto_total": 13576000,
+      "minimo": 503.7,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45916.7083333333
+    },
+    {
+      "fecha": "17/09/2025",
+      "promedio_ponderado": 504.5,
+      "monto_total": 25463000,
+      "minimo": 502.66,
+      "maximo": 504.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45917.7083333333
+    },
+    {
+      "fecha": "18/09/2025",
+      "promedio_ponderado": 504.02,
+      "monto_total": 29477000,
+      "minimo": 504,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45918.7083333333
+    },
+    {
+      "fecha": "19/09/2025",
+      "promedio_ponderado": 504.29,
+      "monto_total": 19231000,
+      "minimo": 503.5,
+      "maximo": 505.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45919.7083333333
+    },
+    {
+      "fecha": "22/09/2025",
+      "promedio_ponderado": 504.99,
+      "monto_total": 29940000,
+      "minimo": 504.5,
+      "maximo": 505.72,
+      "sesion": 0.708333333333333,
+      "timestamp": 45922.7083333333
+    },
+    {
+      "fecha": "23/09/2025",
+      "promedio_ponderado": 505.34,
+      "monto_total": 39709000,
+      "minimo": 504,
+      "maximo": 505.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 45923.7083333333
+    },
+    {
+      "fecha": "24/09/2025",
+      "promedio_ponderado": 505.15,
+      "monto_total": 42088000,
+      "minimo": 504.95,
+      "maximo": 505.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45924.7083333333
+    },
+    {
+      "fecha": "25/09/2025",
+      "promedio_ponderado": 504.17,
+      "monto_total": 40716000,
+      "minimo": 503.1,
+      "maximo": 506.4,
+      "sesion": 0.708333333333333,
+      "timestamp": 45925.7083333333
+    },
+    {
+      "fecha": "26/09/2025",
+      "promedio_ponderado": 503.47,
+      "monto_total": 31678000,
+      "minimo": 502.2,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45926.7083333333
+    },
+    {
+      "fecha": "29/09/2025",
+      "promedio_ponderado": 504.52,
+      "monto_total": 16556000,
+      "minimo": 503.75,
+      "maximo": 504.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45929.7083333333
+    },
+    {
+      "fecha": "30/09/2025",
+      "promedio_ponderado": 504,
+      "monto_total": 32105000,
+      "minimo": 501,
+      "maximo": 504.86,
+      "sesion": 0.708333333333333,
+      "timestamp": 45930.7083333333
+    },
+    {
+      "fecha": 45667,
+      "promedio_ponderado": 504.15,
+      "monto_total": 20966000,
+      "minimo": 502.5,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45931.7083333333
+    },
+    {
+      "fecha": 45698,
+      "promedio_ponderado": 504.02,
+      "monto_total": 28963000,
+      "minimo": 503,
+      "maximo": 504.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45932.7083333333
+    },
+    {
+      "fecha": 45726,
+      "promedio_ponderado": 505.07,
+      "monto_total": 14791000,
+      "minimo": 503.8,
+      "maximo": 505.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45933.7083333333
+    },
+    {
+      "fecha": 45818,
+      "promedio_ponderado": 505.59,
+      "monto_total": 29153000,
+      "minimo": 502,
+      "maximo": 506,
+      "sesion": 0.708333333333333,
+      "timestamp": 45936.7083333333
+    },
+    {
+      "fecha": 45848,
+      "promedio_ponderado": 504.8,
+      "monto_total": 35741000,
+      "minimo": 503.95,
+      "maximo": 505.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45937.7083333333
+    },
+    {
+      "fecha": 45879,
+      "promedio_ponderado": 504.14,
+      "monto_total": 15698000,
+      "minimo": 503.02,
+      "maximo": 505.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45938.7083333333
+    },
+    {
+      "fecha": 45910,
+      "promedio_ponderado": 504.66,
+      "monto_total": 13187000,
+      "minimo": 503.5,
+      "maximo": 507,
+      "sesion": 0.708333333333333,
+      "timestamp": 45939.7083333333
+    },
+    {
+      "fecha": 45940,
+      "promedio_ponderado": 506.01,
+      "monto_total": 15848000,
+      "minimo": 504,
+      "maximo": 506.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 45940.7083333333
+    },
+    {
+      "fecha": "13/10/2025",
+      "promedio_ponderado": 505.37,
+      "monto_total": 35817000,
+      "minimo": 504,
+      "maximo": 506,
+      "sesion": 0.708333333333333,
+      "timestamp": 45943.7083333333
+    },
+    {
+      "fecha": "14/10/2025",
+      "promedio_ponderado": 503.55,
+      "monto_total": 36369000,
+      "minimo": 503.25,
+      "maximo": 505.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45944.7083333333
+    },
+    {
+      "fecha": "15/10/2025",
+      "promedio_ponderado": 502.73,
+      "monto_total": 10741000,
+      "minimo": 502.15,
+      "maximo": 504,
+      "sesion": 0.708333333333333,
+      "timestamp": 45945.7083333333
+    },
+    {
+      "fecha": "16/10/2025",
+      "promedio_ponderado": 502.99,
+      "monto_total": 8591000,
+      "minimo": 502,
+      "maximo": 503.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45946.7083333333
+    },
+    {
+      "fecha": "17/10/2025",
+      "promedio_ponderado": 502.96,
+      "monto_total": 20745000,
+      "minimo": 502,
+      "maximo": 506.62,
+      "sesion": 0.708333333333333,
+      "timestamp": 45947.7083333333
+    },
+    {
+      "fecha": "20/10/2025",
+      "promedio_ponderado": 504.6,
+      "monto_total": 20703000,
+      "minimo": 503.81,
+      "maximo": 504.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45950.7083333333
+    },
+    {
+      "fecha": "21/10/2025",
+      "promedio_ponderado": 504.79,
+      "monto_total": 13628000,
+      "minimo": 502.5,
+      "maximo": 505.05,
+      "sesion": 0.708333333333333,
+      "timestamp": 45951.7083333333
+    },
+    {
+      "fecha": "22/10/2025",
+      "promedio_ponderado": 503.13,
+      "monto_total": 29815000,
+      "minimo": 502.91,
+      "maximo": 504.8,
+      "sesion": 0.708333333333333,
+      "timestamp": 45952.7083333333
+    },
+    {
+      "fecha": "23/10/2025",
+      "promedio_ponderado": 501.81,
+      "monto_total": 121747000,
+      "minimo": 500,
+      "maximo": 504,
+      "sesion": 0.708333333333333,
+      "timestamp": 45953.7083333333
+    },
+    {
+      "fecha": "24/10/2025",
+      "promedio_ponderado": 501.86,
+      "monto_total": 19676000,
+      "minimo": 501.01,
+      "maximo": 502.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 45954.7083333333
+    },
+    {
+      "fecha": "27/10/2025",
+      "promedio_ponderado": 502.52,
+      "monto_total": 34394000,
+      "minimo": 502.1,
+      "maximo": 503.47,
+      "sesion": 0.708333333333333,
+      "timestamp": 45957.7083333333
+    },
+    {
+      "fecha": "28/10/2025",
+      "promedio_ponderado": 502.93,
+      "monto_total": 46051000,
+      "minimo": 502,
+      "maximo": 503.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 45958.7083333333
+    },
+    {
+      "fecha": "29/10/2025",
+      "promedio_ponderado": 502.12,
+      "monto_total": 20888000,
+      "minimo": 501.75,
+      "maximo": 503,
+      "sesion": 0.708333333333333,
+      "timestamp": 45959.7083333333
+    },
+    {
+      "fecha": "30/10/2025",
+      "promedio_ponderado": 501.99,
+      "monto_total": 12746000,
+      "minimo": 501,
+      "maximo": 502.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45960.7083333333
+    },
+    {
+      "fecha": "31/10/2025",
+      "promedio_ponderado": 502.45,
+      "monto_total": 25931000,
+      "minimo": 501.01,
+      "maximo": 502.58,
+      "sesion": 0.708333333333333,
+      "timestamp": 45961.7083333333
+    },
+    {
+      "fecha": 45727,
+      "promedio_ponderado": 503.34,
+      "monto_total": 17282000,
+      "minimo": 501.57,
+      "maximo": 503.9,
+      "sesion": 0.708333333333333,
+      "timestamp": 45964.7083333333
+    },
+    {
+      "fecha": 45758,
+      "promedio_ponderado": 504.43,
+      "monto_total": 13050000,
+      "minimo": 503,
+      "maximo": 504.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 45965.7083333333
+    },
+    {
+      "fecha": 45788,
+      "promedio_ponderado": 504.41,
+      "monto_total": 17698000,
+      "minimo": 503.5,
+      "maximo": 505,
+      "sesion": 0.708333333333333,
+      "timestamp": 45966.7083333333
+    },
+    {
+      "fecha": 45819,
+      "promedio_ponderado": 503.02,
+      "monto_total": 27499000,
+      "minimo": 502.3,
+      "maximo": 504.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45967.7083333333
+    },
+    {
+      "fecha": 45849,
+      "promedio_ponderado": 503.68,
+      "monto_total": 28349000,
+      "minimo": 502,
+      "maximo": 504,
+      "sesion": 0.708333333333333,
+      "timestamp": 45968.7083333333
+    },
+    {
+      "fecha": 45941,
+      "promedio_ponderado": 503.37,
+      "monto_total": 16165000,
+      "minimo": 502.51,
+      "maximo": 504,
+      "sesion": 0.708333333333333,
+      "timestamp": 45971.7083333333
+    },
+    {
+      "fecha": 45972,
+      "promedio_ponderado": 503.01,
+      "monto_total": 22064000,
+      "minimo": 502.7,
+      "maximo": 504,
+      "sesion": 0.708333333333333,
+      "timestamp": 45972.7083333333
+    },
+    {
+      "fecha": 46002,
+      "promedio_ponderado": 501.5,
+      "monto_total": 11701000,
+      "minimo": 501,
+      "maximo": 503.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45973.7083333333
+    },
+    {
+      "fecha": "13/11/2025",
+      "promedio_ponderado": 500.01,
+      "monto_total": 20598000,
+      "minimo": 499.86,
+      "maximo": 502,
+      "sesion": 0.708333333333333,
+      "timestamp": 45974.7083333333
+    },
+    {
+      "fecha": "14/11/2025",
+      "promedio_ponderado": 499.09,
+      "monto_total": 15671000,
+      "minimo": 497,
+      "maximo": 500,
+      "sesion": 0.708333333333333,
+      "timestamp": 45975.7083333333
+    },
+    {
+      "fecha": "17/11/2025",
+      "promedio_ponderado": 499.85,
+      "monto_total": 24445000,
+      "minimo": 499.11,
+      "maximo": 500.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45978.7083333333
+    },
+    {
+      "fecha": "21/11/2025",
+      "promedio_ponderado": 498.71,
+      "monto_total": 77068000,
+      "minimo": 498.25,
+      "maximo": 500,
+      "sesion": 0.708333333333333,
+      "timestamp": 45982.7083333333
+    },
+    {
+      "fecha": "24/11/2025",
+      "promedio_ponderado": 497.34,
+      "monto_total": 142169000,
+      "minimo": 496,
+      "maximo": 500,
+      "sesion": 0.708333333333333,
+      "timestamp": 45985.7083333333
+    },
+    {
+      "fecha": "25/11/2025",
+      "promedio_ponderado": 495.97,
+      "monto_total": 30937000,
+      "minimo": 495.8,
+      "maximo": 498.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45986.7083333333
+    },
+    {
+      "fecha": "26/11/2025",
+      "promedio_ponderado": 494.84,
+      "monto_total": 62244000,
+      "minimo": 494.21,
+      "maximo": 497.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45987.7083333333
+    },
+    {
+      "fecha": "27/11/2025",
+      "promedio_ponderado": 493.47,
+      "monto_total": 31498000,
+      "minimo": 492,
+      "maximo": 496,
+      "sesion": 0.708333333333333,
+      "timestamp": 45988.7083333333
+    },
+    {
+      "fecha": "28/11/2025",
+      "promedio_ponderado": 492.48,
+      "monto_total": 28023000,
+      "minimo": 492,
+      "maximo": 493.4,
+      "sesion": 0.708333333333333,
+      "timestamp": 45989.7083333333
+    },
+    {
+      "fecha": 45700,
+      "promedio_ponderado": 491.38,
+      "monto_total": 87788000,
+      "minimo": 490.7,
+      "maximo": 495,
+      "sesion": 0.708333333333333,
+      "timestamp": 45993.7083333333
+    },
+    {
+      "fecha": 45728,
+      "promedio_ponderado": 490.17,
+      "monto_total": 111173000,
+      "minimo": 489.7,
+      "maximo": 492.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 45994.7083333333
+    },
+    {
+      "fecha": 45759,
+      "promedio_ponderado": 488.06,
+      "monto_total": 75415000,
+      "minimo": 485,
+      "maximo": 493.47,
+      "sesion": 0.708333333333333,
+      "timestamp": 45995.7083333333
+    },
+    {
+      "fecha": 45789,
+      "promedio_ponderado": 489.44,
+      "monto_total": 30699000,
+      "minimo": 488,
+      "maximo": 490.15,
+      "sesion": 0.708333333333333,
+      "timestamp": 45996.7083333333
+    },
+    {
+      "fecha": 45881,
+      "promedio_ponderado": 491.09,
+      "monto_total": 19489000,
+      "minimo": 489.5,
+      "maximo": 491.49,
+      "sesion": 0.708333333333333,
+      "timestamp": 45999.7083333333
+    },
+    {
+      "fecha": 45912,
+      "promedio_ponderado": 496.72,
+      "monto_total": 11789000,
+      "minimo": 491,
+      "maximo": 498.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46000.7083333333
+    },
+    {
+      "fecha": 45942,
+      "promedio_ponderado": 501,
+      "monto_total": 29296000,
+      "minimo": 495.6,
+      "maximo": 501.97,
+      "sesion": 0.708333333333333,
+      "timestamp": 46001.7083333333
+    },
+    {
+      "fecha": 45973,
+      "promedio_ponderado": 498.91,
+      "monto_total": 28202000,
+      "minimo": 498.5,
+      "maximo": 500.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 46002.7083333333
+    },
+    {
+      "fecha": 46003,
+      "promedio_ponderado": 497.1,
+      "monto_total": 34029000,
+      "minimo": 496.5,
+      "maximo": 498.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 46003.7083333333
+    },
+    {
+      "fecha": "15/12/2025",
+      "promedio_ponderado": 495.87,
+      "monto_total": 33041000,
+      "minimo": 494.02,
+      "maximo": 497,
+      "sesion": 0.708333333333333,
+      "timestamp": 46006.7083333333
+    },
+    {
+      "fecha": "16/12/2025",
+      "promedio_ponderado": 495.76,
+      "monto_total": 26708000,
+      "minimo": 492.36,
+      "maximo": 497,
+      "sesion": 0.708333333333333,
+      "timestamp": 46007.7083333333
+    },
+    {
+      "fecha": "17/12/2025",
+      "promedio_ponderado": 496.32,
+      "monto_total": 37578000,
+      "minimo": 496,
+      "maximo": 497.45,
+      "sesion": 0.708333333333333,
+      "timestamp": 46008.7083333333
+    },
+    {
+      "fecha": "18/12/2025",
+      "promedio_ponderado": 495.91,
+      "monto_total": 100219000,
+      "minimo": 494,
+      "maximo": 497,
+      "sesion": 0.708333333333333,
+      "timestamp": 46009.7083333333
+    },
+    {
+      "fecha": "19/12/2025",
+      "promedio_ponderado": 495.56,
+      "monto_total": 33044000,
+      "minimo": 493.35,
+      "maximo": 496.99,
+      "sesion": 0.708333333333333,
+      "timestamp": 46010.7083333333
+    },
+    {
+      "fecha": "22/12/2025",
+      "promedio_ponderado": 496.64,
+      "monto_total": 31828000,
+      "minimo": 495,
+      "maximo": 496.94,
+      "sesion": 0.708333333333333,
+      "timestamp": 46013.7083333333
+    },
+    {
+      "fecha": "23/12/2025",
+      "promedio_ponderado": 498.4,
+      "monto_total": 25981000,
+      "minimo": 496.01,
+      "maximo": 499.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46014.7083333333
+    },
+    {
+      "fecha": "24/12/2025",
+      "promedio_ponderado": 497.98,
+      "monto_total": 25967000,
+      "minimo": 497.5,
+      "maximo": 500,
+      "sesion": 0.708333333333333,
+      "timestamp": 46015.7083333333
+    },
+    {
+      "fecha": "26/12/2025",
+      "promedio_ponderado": 498.33,
+      "monto_total": 5178000,
+      "minimo": 497,
+      "maximo": 499.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46017.7083333333
+    },
+    {
+      "fecha": "29/12/2025",
+      "promedio_ponderado": 498.92,
+      "monto_total": 50814000,
+      "minimo": 498,
+      "maximo": 500,
+      "sesion": 0.708333333333333,
+      "timestamp": 46020.7083333333
+    },
+    {
+      "fecha": "30/12/2025",
+      "promedio_ponderado": 499.81,
+      "monto_total": 12338000,
+      "minimo": 498.5,
+      "maximo": 500.24,
+      "sesion": 0.708333333333333,
+      "timestamp": 46021.7083333333
+    },
+    {
+      "fecha": 46054,
+      "promedio_ponderado": 497.07,
+      "monto_total": 9502000,
+      "minimo": 494,
+      "maximo": 499.3,
+      "sesion": 0.708333333333333,
+      "timestamp": 46024.7083333333
+    },
+    {
+      "fecha": 46143,
+      "promedio_ponderado": 498.42,
+      "monto_total": 19581000,
+      "minimo": 496.5,
+      "maximo": 499.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 46027.7083333333
+    },
+    {
+      "fecha": 46174,
+      "promedio_ponderado": 497.63,
+      "monto_total": 45062000,
+      "minimo": 497.05,
+      "maximo": 498.2,
+      "sesion": 0.708333333333333,
+      "timestamp": 46028.7083333333
+    },
+    {
+      "fecha": 46204,
+      "promedio_ponderado": 498.19,
+      "monto_total": 22403000,
+      "minimo": 496,
+      "maximo": 499,
+      "sesion": 0.708333333333333,
+      "timestamp": 46029.7083333333
+    },
+    {
+      "fecha": 46235,
+      "promedio_ponderado": 498.3,
+      "monto_total": 34952000,
+      "minimo": 495.04,
+      "maximo": 498.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 46030.7083333333
+    },
+    {
+      "fecha": 46266,
+      "promedio_ponderado": 498.31,
+      "monto_total": 40419000,
+      "minimo": 497.26,
+      "maximo": 498.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 46031.7083333333
+    },
+    {
+      "fecha": 46357,
+      "promedio_ponderado": 496.85,
+      "monto_total": 57843000,
+      "minimo": 495.53,
+      "maximo": 499,
+      "sesion": 0.708333333333333,
+      "timestamp": 46034.7083333333
+    },
+    {
+      "fecha": "13/01/2026",
+      "promedio_ponderado": 493.85,
+      "monto_total": 54421000,
+      "minimo": 493.07,
+      "maximo": 497,
+      "sesion": 0.708333333333333,
+      "timestamp": 46035.7083333333
+    },
+    {
+      "fecha": "14/01/2026",
+      "promedio_ponderado": 490.05,
+      "monto_total": 19217000,
+      "minimo": 489.95,
+      "maximo": 494.4,
+      "sesion": 0.708333333333333,
+      "timestamp": 46036.7083333333
+    },
+    {
+      "fecha": "15/01/2026",
+      "promedio_ponderado": 487.51,
+      "monto_total": 57792000,
+      "minimo": 487,
+      "maximo": 492.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46037.7083333333
+    },
+    {
+      "fecha": "16/01/2026",
+      "promedio_ponderado": 487.26,
+      "monto_total": 42228000,
+      "minimo": 486.8,
+      "maximo": 489.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46038.7083333333
+    },
+    {
+      "fecha": "19/01/2026",
+      "promedio_ponderado": 489.79,
+      "monto_total": 8052000,
+      "minimo": 487.3,
+      "maximo": 490.15,
+      "sesion": 0.708333333333333,
+      "timestamp": 46041.7083333333
+    },
+    {
+      "fecha": "20/01/2026",
+      "promedio_ponderado": 490.97,
+      "monto_total": 21048000,
+      "minimo": 488.55,
+      "maximo": 491.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46042.7083333333
+    },
+    {
+      "fecha": "21/01/2026",
+      "promedio_ponderado": 493.46,
+      "monto_total": 14735000,
+      "minimo": 490,
+      "maximo": 495,
+      "sesion": 0.708333333333333,
+      "timestamp": 46043.7083333333
+    },
+    {
+      "fecha": "22/01/2026",
+      "promedio_ponderado": 496.4,
+      "monto_total": 28313000,
+      "minimo": 491.08,
+      "maximo": 497.7,
+      "sesion": 0.708333333333333,
+      "timestamp": 46044.7083333333
+    },
+    {
+      "fecha": "23/01/2026",
+      "promedio_ponderado": 499.39,
+      "monto_total": 50429000,
+      "minimo": 495,
+      "maximo": 499.75,
+      "sesion": 0.708333333333333,
+      "timestamp": 46045.7083333333
+    },
+    {
+      "fecha": "26/01/2026",
+      "promedio_ponderado": 497.08,
+      "monto_total": 56225000,
+      "minimo": 494,
+      "maximo": 499.9,
+      "sesion": 0.708333333333333,
+      "timestamp": 46048.7083333333
+    },
+    {
+      "fecha": "27/01/2026",
+      "promedio_ponderado": 493.98,
+      "monto_total": 64816000,
+      "minimo": 493.6,
+      "maximo": 497.1,
+      "sesion": 0.708333333333333,
+      "timestamp": 46049.7083333333
+    },
+    {
+      "fecha": "28/01/2026",
+      "promedio_ponderado": 494.43,
+      "monto_total": 18014000,
+      "minimo": 491.5,
+      "maximo": 494.95,
+      "sesion": 0.708333333333333,
+      "timestamp": 46050.7083333333
+    },
+    {
+      "fecha": "29/01/2026",
+      "promedio_ponderado": 496.88,
+      "monto_total": 19692000,
+      "minimo": 492,
+      "maximo": 497.35,
+      "sesion": 0.708333333333333,
+      "timestamp": 46051.7083333333
+    },
+    {
+      "fecha": "30/01/2026",
+      "promedio_ponderado": 496.04,
+      "monto_total": 33805000,
+      "minimo": 492.88,
+      "maximo": 497.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46052.7083333333
+    },
+    {
+      "fecha": 46055,
+      "promedio_ponderado": 495.21,
+      "monto_total": 26596000,
+      "minimo": 494,
+      "maximo": 496.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46055.7083333333
+    },
+    {
+      "fecha": 46083,
+      "promedio_ponderado": 497.19,
+      "monto_total": 23494000,
+      "minimo": 495.22,
+      "maximo": 497.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46056.7083333333
+    },
+    {
+      "fecha": 46114,
+      "promedio_ponderado": 494.91,
+      "monto_total": 52619000,
+      "minimo": 494,
+      "maximo": 497,
+      "sesion": 0.708333333333333,
+      "timestamp": 46057.7083333333
+    },
+    {
+      "fecha": 46144,
+      "promedio_ponderado": 493.47,
+      "monto_total": 43531000,
+      "minimo": 493,
+      "maximo": 496.48,
+      "sesion": 0.708333333333333,
+      "timestamp": 46058.7083333333
+    },
+    {
+      "fecha": 46175,
+      "promedio_ponderado": 493.33,
+      "monto_total": 33953000,
+      "minimo": 492,
+      "maximo": 495.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46059.7083333333
+    },
+    {
+      "fecha": 46267,
+      "promedio_ponderado": 492.23,
+      "monto_total": 43894000,
+      "minimo": 491,
+      "maximo": 494.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46062.7083333333
+    },
+    {
+      "fecha": 46297,
+      "promedio_ponderado": 489.04,
+      "monto_total": 35918000,
+      "minimo": 488.3,
+      "maximo": 492,
+      "sesion": 0.708333333333333,
+      "timestamp": 46063.7083333333
+    },
+    {
+      "fecha": 46328,
+      "promedio_ponderado": 486.25,
+      "monto_total": 26093000,
+      "minimo": 485,
+      "maximo": 490,
+      "sesion": 0.708333333333333,
+      "timestamp": 46064.7083333333
+    },
+    {
+      "fecha": 46358,
+      "promedio_ponderado": 483.69,
+      "monto_total": 41959000,
+      "minimo": 483.25,
+      "maximo": 487,
+      "sesion": 0.708333333333333,
+      "timestamp": 46065.7083333333
+    },
+    {
+      "fecha": "13/02/2026",
+      "promedio_ponderado": 481.78,
+      "monto_total": 23464000,
+      "minimo": 481,
+      "maximo": 484,
+      "sesion": 0.708333333333333,
+      "timestamp": 46066.7083333333
+    },
+    {
+      "fecha": "16/02/2026",
+      "promedio_ponderado": 482.79,
+      "monto_total": 17571000,
+      "minimo": 482,
+      "maximo": 485.93,
+      "sesion": 0.708333333333333,
+      "timestamp": 46069.7083333333
+    },
+    {
+      "fecha": "17/02/2026",
+      "promedio_ponderado": 482.11,
+      "monto_total": 37792000,
+      "minimo": 480.7,
+      "maximo": 484.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46070.7083333333
+    },
+    {
+      "fecha": "18/02/2026",
+      "promedio_ponderado": 479.54,
+      "monto_total": 28090000,
+      "minimo": 479,
+      "maximo": 484.35,
+      "sesion": 0.708333333333333,
+      "timestamp": 46071.7083333333
+    },
+    {
+      "fecha": "19/02/2026",
+      "promedio_ponderado": 474.95,
+      "monto_total": 61231000,
+      "minimo": 474.5,
+      "maximo": 480,
+      "sesion": 0.708333333333333,
+      "timestamp": 46072.7083333333
+    },
+    {
+      "fecha": "20/02/2026",
+      "promedio_ponderado": 474.56,
+      "monto_total": 50479000,
+      "minimo": 473.5,
+      "maximo": 475,
+      "sesion": 0.708333333333333,
+      "timestamp": 46073.7083333333
+    },
+    {
+      "fecha": "23/02/2026",
+      "promedio_ponderado": 475.18,
+      "monto_total": 68783000,
+      "minimo": 474,
+      "maximo": 478.93,
+      "sesion": 0.708333333333333,
+      "timestamp": 46076.7083333333
+    },
+    {
+      "fecha": "24/02/2026",
+      "promedio_ponderado": 473.75,
+      "monto_total": 106522000,
+      "minimo": 473.3,
+      "maximo": 475,
+      "sesion": 0.708333333333333,
+      "timestamp": 46077.7083333333
+    },
+    {
+      "fecha": "25/02/2026",
+      "promedio_ponderado": 472.5,
+      "monto_total": 140576000,
+      "minimo": 470.5,
+      "maximo": 473.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46078.7083333333
+    },
+    {
+      "fecha": "26/02/2026",
+      "promedio_ponderado": 471.02,
+      "monto_total": 48740000,
+      "minimo": 470.5,
+      "maximo": 473,
+      "sesion": 0.708333333333333,
+      "timestamp": 46079.7083333333
+    },
+    {
+      "fecha": "27/02/2026",
+      "promedio_ponderado": 470.19,
+      "monto_total": 24347000,
+      "minimo": 469.99,
+      "maximo": 471.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46080.7083333333
+    },
+    {
+      "fecha": 46056,
+      "promedio_ponderado": 470.93,
+      "monto_total": 18181000,
+      "minimo": 469,
+      "maximo": 471.5,
+      "sesion": 0.708333333333333,
+      "timestamp": 46083.7083333333
+    },
+    {
+      "fecha": 46084,
+      "promedio_ponderado": 474.53,
+      "monto_total": 11468000,
+      "minimo": 471,
+      "maximo": 475.15,
+      "sesion": 0.708333333333333,
+      "timestamp": 46084.7083333333
+    },
+    {
+      "fecha": 46115,
+      "promedio_ponderado": 475.95,
+      "monto_total": 18762000,
+      "minimo": 472,
+      "maximo": 477.25,
+      "sesion": 0.708333333333333,
+      "timestamp": 46085.7083333333
+    },
+    {
+      "fecha": 46145,
+      "promedio_ponderado": 478.37,
+      "monto_total": 63376000,
+      "minimo": 476,
+      "maximo": 482,
+      "sesion": 0.708333333333333,
+      "timestamp": 46086.7083333333
+    },
+    {
+      "fecha": 46176,
+      "promedio_ponderado": 474.2,
+      "monto_total": 80497000,
+      "minimo": 472.09,
+      "maximo": 481,
+      "sesion": 0.708333333333333,
+      "timestamp": 46087.7083333333
+    }
+  ]
+}
