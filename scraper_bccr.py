@@ -299,8 +299,30 @@ def read_all_rows(token, drive_id, item_id, session_id):
             })
     return result
 
+def fix_future_date(fecha_str, sesion_str):
+    """Si la fecha es futura, intenta invertir mes y día para corregirla."""
+    from datetime import date
+    hoy = date.today().isoformat()
+    if fecha_str > hoy:
+        partes = fecha_str.split("-")
+        if len(partes) == 3:
+            y, m, d = partes
+            invertida = f"{y}-{d}-{m}"
+            if invertida <= hoy:
+                hora = sesion_str if sesion_str else "17:00"
+                return invertida, f"{invertida} {hora}"
+    return fecha_str, None
+
 def generate_json(all_rows):
     """Genera datos.json con el historial completo"""
+    # Corregir fechas futuras (día/mes invertidos por error del scraper viejo)
+    for r in all_rows:
+        fecha_corregida, ts_corregido = fix_future_date(r["fecha"], r.get("sesion", "17:00"))
+        if fecha_corregida != r["fecha"]:
+            print(f"  Corrigiendo fecha: {r['fecha']} → {fecha_corregida}")
+            r["fecha"] = fecha_corregida
+            r["timestamp"] = ts_corregido
+
     # Ordenar por timestamp para deduplicar correctamente
     sorted_rows = sorted(all_rows, key=lambda x: str(x.get("timestamp", x.get("fecha", ""))))
     # Deduplicar: si hay dos entradas del mismo día, quedarse con la de 17:00
