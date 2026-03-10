@@ -32,6 +32,5 @@ jobs:
         run: |
           git config user.name "CV Finanzas Bot"
           git config user.email "bot@cvfinanzas.com"
-          git add datos.json
-          git diff --staged --quiet || git commit -m "datos: actualizar tipo de cambio $(date +'%Y-%m-%d %H:%M')"
-          git push
+          git add datos.json || echo "datos.json no encontrado, saltando"
+          git diff --staged --quiet && echo "Sin cambios" || (git commit -m "datos: actualizar tipo de cambio $(date +'%Y-%m-%d %H:%M')" && git push)
