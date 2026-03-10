@@ -360,7 +360,8 @@ def append_to_excel(token, drive_id, item_id, session_id, row_data):
         row_data["minimo"],
         row_data["maximo"],
         row_data["sesion"],
-        row_data["timestamp"]
+        row_data["timestamp"],
+        row_data["fecha"]
     ]]
     r = requests.post(url, headers=headers, json={"values": values})
     if not r.ok:
