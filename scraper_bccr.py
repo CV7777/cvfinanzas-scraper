@@ -193,7 +193,7 @@ def _parse_num(s):
         return None
 
 def excel_serial_to_iso(val):
-    """Convierte serial de Excel o string de fecha a YYYY-MM-DD"""
+    """Convierte serial de Excel (número) o string DD/MM/YYYY a YYYY-MM-DD"""
     if val is None or val == "":
         return ""
     try:
@@ -204,8 +204,35 @@ def excel_serial_to_iso(val):
             return str(epoch + timedelta(days=int(num)))
     except (ValueError, TypeError):
         pass
-    # Ya es string — devolver los primeros 10 chars (YYYY-MM-DD)
-    return str(val)[:10]
+    s = str(val).strip()
+    # DD/MM/YYYY → YYYY-MM-DD
+    if "/" in s:
+        parts = s.split("/")
+        if len(parts) == 3:
+            return f"{parts[2]}-{parts[1].zfill(2)}-{parts[0].zfill(2)}"
+    return s[:10]
+
+def excel_serial_to_time(val):
+    """Convierte fracción de día de Excel a string HH:MM. 0.7083 = 17:00"""
+    if val is None or val == "":
+        return ""
+    try:
+        frac = float(val)
+        if 0 < frac < 1:
+            total_minutes = round(frac * 24 * 60)
+            h = total_minutes // 60
+            m = total_minutes % 60
+            return f"{h:02d}:{m:02d}"
+        # Si es mayor que 1, es un timestamp completo — extraer la parte decimal
+        if frac > 1:
+            frac = frac - int(frac)
+            total_minutes = round(frac * 24 * 60)
+            h = total_minutes // 60
+            m = total_minutes % 60
+            return f"{h:02d}:{m:02d}"
+    except (ValueError, TypeError):
+        pass
+    return str(val)
 
 def read_all_rows(token, drive_id, item_id, session_id):
     """Lee todas las filas de la tabla TipoCambio"""
@@ -225,14 +252,30 @@ def read_all_rows(token, drive_id, item_id, session_id):
         vals = row.get("values", [[]])[0]
         if len(vals) >= 5 and vals[0]:
             fecha_iso = excel_serial_to_iso(vals[0])
+            sesion_raw = vals[5] if len(vals) > 5 else ""
+            ts_raw = vals[6] if len(vals) > 6 else ""
+
+            # Convertir sesión: puede ser "17:00", "13:05" o serial de hora
+            sesion_str = str(sesion_raw).strip() if sesion_raw else ""
+            if sesion_str and ":" not in sesion_str:
+                sesion_str = excel_serial_to_time(sesion_raw)
+
+            # Convertir timestamp: puede ser serial de Excel o string
+            if ts_raw and ":" not in str(ts_raw):
+                ts_str = fecha_iso + " " + excel_serial_to_time(ts_raw)
+            elif ts_raw:
+                ts_str = str(ts_raw)[:19]
+            else:
+                ts_str = fecha_iso + " " + (sesion_str or "17:00") + ":00"
+
             result.append({
                 "fecha": fecha_iso,
                 "promedio_ponderado": vals[1],
                 "monto_total": vals[2],
                 "minimo": vals[3],
                 "maximo": vals[4],
-                "sesion": vals[5] if len(vals) > 5 else "",
-                "timestamp": str(vals[6])[:19] if len(vals) > 6 and vals[6] else fecha_iso
+                "sesion": sesion_str,
+                "timestamp": ts_str
             })
     return result
 
