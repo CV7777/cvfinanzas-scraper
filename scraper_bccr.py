@@ -270,30 +270,31 @@ def main():
     print(f"Hora CR: {datetime.now(CR_TZ).strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
 
-    # 1. Extraer datos del BCCR
-    print("\n[1/3] Extrayendo datos del BCCR...")
-    datos = scrape_bccr()
-    if datos is None:
-        print("\n⚠ Sin datos para guardar. El script se ejecutará de nuevo en el próximo horario.")
-        return
-    print(f"  ✓ Fecha: {datos['fecha']}")
-    print(f"  ✓ Promedio Ponderado: ₡{datos['promedio_ponderado']:.2f}")
-    print(f"  ✓ Monto Total: ${datos['monto_total']:,.2f}")
-    print(f"  ✓ Sesión: {datos['sesion']}")
-
-    # 2. Autenticar con Microsoft
-    print("\n[2/3] Autenticando con Microsoft Graph...")
+    # 1. Autenticar con Microsoft (siempre, para poder generar el JSON)
+    print("\n[1/4] Autenticando con Microsoft Graph...")
     token = get_token()
     print("  ✓ Token obtenido")
 
-    # 3. Guardar en Excel y generar JSON
-    print("\n[3/4] Guardando en Excel Online...")
     drive_id, item_id = find_excel_item(token)
     session_id = get_excel_session(token, drive_id, item_id)
-    append_to_excel(token, drive_id, item_id, session_id, datos)
-    print("  ✓ Fila agregada exitosamente")
 
-    # 4. Generar datos.json con historial completo
+    # 2. Extraer datos del BCCR
+    print("\n[2/4] Extrayendo datos del BCCR...")
+    datos = scrape_bccr()
+    if datos is None:
+        print("  Sin datos nuevos todavia. Generando JSON con historial existente...")
+    else:
+        print(f"  ✓ Fecha: {datos['fecha']}")
+        print(f"  ✓ Promedio Ponderado: {datos['promedio_ponderado']:.2f}")
+        print(f"  ✓ Monto Total: {datos['monto_total']:,.2f}")
+        print(f"  ✓ Sesion: {datos['sesion']}")
+
+        # 3. Guardar en Excel solo si hay datos nuevos
+        print("\n[3/4] Guardando en Excel Online...")
+        append_to_excel(token, drive_id, item_id, session_id, datos)
+        print("  ✓ Fila agregada exitosamente")
+
+    # 4. Siempre generar datos.json con el historial completo
     print("\n[4/4] Generando datos.json...")
     all_rows = read_all_rows(token, drive_id, item_id, session_id)
     generate_json(all_rows)
