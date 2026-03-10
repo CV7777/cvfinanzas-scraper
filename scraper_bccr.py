@@ -193,23 +193,37 @@ def _parse_num(s):
         return None
 
 def excel_serial_to_iso(val):
-    """Convierte serial de Excel (número) o string DD/MM/YYYY a YYYY-MM-DD"""
+    """Convierte serial de Excel (número) o string DD/MM/YYYY a YYYY-MM-DD.
+    Si la fecha resultante es futura (>hoy), intenta invertir día/mes."""
+    from datetime import date
+    hoy = date.today().isoformat()
+
     if val is None or val == "":
         return ""
     try:
         num = float(val)
         if num > 40000:
-            from datetime import date, timedelta
+            from datetime import timedelta
             epoch = date(1899, 12, 30)
             return str(epoch + timedelta(days=int(num)))
     except (ValueError, TypeError):
         pass
     s = str(val).strip()
-    # DD/MM/YYYY → YYYY-MM-DD
+    # Puede venir como "D/M/YYYY", "DD/MM/YYYY", o "YYYY-MM-DD"
     if "/" in s:
         parts = s.split("/")
         if len(parts) == 3:
-            return f"{parts[2]}-{parts[1].zfill(2)}-{parts[0].zfill(2)}"
+            # Puede ser D/M/YYYY (sin ceros) — normalizar
+            d, m, y = parts[0].zfill(2), parts[1].zfill(2), parts[2]
+            if len(y) == 2:
+                y = "20" + y
+            result = f"{y}-{m}-{d}"
+            # Si la fecha es futura, probablemente está invertida (M/D/YYYY)
+            if result > hoy:
+                result_inv = f"{y}-{d}-{m}"
+                if result_inv <= hoy:
+                    return result_inv
+            return result
     return s[:10]
 
 def excel_serial_to_time(val):
@@ -260,11 +274,17 @@ def read_all_rows(token, drive_id, item_id, session_id):
             if sesion_str and ":" not in sesion_str:
                 sesion_str = excel_serial_to_time(sesion_raw)
 
-            # Convertir timestamp: puede ser serial de Excel o string
+            # Convertir timestamp: siempre usar fecha_iso (ya corregida) + hora
             if ts_raw and ":" not in str(ts_raw):
-                ts_str = fecha_iso + " " + excel_serial_to_time(ts_raw)
+                # Es serial de Excel — extraer la hora de la fracción
+                hora_str = excel_serial_to_time(ts_raw)
+                ts_str = fecha_iso + " " + hora_str
             elif ts_raw:
-                ts_str = str(ts_raw)[:19]
+                # Es string tipo "2/4/2026 17:00" o "2026-02-04 17:00"
+                # Siempre usar fecha_iso para la parte de fecha (ya está corregida)
+                ts_parts = str(ts_raw).strip().split(" ")
+                hora_part = ts_parts[1] if len(ts_parts) > 1 else (sesion_str or "17:00")
+                ts_str = fecha_iso + " " + hora_part
             else:
                 ts_str = fecha_iso + " " + (sesion_str or "17:00") + ":00"
 
