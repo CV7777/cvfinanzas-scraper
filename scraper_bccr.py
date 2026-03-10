@@ -192,6 +192,21 @@ def _parse_num(s):
     except:
         return None
 
+def excel_serial_to_iso(val):
+    """Convierte serial de Excel o string de fecha a YYYY-MM-DD"""
+    if val is None or val == "":
+        return ""
+    try:
+        num = float(val)
+        if num > 40000:
+            from datetime import date, timedelta
+            epoch = date(1899, 12, 30)
+            return str(epoch + timedelta(days=int(num)))
+    except (ValueError, TypeError):
+        pass
+    # Ya es string — devolver los primeros 10 chars (YYYY-MM-DD)
+    return str(val)[:10]
+
 def read_all_rows(token, drive_id, item_id, session_id):
     """Lee todas las filas de la tabla TipoCambio"""
     url = (
@@ -209,14 +224,15 @@ def read_all_rows(token, drive_id, item_id, session_id):
     for row in rows:
         vals = row.get("values", [[]])[0]
         if len(vals) >= 5 and vals[0]:
+            fecha_iso = excel_serial_to_iso(vals[0])
             result.append({
-                "fecha": vals[0],
+                "fecha": fecha_iso,
                 "promedio_ponderado": vals[1],
                 "monto_total": vals[2],
                 "minimo": vals[3],
                 "maximo": vals[4],
                 "sesion": vals[5] if len(vals) > 5 else "",
-                "timestamp": vals[6] if len(vals) > 6 else ""
+                "timestamp": str(vals[6])[:19] if len(vals) > 6 and vals[6] else fecha_iso
             })
     return result
 
