@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin — CV Finanzas</title>
+  <title>Admin â CV Finanzas</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -90,49 +90,49 @@
 </head>
 <body>
 <div id="login-screen">
-  <div class="logo"><span>CV</span> Finanzas · Admin</div>
+  <div class="logo"><span>CV</span> Finanzas Â· Admin</div>
   <div class="login-card">
     <h2>Acceso restringido</h2>
-    <p>Ingresá tu contraseña para administrar el dashboard</p>
-    <div class="field"><input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <p>IngresÃ¡ tu contraseÃ±a para administrar el dashboard</p>
+    <div class="field"><input type="password" id="pwd-input" placeholder="ContraseÃ±a" onkeydown="if(event.key==='Enter')doLogin()"/></div>
     <button class="btn-primary" onclick="doLogin()">Ingresar</button>
-    <div class="error-msg" id="login-error">Contraseña incorrecta</div>
+    <div class="error-msg" id="login-error">ContraseÃ±a incorrecta</div>
   </div>
 </div>
 <div id="admin-panel">
   <div class="panel-header">
-    <div class="logo"><span>CV</span> Finanzas · Admin</div>
-    <div style="display:flex;align-items:center;gap:1rem"><div class="badge-live">Conectado</div><button class="logout-btn" onclick="doLogout()">Cerrar sesión</button></div>
+    <div class="logo"><span>CV</span> Finanzas Â· Admin</div>
+    <div style="display:flex;align-items:center;gap:1rem"><div class="badge-live">Conectado</div><button class="logout-btn" onclick="doLogout()">Cerrar sesiÃ³n</button></div>
   </div>
   <div class="card">
-    <div class="card-title"><span class="icon">✍️</span> Análisis del día</div>
+    <div class="card-title"><span class="icon">âï¸</span> AnÃ¡lisis del dÃ­a</div>
     <div class="date-row">
       <div class="field"><label>FecNA4</label><input type="date" id="ana-fecha"/></div>
       <div class="field"><label>Hora</label><input type="time" id="ana-hora" value="17:05"/></div>
     </div>
     <div class="field" style="margin-bottom:.5rem">
-      <label>Texto del análisis</label>
+      <label>Texto del anÃ¡lisis</label>
       <div class="toolbar">
-        <button class="tool-btn" onclick="insertText('👉 ')">👉</button>
-        <button class="tool-btn" onclick="insertText('📈 ')">📈</button>
-        <button class="tool-btn" onclick="insertText('⚠️ ')">⚠️</button>
-        <button class="tool-btn" onclick="insertText('℅ ')">℅</button>
-        <button class="tool-btn" onclick="togglePreview()">👁 Vista previa</button>
+        <button class="tool-btn" onclick="insertText('ð ')">ð</button>
+        <button class="tool-btn" onclick="insertText('ð ')">ð</button>
+        <button class="tool-btn" onclick="insertText('â ï¸ ')">â ï¸</button>
+        <button class="tool-btn" onclick="insertText('â ')">â</button>
+        <button class="tool-btn" onclick="togglePreview()">ð Vista previa</button>
       </div>
-      <textarea id="ana-texto" placeholder="Escribí aquí el análisis del mercado MONEX para hoy..." oninput="updateCount()"></textarea>
+      <textarea id="ana-texto" placeholder="EscribÃ­ aquÃ­ el anÃ¡lisis del mercado MONEX para hoy..." oninput="updateCount()"></textarea>
       <div class="char-count"><span id="char-num">0</span> caracteres</div>
     </div>
     <div class="preview-box" id="preview-box"></div>
     <div style="margin-top:1.5rem">
       <div class="publish-row">
-        <button class="btn-publish" id="publish-btn" onclick="publicar()"><span>🚀</span> Publicar</button>
+        <button class="btn-publish" id="publish-btn" onclick="publicar()"><span>ð</span> Publicar</button>
         <button class="btn-secondary" onclick="limpiar()">Limpiar</button>
         <div class="status-msg" id="status-msg"></div>
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title"><span class="icon">📋</Span> Historial de análisis</div>
+    <div class="card-title"><span class="icon">ð</Span> Historial de anÃ¡lisis</div>
     <div id="history-list"><div style="color:var(--muted);font-size:.85rem">Cargando...</div></div>
   </div>
 </div>
@@ -154,16 +154,16 @@
   }
   function doLogout(){sessionStorage.removeItem('cvf_admin');location.reload();}
   if(sessionStorage.getItem('cvf_admin')==='1'){document.getElementById('login-screen').style.display='none';document.getElementById('admin-panel').style.display='block';}
-  function initPanel(){const h=-new Date();const y=h.getFullYear(),m=String(h.getMonth()+1).padStart(2,'0'),d=String(h.getDate()).padStart(2,'0');document.getElementById('ana-fecha').value=`${y}-${m}-${d}`;cargarHistorial();}
+  function initPanel(){const h=new Date();const y=h.getFullYear(),m=String(h.getMonth()+1).padStart(2,'0'),d=String(h.getDate()).padStart(2,'0');document.getElementById('ana-fecha').value=`${y}-${m}-${d}`;cargarHistorial();}
   if(sessionStorage.getItem('cvf_admin')==='1')initPanel();
   function updateCount(){const n=document.getElementById('ana-texto').value.length;document.getElementById('char-num').textContent=n;}
   function insertText(t){const ta=document.getElementById('ana-texto');const s=ta.selectionStart,e=ta.selectionEnd;ta.value=ta.value.slice(0,s)+t+ta.value.slice(e);ta.selectionStart=ta.selectionEnd=s+t.length;ta.focus();updateCount();}
   function togglePreview(){const pb=document.getElementById('preview-box');pb.textContent=document.getElementById('ana-texto').value;pb.classList.toggle('show');}
   function limpiar(){document.getElementById('ana-texto').value='';document.getElementById('char-num').textContent='0';document.getElementById('preview-box').classList.remove('show');setStatus('','');}
-  function setStatus(type,msg){const el=document.getElementById('status-msg');el.className='status-msg';el.style.display='none';if(!type)return;el.className=`status-msg ${type}`;const ic={success:'✅',error:'❌',loading:'⏳'};el.innerHTML=`<span>${ic[type]||''}</span> ${msg}`;}
+  function setStatus(type,msg){const el=document.getElementById('status-msg');el.className='status-msg';el.style.display='none';if(!type)return;el.className=`status-msg ${type}`;const ic={success:'â',error:'â',loading:'â³'};el.innerHTML=`<span>${ic[type]||''}</span> ${msg}`;}
   async function publicar(){
     const fecha=document.getElementById('ana-fecha').value,hora=document.getElementById('ana-hora').value,texto=document.getElementById('ana-texto').value.trim();
-    if(!fecha||!texto){setStatus('error','Completá la fecha y el texto.');return;}
+    if(!fecha||!texto){setStatus('error','CompletÃ¡ la fecha y el texto.');return;}
     const btn=document.getElementById('publish-btn');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Publicando...';setStatus("loading","Subiendo a GitHub...");
     try{
       const gR=await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,{headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json'}});
@@ -173,17 +173,17 @@
       fil.push({fecha,texto,hora});fil.sort((a,b)=>b.fecha.localeCompare(a.fecha));cj.analisis=fil;
       const nc=btoa(unescape(encodeURIComponent(JSON.stringify(cj,null,2))));
       const pR=await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,{method:'PUT',headers:{
-        'Authorization':`Bearer ${GITHUB_TOKEN}`,'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify({message:`Análisis ${fecha} - ${hora}`,content:nc,sha:fd.sha})});
-      if(pR.ok){setStatur('success',`Publicado ✅ ${fecha} a las ${hora}`);cargarHistorial();limpiar();document.getElementById('ana-fecha').value=fecha;}
+        'Authorization':`Bearer ${GITHUB_TOKEN}`,'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify({message:`AnÃ¡lisis ${fecha} - ${hora}`,content:nc,sha:fd.sha})});
+      if(pR.ok){setStatur('success',`Publicado â ${fecha} a las ${hora}`);cargarHistorial();limpiar();document.getElementById('ana-fecha').value=fecha;}
       else{const err=await pR.json();setStatus('error',`Error: ${err.message}`);}
     }catch(e){setStatus('error',`Error: ${e.message}`);}
-    finally{btn.disabled=false;btn.innerHTML='<span>🚀</span> Publicar';}
+    finally{btn.disabled=false;btn.innerHTML='<span>ð</span> Publicar';}
   }
   async function cargarHistorial(){
     try{const r=await fetch(`https://raw.githubusercontent.com/${REPO}/main/${FILE_PATH}?t=${Date.now()}`);
       const d=await r.json();const l=(d.analisis||[]).slice(0,10);
       const el=document.getElementById('history-list');
-      if(!l.length){el.innerHTML='<div style="color:var(--muted);font-size:.85rem">No hay análisis aún.</div>';return;e}
+      if(!l.length){el.innerHTML='<div style="color:var(--muted);font-size:.85rem">No hay anÃ¡lisis aÃºn.</div>';return;e}
       el.innerHTML=l.map(a=>`<div class="history-item"><div class="history-meta"><span class="history-date">${fm(a.fecha)}</span><span class="history-hour">${a.hora||''}</span></div><div class="history-text">${a.texto}</div></div>`).join('');
     }catch(e){document.getElementById('history-list').innerHTML='<div style="color:var(--muted)">Error al cargar.</div>';}
   }
