@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-03-10 14:04:15",
+  "actualizado": "2026-03-10 15:06:31",
   "datos": [
     {
       "fecha": "2024-01-04",
@@ -4061,6 +4061,60 @@
       "timestamp": "2025-12-30 17:00"
     },
     {
+      "fecha": "2026-01-05",
+      "promedio_ponderado": 498.42,
+      "monto_total": 19581000,
+      "minimo": 496.5,
+      "maximo": 499.1,
+      "sesion": "17:00",
+      "timestamp": "2026-01-05 17:00"
+    },
+    {
+      "fecha": "2026-01-06",
+      "promedio_ponderado": 497.63,
+      "monto_total": 45062000,
+      "minimo": 497.05,
+      "maximo": 498.2,
+      "sesion": "17:00",
+      "timestamp": "2026-01-06 17:00"
+    },
+    {
+      "fecha": "2026-01-07",
+      "promedio_ponderado": 498.19,
+      "monto_total": 22403000,
+      "minimo": 496,
+      "maximo": 499,
+      "sesion": "17:00",
+      "timestamp": "2026-01-07 17:00"
+    },
+    {
+      "fecha": "2026-01-08",
+      "promedio_ponderado": 498.3,
+      "monto_total": 34952000,
+      "minimo": 495.04,
+      "maximo": 498.75,
+      "sesion": "17:00",
+      "timestamp": "2026-01-08 17:00"
+    },
+    {
+      "fecha": "2026-01-09",
+      "promedio_ponderado": 498.31,
+      "monto_total": 40419000,
+      "minimo": 497.26,
+      "maximo": 498.95,
+      "sesion": "17:00",
+      "timestamp": "2026-01-09 17:00"
+    },
+    {
+      "fecha": "2026-01-12",
+      "promedio_ponderado": 496.85,
+      "monto_total": 57843000,
+      "minimo": 495.53,
+      "maximo": 499,
+      "sesion": "17:00",
+      "timestamp": "2026-01-12 17:00"
+    },
+    {
       "fecha": "2026-01-13",
       "promedio_ponderado": 493.85,
       "monto_total": 54421000,
@@ -4223,6 +4277,60 @@
       "timestamp": "2026-02-04 17:00"
     },
     {
+      "fecha": "2026-02-05",
+      "promedio_ponderado": 493.47,
+      "monto_total": 43531000,
+      "minimo": 493,
+      "maximo": 496.48,
+      "sesion": "17:00",
+      "timestamp": "2026-02-05 17:00"
+    },
+    {
+      "fecha": "2026-02-06",
+      "promedio_ponderado": 493.33,
+      "monto_total": 33953000,
+      "minimo": 492,
+      "maximo": 495.5,
+      "sesion": "17:00",
+      "timestamp": "2026-02-06 17:00"
+    },
+    {
+      "fecha": "2026-02-09",
+      "promedio_ponderado": 492.23,
+      "monto_total": 43894000,
+      "minimo": 491,
+      "maximo": 494.5,
+      "sesion": "17:00",
+      "timestamp": "2026-02-09 17:00"
+    },
+    {
+      "fecha": "2026-02-10",
+      "promedio_ponderado": 489.04,
+      "monto_total": 35918000,
+      "minimo": 488.3,
+      "maximo": 492,
+      "sesion": "17:00",
+      "timestamp": "2026-02-10 17:00"
+    },
+    {
+      "fecha": "2026-02-11",
+      "promedio_ponderado": 486.25,
+      "monto_total": 26093000,
+      "minimo": 485,
+      "maximo": 490,
+      "sesion": "17:00",
+      "timestamp": "2026-02-11 17:00"
+    },
+    {
+      "fecha": "2026-02-12",
+      "promedio_ponderado": 483.69,
+      "monto_total": 41959000,
+      "minimo": 483.25,
+      "maximo": 487,
+      "sesion": "17:00",
+      "timestamp": "2026-02-12 17:00"
+    },
+    {
       "fecha": "2026-02-13",
       "promedio_ponderado": 481.78,
       "monto_total": 23464000,
@@ -4340,148 +4448,40 @@
       "timestamp": "2026-03-03 17:00"
     },
     {
-      "fecha": "2026-04-03",
+      "fecha": "2026-03-04",
       "promedio_ponderado": 475.95,
       "monto_total": 18762000,
       "minimo": 472,
       "maximo": 477.25,
       "sesion": "17:00",
-      "timestamp": "2026-04-03 17:00"
+      "timestamp": "2026-03-04 17:00"
     },
     {
-      "fecha": "2026-05-01",
-      "promedio_ponderado": 498.42,
-      "monto_total": 19581000,
-      "minimo": 496.5,
-      "maximo": 499.1,
-      "sesion": "17:00",
-      "timestamp": "2026-05-01 17:00"
-    },
-    {
-      "fecha": "2026-05-02",
-      "promedio_ponderado": 493.47,
-      "monto_total": 43531000,
-      "minimo": 493,
-      "maximo": 496.48,
-      "sesion": "17:00",
-      "timestamp": "2026-05-02 17:00"
-    },
-    {
-      "fecha": "2026-05-03",
+      "fecha": "2026-03-05",
       "promedio_ponderado": 478.37,
       "monto_total": 63376000,
       "minimo": 476,
       "maximo": 482,
       "sesion": "17:00",
-      "timestamp": "2026-05-03 17:00"
+      "timestamp": "2026-03-05 17:00"
     },
     {
-      "fecha": "2026-06-01",
-      "promedio_ponderado": 497.63,
-      "monto_total": 45062000,
-      "minimo": 497.05,
-      "maximo": 498.2,
-      "sesion": "17:00",
-      "timestamp": "2026-06-01 17:00"
-    },
-    {
-      "fecha": "2026-06-02",
-      "promedio_ponderado": 493.33,
-      "monto_total": 33953000,
-      "minimo": 492,
-      "maximo": 495.5,
-      "sesion": "17:00",
-      "timestamp": "2026-06-02 17:00"
-    },
-    {
-      "fecha": "2026-06-03",
+      "fecha": "2026-03-06",
       "promedio_ponderado": 474.2,
       "monto_total": 80497000,
       "minimo": 472.09,
       "maximo": 481,
       "sesion": "17:00",
-      "timestamp": "2026-06-03 17:00"
+      "timestamp": "2026-03-06 17:00"
     },
     {
-      "fecha": "2026-07-01",
-      "promedio_ponderado": 498.19,
-      "monto_total": 22403000,
-      "minimo": 496,
-      "maximo": 499,
-      "sesion": "17:00",
-      "timestamp": "2026-07-01 17:00"
-    },
-    {
-      "fecha": "2026-08-01",
-      "promedio_ponderado": 498.3,
-      "monto_total": 34952000,
-      "minimo": 495.04,
-      "maximo": 498.75,
-      "sesion": "17:00",
-      "timestamp": "2026-08-01 17:00"
-    },
-    {
-      "fecha": "2026-09-01",
-      "promedio_ponderado": 498.31,
-      "monto_total": 40419000,
-      "minimo": 497.26,
-      "maximo": 498.95,
-      "sesion": "17:00",
-      "timestamp": "2026-09-01 17:00"
-    },
-    {
-      "fecha": "2026-09-02",
-      "promedio_ponderado": 492.23,
-      "monto_total": 43894000,
-      "minimo": 491,
-      "maximo": 494.5,
-      "sesion": "17:00",
-      "timestamp": "2026-09-02 17:00"
-    },
-    {
-      "fecha": "2026-10-02",
-      "promedio_ponderado": 489.04,
-      "monto_total": 35918000,
-      "minimo": 488.3,
-      "maximo": 492,
-      "sesion": "17:00",
-      "timestamp": "2026-10-02 17:00"
-    },
-    {
-      "fecha": "2026-10-03",
-      "promedio_ponderado": 472.42,
-      "monto_total": 5850000,
+      "fecha": "2026-03-10",
+      "promedio_ponderado": 472.44,
+      "monto_total": 9452000,
       "minimo": 472.4,
       "maximo": 473.99,
-      "sesion": "13:05",
-      "timestamp": "2026-10-03 12:40"
-    },
-    {
-      "fecha": "2026-11-02",
-      "promedio_ponderado": 486.25,
-      "monto_total": 26093000,
-      "minimo": 485,
-      "maximo": 490,
       "sesion": "17:00",
-      "timestamp": "2026-11-02 17:00"
-    },
-    {
-      "fecha": "2026-12-01",
-      "promedio_ponderado": 496.85,
-      "monto_total": 57843000,
-      "minimo": 495.53,
-      "maximo": 499,
-      "sesion": "17:00",
-      "timestamp": "2026-12-01 17:00"
-    },
-    {
-      "fecha": "2026-12-02",
-      "promedio_ponderado": 483.69,
-      "monto_total": 41959000,
-      "minimo": 483.25,
-      "maximo": 487,
-      "sesion": "17:00",
-      "timestamp": "2026-12-02 17:00"
+      "timestamp": "2026-03-10 15:06"
     }
   ]
 }
