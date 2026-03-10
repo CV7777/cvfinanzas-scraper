@@ -101,7 +101,7 @@ def scrape_bccr():
     )
 
     headers = {"User-Agent": "Mozilla/5.0 (compatible; CVFinanzas/1.0)"}
-    r = requests.get(url, headers=headers, timeout=30)
+    r = requests.get(url, headers=headers, timeout=60)
     r.raise_for_status()
 
     soup = BeautifulSoup(r.text, "html.parser")
@@ -360,9 +360,15 @@ def main():
 
     # 2. Extraer datos del BCCR
     print("\n[2/4] Extrayendo datos del BCCR...")
-    datos = scrape_bccr()
+    datos = None
+    try:
+        datos = scrape_bccr()
+    except Exception as e:
+        print(f"  ⚠ Error al consultar BCCR: {e}")
+        print("  Continuando con historial existente...")
+
     if datos is None:
-        print("  Sin datos nuevos todavia. Generando JSON con historial existente...")
+        print("  Sin datos nuevos. Generando JSON con historial existente...")
     else:
         print(f"  ✓ Fecha: {datos['fecha']}")
         print(f"  ✓ Promedio Ponderado: {datos['promedio_ponderado']:.2f}")
@@ -381,7 +387,8 @@ def main():
     print("  ✓ datos.json generado")
 
     print("\n✅ Completado exitosamente")
-    print(json.dumps(datos, indent=2, ensure_ascii=False))
+    if datos:
+        print(json.dumps(datos, indent=2, ensure_ascii=False))
 
 if __name__ == "__main__":
     main()
