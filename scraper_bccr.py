@@ -192,6 +192,54 @@ def _parse_num(s):
     except:
         return None
 
+def read_all_rows(token, drive_id, item_id, session_id):
+    """Lee todas las filas de la tabla TipoCambio"""
+    url = (
+        f"https://graph.microsoft.com/v1.0/drives/{drive_id}/items/{item_id}"
+        f"/workbook/tables/{TABLE_NAME}/rows"
+    )
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "workbook-session-id": session_id
+    }
+    r = requests.get(url, headers=headers)
+    r.raise_for_status()
+    rows = r.json().get("value", [])
+    result = []
+    for row in rows:
+        vals = row.get("values", [[]])[0]
+        if len(vals) >= 5 and vals[0]:
+            result.append({
+                "fecha": vals[0],
+                "promedio_ponderado": vals[1],
+                "monto_total": vals[2],
+                "minimo": vals[3],
+                "maximo": vals[4],
+                "sesion": vals[5] if len(vals) > 5 else "",
+                "timestamp": vals[6] if len(vals) > 6 else ""
+            })
+    return result
+
+def generate_json(all_rows):
+    """Genera datos.json con el historial completo"""
+    # Ordenar por fecha (timestamp si disponible)
+    sorted_rows = sorted(all_rows, key=lambda x: x.get("timestamp", x.get("fecha", "")))
+    # Deduplicar: si hay dos entradas del mismo día, quedarse con la de 17:00
+    by_date = {}
+    for r in sorted_rows:
+        fecha = r["fecha"]
+        sesion = r.get("sesion", "")
+        if fecha not in by_date or sesion == "17:00":
+            by_date[fecha] = r
+    deduped = list(by_date.values())
+    output = {
+        "actualizado": datetime.now(CR_TZ).strftime("%Y-%m-%d %H:%M:%S"),
+        "datos": deduped
+    }
+    with open("datos.json", "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+    print(f"  Generado datos.json con {len(deduped)} registros")
+
 def append_to_excel(token, drive_id, item_id, session_id, row_data):
     """Agrega una fila nueva a la tabla TipoCambio"""
     url = (
@@ -238,12 +286,18 @@ def main():
     token = get_token()
     print("  ✓ Token obtenido")
 
-    # 3. Guardar en Excel
-    print("\n[3/3] Guardando en Excel Online...")
+    # 3. Guardar en Excel y generar JSON
+    print("\n[3/4] Guardando en Excel Online...")
     drive_id, item_id = find_excel_item(token)
     session_id = get_excel_session(token, drive_id, item_id)
     append_to_excel(token, drive_id, item_id, session_id, datos)
     print("  ✓ Fila agregada exitosamente")
+
+    # 4. Generar datos.json con historial completo
+    print("\n[4/4] Generando datos.json...")
+    all_rows = read_all_rows(token, drive_id, item_id, session_id)
+    generate_json(all_rows)
+    print("  ✓ datos.json generado")
 
     print("\n✅ Completado exitosamente")
     print(json.dumps(datos, indent=2, ensure_ascii=False))
