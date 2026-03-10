@@ -155,7 +155,8 @@ def scrape_bccr():
                     data["monto_total"] = nums[-1]
 
     if not data["promedio_ponderado"]:
-        raise Exception("No se pudo extraer el Promedio Ponderado del BCCR. La página pudo haber cambiado.")
+        print("  ⚠ No hay datos disponibles aún para hoy (el BCCR publica a las 13:05 y 17:00).")
+        return None
 
     return {
         "fecha": fecha_label,
@@ -224,6 +225,9 @@ def main():
     # 1. Extraer datos del BCCR
     print("\n[1/3] Extrayendo datos del BCCR...")
     datos = scrape_bccr()
+    if datos is None:
+        print("\n⚠ Sin datos para guardar. El script se ejecutará de nuevo en el próximo horario.")
+        return
     print(f"  ✓ Fecha: {datos['fecha']}")
     print(f"  ✓ Promedio Ponderado: ₡{datos['promedio_ponderado']:.2f}")
     print(f"  ✓ Monto Total: ${datos['monto_total']:,.2f}")
