@@ -363,6 +363,8 @@ def append_to_excel(token, drive_id, item_id, session_id, row_data):
         row_data["timestamp"]
     ]]
     r = requests.post(url, headers=headers, json={"values": values})
+    if not r.ok:
+        print(f"  ✗ Error {r.status_code}: {r.text}")
     r.raise_for_status()
     return r.json()
 
