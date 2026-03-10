@@ -91,7 +91,7 @@ def scrape_bccr():
     """Extrae datos de MONEX del BCCR para el día de hoy"""
     now_cr = datetime.now(CR_TZ)
     fecha_str = now_cr.strftime("%Y/%m/%d")
-    fecha_label = now_cr.strftime("%d/%m/%Y")
+    fecha_label = now_cr.strftime("%Y-%m-%d")
     sesion = "13:05" if now_cr.hour < 15 else "17:00"
 
     url = (
