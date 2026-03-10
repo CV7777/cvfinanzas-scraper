@@ -222,8 +222,8 @@ def read_all_rows(token, drive_id, item_id, session_id):
 
 def generate_json(all_rows):
     """Genera datos.json con el historial completo"""
-    # Ordenar por fecha (timestamp si disponible)
-    sorted_rows = sorted(all_rows, key=lambda x: x.get("timestamp", x.get("fecha", "")))
+    # Ordenar por timestamp para deduplicar correctamente
+    sorted_rows = sorted(all_rows, key=lambda x: str(x.get("timestamp", x.get("fecha", ""))))
     # Deduplicar: si hay dos entradas del mismo día, quedarse con la de 17:00
     by_date = {}
     for r in sorted_rows:
@@ -231,7 +231,8 @@ def generate_json(all_rows):
         sesion = r.get("sesion", "")
         if fecha not in by_date or sesion == "17:00":
             by_date[fecha] = r
-    deduped = list(by_date.values())
+    # Ordenar el resultado final por timestamp ascendente (más antiguo primero)
+    deduped = sorted(by_date.values(), key=lambda x: str(x.get("timestamp", x.get("fecha", ""))))
     output = {
         "actualizado": datetime.now(CR_TZ).strftime("%Y-%m-%d %H:%M:%S"),
         "datos": deduped
