@@ -1,233 +1,182 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Admin - CV Finanzas</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · CV Finanzas</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0d0f14;--surface:#161920;--border:#242830;--accent:#f4a425;--text:#e8eaf0;--muted:#6b7280;--success:#10b981;--danger:#ef4444}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem}
-#login-screen{width:100%;max-width:400px;text-align:center}
-.logo{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:2.5rem;color:var(--text)}
-.logo span{color:var(--accent)}
-.login-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2.5rem}
-.login-card h2{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:0.5rem}
-.login-card p{color:var(--muted);font-size:0.85rem;margin-bottom:2rem}
-.field{margin-bottom:1rem}
-.field label{display:block;font-size:0.78rem;color:var(--muted);font-weight:500;margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.05em}
-.field input,.field textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.75rem 1rem;color:var(--text);font-family:'Inter',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s}
-.field input:focus,.field textarea:focus{border-color:var(--accent)}
-.field input::placeholder,.field textarea::placeholder{color:var(--muted)}
-textarea{resize:vertical;min-height:160px;line-height:1.6}
-.btn-primary{width:100%;background:var(--accent);color:#0d0f14;border:none;border-radius:10px;padding:0.875rem;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;margin-top:0.5rem}
-.error-msg{color:var(--danger);font-size:0.82rem;margin-top:0.75rem;display:none}
-#admin-panel{display:none;width:100%;max-width:760px}
-.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
-.panel-header .logo{margin-bottom:0}
-.badge-live{display:flex;align-items:center;gap:0.4rem;font-size:0.78rem;color:var(--success);font-weight:500}
-.badge-live::before{content:'';width:7px;height:7px;background:var(--success);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:1.5rem}
-.card-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1.25rem}
-.date-row{display:flex;gap:1rem;margin-bottom:1rem}
-.date-row .field{flex:1;margin-bottom:0}
-.toolbar{display:flex;gap:0.5rem;margin-bottom:0.75rem;flex-wrap:wrap}
-.tool-btn{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.7rem;color:var(--muted);font-size:0.85rem;cursor:pointer;font-family:'Inter',sans-serif}
-.tool-btn:hover{border-color:var(--accent);color:var(--accent)}
-.char-count{text-align:right;font-size:0.75rem;color:var(--muted);margin-top:0.4rem}
-.preview-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem;font-size:0.88rem;line-height:1.7;color:var(--text);min-height:80px;display:none;margin-top:0.75rem;white-space:pre-wrap}
-.preview-box.show{display:block}
-.publish-row{display:flex;gap:1rem;align-items:center;margin-top:1.5rem;flex-wrap:wrap}
-.btn-publish{background:var(--accent);color:#0d0f14;border:none;border-radius:10px;padding:0.875rem 2rem;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;display:flex;align-items:center;gap:0.5rem}
-.btn-publish:disabled{opacity:0.5;cursor:not-allowed}
-.btn-secondary{background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:10px;padding:0.875rem 1.5rem;font-family:'Syne',sans-serif;font-weight:600;font-size:0.9rem;cursor:pointer}
-.status-msg{font-size:0.85rem;padding:0.5rem 0.75rem;border-radius:8px;display:none}
-.status-msg.success{display:flex;align-items:center;gap:0.4rem;color:var(--success);background:rgba(16,185,129,0.1)}
-.status-msg.error{display:flex;align-items:center;gap:0.4rem;color:var(--danger);background:rgba(239,68,68,0.1)}
-.status-msg.loading{display:flex;align-items:center;gap:0.4rem;color:var(--muted)}
-@keyframes spin{to{transform:rotate(360deg)}}
-.spinner{width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block}
-.logout-btn{background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.9rem;font-size:0.8rem;cursor:pointer;font-family:'Inter',sans-serif}
-.history-item{padding:1rem 0;border-bottom:1px solid var(--border)}
-.history-item:last-child{border-bottom:none}
-.history-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem}
-.history-date{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--accent)}
-.history-hour{font-size:0.78rem;color:var(--muted)}
-.history-text{font-size:0.85rem;color:var(--text);line-height:1.6;white-space:pre-wrap}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0a;color:#e0e0e0;font-family:'Segoe UI',sans-serif;min-height:100vh}
+#loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.loginBox{background:#141414;border:1px solid #2a2a2a;border-radius:12px;padding:40px;width:100%;max-width:380px;text-align:center}
+.loginBox .logo{font-size:28px;font-weight:900;margin-bottom:8px}.loginBox .logo span{color:#f5a623}
+.loginBox p{color:#666;font-size:13px;margin-bottom:28px}
+.loginBox input{width:100%;padding:12px 16px;background:#1e1e1e;border:1px solid #333;border-radius:8px;color:#fff;font-size:15px;margin-bottom:12px;outline:none}
+.loginBox input:focus{border-color:#f5a623}
+.loginBox button{width:100%;padding:13px;background:#f5a623;color:#000;font-weight:700;font-size:15px;border:none;border-radius:8px;cursor:pointer}
+#loginError{color:#e74c3c;font-size:13px;margin-top:10px;display:none}
+#adminPanel{display:none}
+.topBar{background:#111;border-bottom:1px solid #222;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.topBar .logo{font-size:20px;font-weight:900}.topBar .logo span{color:#f5a623}
+.topBar .right{display:flex;align-items:center;gap:16px}
+.statusDot{display:flex;align-items:center;gap:6px;font-size:13px;color:#4caf50}
+.statusDot::before{content:'';width:8px;height:8px;background:#4caf50;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.btnLogout{padding:7px 16px;background:transparent;border:1px solid #444;border-radius:6px;color:#aaa;font-size:13px;cursor:pointer}
+.btnLogout:hover{border-color:#e74c3c;color:#e74c3c}
+.content{padding:28px;max-width:760px;margin:0 auto}
+.card{background:#141414;border:1px solid #222;border-radius:12px;padding:28px;margin-bottom:20px}
+.card h2{font-size:16px;font-weight:700;margin-bottom:22px}
+.formRow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.formGroup{display:flex;flex-direction:column;gap:6px}
+.formGroup label{font-size:11px;font-weight:700;letter-spacing:.08em;color:#888;text-transform:uppercase}
+.formGroup input{padding:10px 14px;background:#1e1e1e;border:1px solid #333;border-radius:8px;color:#fff;font-size:14px;outline:none}
+.formGroup input:focus{border-color:#f5a623}
+.emojiBar{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;align-items:center}
+.emojiBtn{padding:5px 10px;background:#1e1e1e;border:1px solid #333;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;color:#ccc}
+.emojiBtn:hover{border-color:#f5a623;color:#fff}
+.previewBtn{margin-left:auto;padding:5px 12px;background:transparent;border:1px solid #444;border-radius:6px;cursor:pointer;font-size:12px;color:#aaa}
+.previewBtn.active{border-color:#f5a623;color:#f5a623}
+textarea{width:100%;min-height:140px;padding:14px;background:#1e1e1e;border:1px solid #333;border-radius:8px;color:#e0e0e0;font-size:14px;line-height:1.6;resize:vertical;outline:none;font-family:inherit}
+textarea:focus{border-color:#f5a623}
+.charCount{text-align:right;font-size:12px;color:#555;margin-top:4px}
+.preview{display:none;padding:16px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;margin-top:10px;font-size:14px;line-height:1.7;color:#ccc;white-space:pre-wrap}
+.preview.visible{display:block}
+.btnRow{display:flex;gap:10px;margin-top:20px}
+.btnPublish{padding:12px 28px;background:#f5a623;color:#000;font-weight:700;font-size:15px;border:none;border-radius:8px;cursor:pointer}
+.btnPublish:hover{background:#e09416}.btnPublish:disabled{background:#555;color:#888;cursor:not-allowed}
+.btnClear{padding:12px 20px;background:transparent;border:1px solid #444;border-radius:8px;color:#aaa;font-size:14px;cursor:pointer}
+.btnClear:hover{border-color:#e74c3c;color:#e74c3c}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:999}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:#1b4d2e;border:1px solid #27ae60;color:#2ecc71}
+.toast.error{background:#4d1b1b;border:1px solid #c0392b;color:#e74c3c}
+.histItem{padding:14px 16px;border:1px solid #222;border-radius:8px;margin-bottom:10px;background:#1a1a1a}
+.histMeta{font-size:12px;color:#666;margin-bottom:6px;display:flex;gap:10px}
+.histMeta span{color:#888}
+.histText{font-size:13px;color:#ccc;line-height:1.6;white-space:pre-wrap}
+.histEmpty{color:#555;font-size:14px;text-align:center;padding:24px 0}
+.tokenNote{font-size:11px;color:#555;margin-top:4px;text-align:left}
 </style>
 </head>
 <body>
-<span id="d0" data-v="Z2hw" style="display:none"></span>
-<span id="d1" data-v="X3UyZTZ1cEx0" style="display:none"></span>
-<span id="d2" data-v="YkVKV1RIcUdU" style="display:none"></span>
-<span id="d3" data-v="cmhGcUpRU2lz" style="display:none"></span>
-<span id="d4" data-v="VG5BazN6bXQwRw==" style="display:none"></span>
-<div id="login-screen">
-  <div class="logo"><span>CV</span> Finanzas &middot; Admin</div>
-  <div class="login-card">
-    <h2>Acceso restringido</h2>
-    <p>Ingres&#225; tu contrase&#241;a para administrar el dashboard</p>
-    <div class="field">
-      <input type="password" id="pwd-input" placeholder="Contrase&#241;a" onkeydown="if(event.key==='Enter')doLogin()"/>
-    </div>
-    <button class="btn-primary" onclick="doLogin()">Ingresar</button>
-    <div class="error-msg" id="login-error">Contrase&#241;a incorrecta</div>
+<div id="loginScreen">
+  <div class="loginBox">
+    <div class="logo"><span>CV</span> Finanzas</div>
+    <p>Panel de administración</p>
+    <input type="password" id="pwInput" placeholder="Contraseña de acceso">
+    <input type="password" id="tokenInput" placeholder="GitHub Token" autocomplete="off">
+    <p class="tokenNote">El token se guarda en esta sesión solamente</p>
+    <button onclick="doLogin()">Ingresar</button>
+    <div id="loginError">Credenciales incorrectas</div>
   </div>
 </div>
-<div id="admin-panel">
-  <div class="panel-header">
-    <div class="logo"><span>CV</span> Finanzas &middot; Admin</div>
-    <div style="display:flex;align-items:center;gap:1rem;">
-      <div class="badge-live">Conectado</div>
-      <button class="logout-btn" onclick="doLogout()">Cerrar sesi&#243;n</button>
+<div id="adminPanel">
+  <div class="topBar">
+    <div class="logo"><span>CV</span> Finanzas · Admin</div>
+    <div class="right">
+      <div class="statusDot">Conectado</div>
+      <button class="btnLogout" onclick="doLogout()">Cerrar sesión</button>
     </div>
   </div>
-  <div class="card">
-    <div class="card-title">&#9999;&#65039; An&#225;lisis del d&#237;a</div>
-    <div class="date-row">
-      <div class="field"><label>Fecha</label><input type="date" id="ana-fecha"/></div>
-      <div class="field"><label>Hora de publicaci&#243;n</label><input type="time" id="ana-hora" value="17:05"/></div>
-    </div>
-    <div class="field" style="margin-bottom:0.5rem;">
-      <label>Texto del an&#225;lisis</label>
-      <div class="toolbar">
-        <button class="tool-btn" onclick="ins('📈 ')">&#x1F4C8; Sube</button>
-        <button class="tool-btn" onclick="ins('📉 ')">&#x1F4C9; Baja</button>
-        <button class="tool-btn" onclick="ins('⚠️ ')">&#x26A0;&#xFE0F; Alerta</button>
-        <button class="tool-btn" onclick="ins('✅ ')">&#x2705; OK</button>
-        <button class="tool-btn" onclick="togglePreview()">&#x1F441;&#xFE0F; Vista previa</button>
+  <div class="content">
+    <div class="card">
+      <h2>✏️ Análisis del día</h2>
+      <div class="formRow">
+        <div class="formGroup"><label>Fecha</label><input type="date" id="fechaInput"></div>
+        <div class="formGroup"><label>Hora</label><input type="time" id="horaInput"></div>
       </div>
-      <textarea id="ana-texto" placeholder="Escrib&#237; aqu&#237; el an&#225;lisis del mercado MONEX para hoy..." oninput="updateCount()"></textarea>
-      <div class="char-count"><span id="char-num">0</span> caracteres</div>
+      <div class="formGroup">
+        <label>Texto del análisis</label>
+        <div class="emojiBar">
+          <button class="emojiBtn" onclick="ins('📈')">📈 Sube</button>
+          <button class="emojiBtn" onclick="ins('📉')">📉 Baja</button>
+          <button class="emojiBtn" onclick="ins('⚠️')">⚠️ Alerta</button>
+          <button class="emojiBtn" onclick="ins('✅')">✅ OK</button>
+          <button class="previewBtn" id="prevBtn" onclick="togglePreview()">👁 Vista previa</button>
+        </div>
+        <textarea id="textoInput" placeholder="Escribí el análisis aquí..."></textarea>
+        <div class="charCount"><span id="charCount">0</span> caracteres</div>
+        <div class="preview" id="previewBox"></div>
+      </div>
+      <div class="btnRow">
+        <button class="btnPublish" id="btnPublish" onclick="publicar()">🚀 Publicar</button>
+        <button class="btnClear" onclick="limpiar()">Limpiar</button>
+      </div>
     </div>
-    <div class="preview-box" id="preview-box"></div>
-    <div class="publish-row">
-      <button class="btn-publish" id="pub-btn" onclick="publicar()">&#x1F680; Publicar</button>
-      <button class="btn-secondary" onclick="limpiar()">Limpiar</button>
-      <div class="status-msg" id="st"></div>
+    <div class="card">
+      <h2>📋 Historial</h2>
+      <div id="historialBox"><div class="histEmpty">Cargando...</div></div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-title">&#x1F4CB; Historial de an&#225;lisis</div>
-    <div id="hist"><div style="color:var(--muted);font-size:0.85rem;">Cargando...</div></div>
   </div>
 </div>
+<div class="toast" id="toast"></div>
 <script>
-(function(){
-var T=atob(['d0','d1','d2','d3','d4'].map(function(i){return document.getElementById(i).getAttribute('data-v');}).join(''));
-var R='CV7777/cvfinanzas-scraper',F='analisis.json',P='cvfinanzas2026';
+const PASS='cvfinanzas2026',REPO='CV7777/cvfinanzas-scraper',FILE='analisis.json';
+let TOKEN='';
+function $(i){return document.getElementById(i);}
 function doLogin(){
-  if(document.getElementById('pwd-input').value===P){
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('admin-panel').style.display='block';
-    sessionStorage.setItem('cvf_admin','1');
-    init();
-  }else{
-    document.getElementById('login-error').style.display='block';
-    document.getElementById('pwd-input').value='';
-  }
+  const pw=$('pwInput').value,tk=$('tokenInput').value.trim();
+  if(pw===PASS&&tk.length>10){
+    TOKEN=tk;sessionStorage.setItem('cvadmin','1');sessionStorage.setItem('cvtk',tk);
+    $('loginScreen').style.display='none';$('adminPanel').style.display='block';init();
+  }else{$('loginError').style.display='block';}
 }
-window.doLogin=doLogin;
-window.doLogout=function(){sessionStorage.removeItem('cvf_admin');location.reload();};
+function doLogout(){sessionStorage.clear();location.reload();}
+$('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('tokenInput').focus();});
+$('tokenInput').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+if(sessionStorage.getItem('cvadmin')==='1'&&sessionStorage.getItem('cvtk')){
+  TOKEN=sessionStorage.getItem('cvtk');
+  $('loginScreen').style.display='none';$('adminPanel').style.display='block';init();
+}
 function init(){
-  var d=new Date();
-  document.getElementById('ana-fecha').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  loadHist();
+  const n=new Date();
+  $('fechaInput').value=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+  $('horaInput').value=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
+  $('textoInput').addEventListener('input',cnt);
+  hist();
 }
-if(sessionStorage.getItem('cvf_admin')==='1'){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('admin-panel').style.display='block';
-  init();
+function ins(e){const ta=$('textoInput');const s=ta.selectionStart,en=ta.selectionEnd;ta.value=ta.value.substring(0,s)+e+' '+ta.value.substring(en);ta.selectionStart=ta.selectionEnd=s+e.length+1;ta.focus();cnt();if($('previewBox').classList.contains('visible'))prev();}
+function cnt(){$('charCount').textContent=$('textoInput').value.length;if($('previewBox').classList.contains('visible'))prev();}
+function togglePreview(){$('previewBox').classList.toggle('visible');$('prevBtn').classList.toggle('active');if($('previewBox').classList.contains('visible'))prev();}
+function prev(){$('previewBox').textContent=$('textoInput').value;}
+function limpiar(){$('textoInput').value='';$('charCount').textContent='0';$('previewBox').textContent='';}
+async function publicar(){
+  const fe=$('fechaInput').value,ho=$('horaInput').value,tx=$('textoInput').value.trim();
+  if(!fe)return toast('Seleccioná una fecha','error');
+  if(!ho)return toast('Indicá la hora','error');
+  if(!tx)return toast('El análisis no puede estar vacío','error');
+  const btn=$('btnPublish');btn.disabled=true;btn.textContent='⏳ Publicando...';
+  try{
+    const gr=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{headers:{'Authorization':'Bearer '+TOKEN,'Accept':'application/vnd.github+json'}});
+    if(!gr.ok)throw new Error('Error al leer archivo ('+gr.status+')');
+    const fd=await gr.json();
+    let ad;try{ad=JSON.parse(atob(fd.content.replace(/\n/g,'')));}catch(e){ad={analisis:[]};}
+    if(!ad.analisis)ad.analisis=[];
+    const pp=ho.split(':'),h=parseInt(pp[0]),am=h>=12?'PM':'AM',h12=String(h%12||12).padStart(2,'0'),hd=h12+':'+pp[1]+' '+am;
+    ad.analisis.unshift({fecha:fe,texto:tx,hora:hd});
+    if(ad.analisis.length>30)ad.analisis=ad.analisis.slice(0,30);
+    const nc=btoa(unescape(encodeURIComponent(JSON.stringify(ad,null,2))));
+    const pr=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{method:'PUT',headers:{'Authorization':'Bearer '+TOKEN,'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify({message:'Analisis '+fe,content:nc,sha:fd.sha})});
+    if(!pr.ok){const er=await pr.json();throw new Error(er.message||'Error al publicar ('+pr.status+')');}
+    toast('✅ Análisis publicado correctamente','success');limpiar();setTimeout(hist,2500);
+  }catch(err){toast('❌ '+err.message,'error');console.error(err);}
+  finally{btn.disabled=false;btn.innerHTML='🚀 Publicar';}
 }
-window.updateCount=function(){
-  var n=document.getElementById('ana-texto').value.length;
-  document.getElementById('char-num').textContent=n;
-  var p=document.getElementById('preview-box');
-  if(p.classList.contains('show'))p.textContent=document.getElementById('ana-texto').value;
-};
-window.ins=function(t){
-  var ta=document.getElementById('ana-texto'),s=ta.selectionStart,e=ta.selectionEnd;
-  ta.value=ta.value.slice(0,s)+t+ta.value.slice(e);
-  ta.selectionStart=ta.selectionEnd=s+t.length;ta.focus();window.updateCount();
-};
-window.togglePreview=function(){
-  var p=document.getElementById('preview-box');
-  p.textContent=document.getElementById('ana-texto').value;
-  p.classList.toggle('show');
-};
-window.limpiar=function(){
-  document.getElementById('ana-texto').value='';
-  document.getElementById('char-num').textContent='0';
-  document.getElementById('preview-box').classList.remove('show');
-  sts('','');
-};
-function sts(type,msg){
-  var el=document.getElementById('st');
-  el.className='status-msg';
-  if(!type){el.style.display='none';return;}
-  el.className='status-msg '+type;
-  el.innerHTML=msg;
-}
-window.publicar=function(){
-  var fecha=document.getElementById('ana-fecha').value;
-  var hora=document.getElementById('ana-hora').value;
-  var texto=document.getElementById('ana-texto').value.trim();
-  if(!fecha||!texto){sts('error','Complet&#225; la fecha y el texto.');return;}
-  var btn=document.getElementById('pub-btn');
-  btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Publicando...';
-  sts('loading','Actualizando...');
-  fetch('https://api.github.com/repos/'+R+'/contents/'+F,{
-    headers:{'Authorization':'Bearer '+T,'Accept':'application/vnd.github+json'}
-  }).then(function(r){return r.json();}).then(function(fd){
-    var sha=fd.sha;
-    var bytes=Uint8Array.from(atob(fd.content.replace(/
-/g,'')),function(c){return c.charCodeAt(0);});
-    var cur=JSON.parse(new TextDecoder('utf-8').decode(bytes));
-    var list=(cur.analisis||[]).filter(function(a){return a.fecha!==fecha;});
-    list.push({fecha:fecha,texto:texto,hora:hora});
-    list.sort(function(a,b){return b.fecha.localeCompare(a.fecha);});
-    cur.analisis=list;
-    var js=JSON.stringify(cur,null,2);
-    var enc=new TextEncoder().encode(js);
-    var bin='';
-    for(var i=0;i<enc.length;i+=8192)bin+=String.fromCharCode.apply(null,enc.subarray(i,i+8192));
-    return fetch('https://api.github.com/repos/'+R+'/contents/'+F,{
-      method:'PUT',
-      headers:{'Authorization':'Bearer '+T,'Content-Type':'application/json','Accept':'application/vnd.github+json'},
-      body:JSON.stringify({message:'Analisis '+fecha,content:btoa(bin),sha:sha})
-    });
-  }).then(function(pr){
-    btn.disabled=false;btn.innerHTML='&#x1F680; Publicar';
-    if(pr.ok){
-      sts('success','&#x2705; Publicado para el '+fecha+' a las '+hora);
-      document.getElementById('ana-texto').value='';
-      document.getElementById('char-num').textContent='0';
-      document.getElementById('ana-fecha').value=fecha;
-      loadHist();
-    }else{
-      pr.json().then(function(e){sts('error','Error: '+e.message);});
-    }
-  }).catch(function(e){
-    btn.disabled=false;btn.innerHTML='&#x1F680; Publicar';
-    sts('error','Error: '+e.message);
-  });
-};
-function loadHist(){
-  fetch('https://raw.githubusercontent.com/'+R+'/main/'+F+'?t='+Date.now())
-  .then(function(r){return r.json();})
-  .then(function(d){
-    var list=(d.analisis||[]).slice(0,10),el=document.getElementById('hist');
-    if(!list.length){el.innerHTML='<div style="color:var(--muted);font-size:0.85rem;">No hay an&#225;lisis a&#250;n.</div>';return;}
-    el.innerHTML=list.map(function(a){
-      var p=a.fecha.split('-'),m=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-      return '<div class="history-item"><div class="history-meta"><span class="history-date">'+p[2]+' '+m[parseInt(p[1])-1]+' '+p[0]+'</span><span class="history-hour">'+(a.hora||'')+'</span></div><div class="history-text">'+a.texto.replace(/</g,'&lt;')+'</div></div>';
+async function hist(){
+  const box=$('historialBox');box.innerHTML='<div class="histEmpty">Cargando...</div>';
+  try{
+    const r=await fetch('https://raw.githubusercontent.com/'+REPO+'/main/'+FILE+'?t='+Date.now());
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const d=await r.json();const li=d.analisis||[];
+    if(!li.length){box.innerHTML='<div class="histEmpty">Sin análisis publicados aún</div>';return;}
+    const ms=['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    box.innerHTML=li.slice(0,10).map(x=>{
+      const p=(x.fecha||'').split('-'),fs=p.length===3?parseInt(p[2])+' '+ms[parseInt(p[1])]+' '+p[0]:x.fecha||'';
+      const tx=String(x.texto||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      return '<div class="histItem"><div class="histMeta"><span>📅 '+fs+'</span><span>🕐 '+(x.hora||'')+'</span></div><div class="histText">'+tx+'</div></div>';
     }).join('');
-  }).catch(function(){document.getElementById('hist').innerHTML='<div style="color:var(--muted);">Error al cargar.</div>';});
+  }catch(e){box.innerHTML='<div class="histEmpty" style="color:#e74c3c">Error al cargar: '+e.message+'</div>';}
 }
-window.loadHist=loadHist;
-})();
+function toast(m,t){const el=$('toast');el.textContent=m;el.className='toast '+(t||'success')+' show';setTimeout(()=>el.classList.remove('show'),3500);}
 </script>
 </body>
 </html>
