@@ -4431,10 +4431,10 @@
     },
     {
       "fecha": "2026-03-02",
-      "promedio_ponderado": 497.19,
-      "monto_total": 23494000,
-      "minimo": 495.22,
-      "maximo": 497.5,
+      "promedio_ponderado": 470.93,
+      "monto_total": 18180000,
+      "minimo": null,
+      "maximo": null,
       "sesion": "17:00",
       "timestamp": "2026-03-02 17:00"
     },
