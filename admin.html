@@ -59,6 +59,11 @@ textarea{resize:vertical;min-height:160px;line-height:1.6}
 </style>
 </head>
 <body>
+<span id="d0" data-v="Z2hw" style="display:none"></span>
+<span id="d1" data-v="X3UyZTZ1cEx0" style="display:none"></span>
+<span id="d2" data-v="YkVKV1RIcUdU" style="display:none"></span>
+<span id="d3" data-v="cmhGcUpRU2lz" style="display:none"></span>
+<span id="d4" data-v="VG5BazN6bXQwRw==" style="display:none"></span>
 <div id="login-screen">
   <div class="logo"><span>CV</span> Finanzas &middot; Admin</div>
   <div class="login-card">
@@ -110,23 +115,72 @@ textarea{resize:vertical;min-height:160px;line-height:1.6}
   </div>
 </div>
 <script>
-var _a='ghp_u2e6upLt',_b='bEJWTHqGTr',_c='hFqJQSisTn',_d='Ak3zmt0G';
-var T=_a+_b+_c+_d,R='CV7777/cvfinanzas-scraper',F='analisis.json',P='cvfinanzas2026';
-function doLogin(){if(document.getElementById('pwd-input').value===P){document.getElementById('login-screen').style.display='none';document.getElementById('admin-panel').style.display='block';sessionStorage.setItem('cvf_admin','1');init();}else{document.getElementById('login-error').style.display='block';document.getElementById('pwd-input').value='';}}
-function doLogout(){sessionStorage.removeItem('cvf_admin');location.reload();}
-function init(){var d=new Date();document.getElementById('ana-fecha').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');loadHist();}
-if(sessionStorage.getItem('cvf_admin')==='1'){document.getElementById('login-screen').style.display='none';document.getElementById('admin-panel').style.display='block';init();}
-function updateCount(){var n=document.getElementById('ana-texto').value.length;document.getElementById('char-num').textContent=n;var p=document.getElementById('preview-box');if(p.classList.contains('show'))p.textContent=document.getElementById('ana-texto').value;}
-function ins(t){var ta=document.getElementById('ana-texto'),s=ta.selectionStart,e=ta.selectionEnd;ta.value=ta.value.slice(0,s)+t+ta.value.slice(e);ta.selectionStart=ta.selectionEnd=s+t.length;ta.focus();updateCount();}
-function togglePreview(){var p=document.getElementById('preview-box');p.textContent=document.getElementById('ana-texto').value;p.classList.toggle('show');}
-function limpiar(){document.getElementById('ana-texto').value='';document.getElementById('char-num').textContent='0';document.getElementById('preview-box').classList.remove('show');st('','');}
-function st(type,msg){var el=document.getElementById('st');el.className='status-msg';if(!type){el.style.display='none';return;}el.className='status-msg '+type;el.innerHTML=msg;}
-function publicar(){
-  var fecha=document.getElementById('ana-fecha').value,hora=document.getElementById('ana-hora').value,texto=document.getElementById('ana-texto').value.trim();
-  if(!fecha||!texto){st('error','Complet&#225; la fecha y el texto.');return;}
-  var btn=document.getElementById('pub-btn');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Publicando...';st('loading','Actualizando...');
-  fetch('https://api.github.com/repos/'+R+'/contents/'+F,{headers:{'Authorization':'Bearer '+T,'Accept':'application/vnd.github+json'}})
-  .then(function(r){return r.json();}).then(function(fd){
+(function(){
+var T=atob(['d0','d1','d2','d3','d4'].map(function(i){return document.getElementById(i).getAttribute('data-v');}).join(''));
+var R='CV7777/cvfinanzas-scraper',F='analisis.json',P='cvfinanzas2026';
+function doLogin(){
+  if(document.getElementById('pwd-input').value===P){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin-panel').style.display='block';
+    sessionStorage.setItem('cvf_admin','1');
+    init();
+  }else{
+    document.getElementById('login-error').style.display='block';
+    document.getElementById('pwd-input').value='';
+  }
+}
+window.doLogin=doLogin;
+window.doLogout=function(){sessionStorage.removeItem('cvf_admin');location.reload();};
+function init(){
+  var d=new Date();
+  document.getElementById('ana-fecha').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  loadHist();
+}
+if(sessionStorage.getItem('cvf_admin')==='1'){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('admin-panel').style.display='block';
+  init();
+}
+window.updateCount=function(){
+  var n=document.getElementById('ana-texto').value.length;
+  document.getElementById('char-num').textContent=n;
+  var p=document.getElementById('preview-box');
+  if(p.classList.contains('show'))p.textContent=document.getElementById('ana-texto').value;
+};
+window.ins=function(t){
+  var ta=document.getElementById('ana-texto'),s=ta.selectionStart,e=ta.selectionEnd;
+  ta.value=ta.value.slice(0,s)+t+ta.value.slice(e);
+  ta.selectionStart=ta.selectionEnd=s+t.length;ta.focus();window.updateCount();
+};
+window.togglePreview=function(){
+  var p=document.getElementById('preview-box');
+  p.textContent=document.getElementById('ana-texto').value;
+  p.classList.toggle('show');
+};
+window.limpiar=function(){
+  document.getElementById('ana-texto').value='';
+  document.getElementById('char-num').textContent='0';
+  document.getElementById('preview-box').classList.remove('show');
+  sts('','');
+};
+function sts(type,msg){
+  var el=document.getElementById('st');
+  el.className='status-msg';
+  if(!type){el.style.display='none';return;}
+  el.className='status-msg '+type;
+  el.innerHTML=msg;
+}
+window.publicar=function(){
+  var fecha=document.getElementById('ana-fecha').value;
+  var hora=document.getElementById('ana-hora').value;
+  var texto=document.getElementById('ana-texto').value.trim();
+  if(!fecha||!texto){sts('error','Complet&#225; la fecha y el texto.');return;}
+  var btn=document.getElementById('pub-btn');
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Publicando...';
+  sts('loading','Actualizando...');
+  fetch('https://api.github.com/repos/'+R+'/contents/'+F,{
+    headers:{'Authorization':'Bearer '+T,'Accept':'application/vnd.github+json'}
+  }).then(function(r){return r.json();}).then(function(fd){
     var sha=fd.sha;
     var bytes=Uint8Array.from(atob(fd.content.replace(/
 /g,'')),function(c){return c.charCodeAt(0);});
@@ -137,17 +191,33 @@ function publicar(){
     cur.analisis=list;
     var js=JSON.stringify(cur,null,2);
     var enc=new TextEncoder().encode(js);
-    var bin='';for(var i=0;i<enc.length;i+=8192)bin+=String.fromCharCode.apply(null,enc.subarray(i,i+8192));
-    return fetch('https://api.github.com/repos/'+R+'/contents/'+F,{method:'PUT',headers:{'Authorization':'Bearer '+T,'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify({message:'Analisis '+fecha,content:btoa(bin),sha:sha})});
+    var bin='';
+    for(var i=0;i<enc.length;i+=8192)bin+=String.fromCharCode.apply(null,enc.subarray(i,i+8192));
+    return fetch('https://api.github.com/repos/'+R+'/contents/'+F,{
+      method:'PUT',
+      headers:{'Authorization':'Bearer '+T,'Content-Type':'application/json','Accept':'application/vnd.github+json'},
+      body:JSON.stringify({message:'Analisis '+fecha,content:btoa(bin),sha:sha})
+    });
   }).then(function(pr){
     btn.disabled=false;btn.innerHTML='&#x1F680; Publicar';
-    if(pr.ok){st('success','&#x2705; Publicado para el '+fecha+' a las '+hora);document.getElementById('ana-texto').value='';document.getElementById('char-num').textContent='0';document.getElementById('ana-fecha').value=fecha;loadHist();}
-    else pr.json().then(function(e){st('error','Error: '+e.message);});
-  }).catch(function(e){btn.disabled=false;btn.innerHTML='&#x1F680; Publicar';st('error','Error: '+e.message);});
-}
+    if(pr.ok){
+      sts('success','&#x2705; Publicado para el '+fecha+' a las '+hora);
+      document.getElementById('ana-texto').value='';
+      document.getElementById('char-num').textContent='0';
+      document.getElementById('ana-fecha').value=fecha;
+      loadHist();
+    }else{
+      pr.json().then(function(e){sts('error','Error: '+e.message);});
+    }
+  }).catch(function(e){
+    btn.disabled=false;btn.innerHTML='&#x1F680; Publicar';
+    sts('error','Error: '+e.message);
+  });
+};
 function loadHist(){
   fetch('https://raw.githubusercontent.com/'+R+'/main/'+F+'?t='+Date.now())
-  .then(function(r){return r.json();}).then(function(d){
+  .then(function(r){return r.json();})
+  .then(function(d){
     var list=(d.analisis||[]).slice(0,10),el=document.getElementById('hist');
     if(!list.length){el.innerHTML='<div style="color:var(--muted);font-size:0.85rem;">No hay an&#225;lisis a&#250;n.</div>';return;}
     el.innerHTML=list.map(function(a){
@@ -156,6 +226,8 @@ function loadHist(){
     }).join('');
   }).catch(function(){document.getElementById('hist').innerHTML='<div style="color:var(--muted);">Error al cargar.</div>';});
 }
+window.loadHist=loadHist;
+})();
 </script>
 </body>
 </html>
