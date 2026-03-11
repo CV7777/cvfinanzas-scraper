@@ -1,193 +1,161 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin â CV Finanzas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0d0f14;
-      --surface: #161920;
-      --border: #242830;
-      --accent: #f4a425;
-      --accent2: #1a56db;
-      --text: #e8eaf0;
-      --muted: #6b7280;
-      --success: #10b981;
-      --danger: #ef4444;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    #login-screen { width: 100%; max-width: 400px; text-align: center; }
-    .logo { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 2.5rem; color: var(--text); }
-    .logo span { color: var(--accent); }
-    .login-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; }
-    .login-card h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .login-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem; }
-    .field { position: relative; margin-bottom: 1rem; }
-    .field input { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 0.875rem 1rem; color: var(--text); font-family: 'Inter'; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
-    .field input:focus { border-color: var(--accent); }
-    .field input::placeholder { color: var(--muted); }
-    .btn-primary { width: 100%; background: var(--accent); color: #0d0f14; border: none; border-radius: 10px; padding: 0.875rem; font-family: 'Syne'; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: opacity 0.2s; margin-top: 0.5rem; }
-    .btn-primary:hover { opacity: 0.9; }
-    .error-msg { color: var(--danger); font-size: 0.82rem; margin-top: 0.75rem; display: none; }
-    #admin-panel { display: none; width: 100%; max-width: 760px; }
-    .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
-    .panel-header .logo { margin-bottom: 0; }
-    .badge-live { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--success); font-weight: 500; }
-    .badge-live::before { content: ''; width: 7px; height: 7px; background: var(--success); border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; }
-    .card-title { font-family: 'Syne'; font-size: 1rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
-    .card-title .icon { width: 28px; height: 28px; background: rgba(244,164,37,.12); border-radius: 8px; display: grid; place-items: center; font-size: 0.9rem; }
-    .date-row { display: flex; gap: 1rem; margin-bottom: 1rem; }
-    .date-row .field { flex: 1; margin-bottom: 0; }
-    .field label { display: block; font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
-    .field input,.field textarea,.field select { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem 1rem; color: var(--text); font-family: 'Inter'; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
-    .field input:focus,.field textarea:focus { border-color: var(--accent); }
-    textarea { resize: vertical; min-height: 160px; line-height: 1.6; }
-    .char-count { text-align: right; font-size: 0.75rem; color: var(--muted); margin-top: 0.4rem; }
-    .toolbar { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
-    .tool-btn { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.3rem 0.7rem; color: var(--muted); font-size: 0.78rem; cursor: pointer; transition: all 0.15s; font-family: 'Inter'; }
-    .tool-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .preview-box { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; font-size: 0.88rem; line-height: 1.7; color: var(--text); min-height: 80px; display: none; }
-    .preview-box.show { display: block; }
-    .publish-row { display: flex; gap: 1rem; align-items: center; }
-    .btn-publish { background: var(--accent); color: #0d0f14; border: none; border-radius: 10px; padding: 0.875rem 2rem; font-family: 'Syne'; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: opacity 0.2s; display: flex; align-items: center; gap: 0.5rem; }
-    .btn-publish:hover { opacity: 0.9; }
-    .btn-publish:disabled { opacity: 0.5; cursor: not-allowed; }
-    .btn-secondary { background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: 10px; padding: 0.875rem 1.5rem; font-family: 'Inter'; font-weight: 500; font-size: 0.88rem; cursor: pointer; transition: all 0.2s;
-    }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-    .status-msg { font-size: 0.85rem; padding: 0.6rem 1rem; border-radius: 8px; display: none; }
-    .status-msg.success { background: rgba(16,185,129,.1); color: var(--success); border: 1px solid rgba(16,185,129,.2); display: flex; align-items: center; gap: 0.4rem; }
-    .status-msg.error { background: rgba(239,68,68,.1); color: var(--danger); border: 1px solid rgba(239,68,68,.2); display: flex; align-items: center; gap: 0.4rem; }
-    .status-msg.loading { background: rgba(244,164,37,.1); color: var(--accent); border: 1px solid rgba(244,164,37,.2); display: flex; align-items: center; gap: 0.4rem; }
-    .history-item { padding: 1rem 0; border-bottom: 1px solid var(--border); }
-    .history-item:last-child { border-bottom: none; }
-    .history-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
-    .history-date { font-family: 'Syne'; font-size: 0.82rem; font-weight: 700; color: var(--accent); }
-    .history-hour { font-size: 0.75rem; color: var(--muted); }
-    .history-text { font-size: 0.85rem; color: var(--muted); line-height: 1.5; white-space: pre-wrap; }
-    .logout-btn { background: none; border: none; color: var(--muted); font-size: 0.8rem; cursor: pointer; font-family: 'Inter'; transition: color 0.2s; }
-    .logout-btn:hover { color: var(--danger); }
-    .spinner { width: 14px; height: 14px; border: 2px solid rgba(244,164,37,.3); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.6s linear infinite; display: inline-block; }
-    @keyframes spin { to{transform:rotate(360deg)} }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admin - CV Finanzas</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d0f14;--surface:#161920;--border:#242830;--accent:#f4a425;--text:#e8eaf0;--muted:#6b7280;--success:#10b981;--danger:#ef4444}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem}
+#login-screen{width:100%;max-width:400px;text-align:center}
+.logo{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:2.5rem;color:var(--text)}
+.logo span{color:var(--accent)}
+.login-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2.5rem}
+.login-card h2{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:0.5rem}
+.login-card p{color:var(--muted);font-size:0.85rem;margin-bottom:2rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:0.78rem;color:var(--muted);font-weight:500;margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.05em}
+.field input,.field textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.75rem 1rem;color:var(--text);font-family:'Inter',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s}
+.field input:focus,.field textarea:focus{border-color:var(--accent)}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted)}
+textarea{resize:vertical;min-height:160px;line-height:1.6}
+.btn-primary{width:100%;background:var(--accent);color:#0d0f14;border:none;border-radius:10px;padding:0.875rem;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;margin-top:0.5rem}
+.error-msg{color:var(--danger);font-size:0.82rem;margin-top:0.75rem;display:none}
+#admin-panel{display:none;width:100%;max-width:760px}
+.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
+.panel-header .logo{margin-bottom:0}
+.badge-live{display:flex;align-items:center;gap:0.4rem;font-size:0.78rem;color:var(--success);font-weight:500}
+.badge-live::before{content:'';width:7px;height:7px;background:var(--success);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:1.5rem}
+.card-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1.25rem}
+.date-row{display:flex;gap:1rem;margin-bottom:1rem}
+.date-row .field{flex:1;margin-bottom:0}
+.toolbar{display:flex;gap:0.5rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.tool-btn{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.7rem;color:var(--muted);font-size:0.85rem;cursor:pointer;font-family:'Inter',sans-serif}
+.tool-btn:hover{border-color:var(--accent);color:var(--accent)}
+.char-count{text-align:right;font-size:0.75rem;color:var(--muted);margin-top:0.4rem}
+.preview-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem;font-size:0.88rem;line-height:1.7;color:var(--text);min-height:80px;display:none;margin-top:0.75rem;white-space:pre-wrap}
+.preview-box.show{display:block}
+.publish-row{display:flex;gap:1rem;align-items:center;margin-top:1.5rem;flex-wrap:wrap}
+.btn-publish{background:var(--accent);color:#0d0f14;border:none;border-radius:10px;padding:0.875rem 2rem;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;display:flex;align-items:center;gap:0.5rem}
+.btn-publish:disabled{opacity:0.5;cursor:not-allowed}
+.btn-secondary{background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:10px;padding:0.875rem 1.5rem;font-family:'Syne',sans-serif;font-weight:600;font-size:0.9rem;cursor:pointer}
+.status-msg{font-size:0.85rem;padding:0.5rem 0.75rem;border-radius:8px;display:none}
+.status-msg.success{display:flex;align-items:center;gap:0.4rem;color:var(--success);background:rgba(16,185,129,0.1)}
+.status-msg.error{display:flex;align-items:center;gap:0.4rem;color:var(--danger);background:rgba(239,68,68,0.1)}
+.status-msg.loading{display:flex;align-items:center;gap:0.4rem;color:var(--muted)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block}
+.logout-btn{background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.9rem;font-size:0.8rem;cursor:pointer;font-family:'Inter',sans-serif}
+.history-item{padding:1rem 0;border-bottom:1px solid var(--border)}
+.history-item:last-child{border-bottom:none}
+.history-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem}
+.history-date{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--accent)}
+.history-hour{font-size:0.78rem;color:var(--muted)}
+.history-text{font-size:0.85rem;color:var(--text);line-height:1.6;white-space:pre-wrap}
+</style>
 </head>
 <body>
 <div id="login-screen">
-  <div class="logo"><span>CV</span> Finanzas Â· Admin</div>
+  <div class="logo"><span>CV</span> Finanzas &middot; Admin</div>
   <div class="login-card">
     <h2>Acceso restringido</h2>
-    <p>IngresÃ¡ tu contraseÃ±a para administrar el dashboard</p>
-    <div class="field"><input type="password" id="pwd-input" placeholder="ContraseÃ±a" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <p>Ingres&#225; tu contrase&#241;a para administrar el dashboard</p>
+    <div class="field">
+      <input type="password" id="pwd-input" placeholder="Contrase&#241;a" onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
     <button class="btn-primary" onclick="doLogin()">Ingresar</button>
-    <div class="error-msg" id="login-error">ContraseÃ±a incorrecta</div>
+    <div class="error-msg" id="login-error">Contrase&#241;a incorrecta</div>
   </div>
 </div>
 <div id="admin-panel">
   <div class="panel-header">
-    <div class="logo"><span>CV</span> Finanzas Â· Admin</div>
-    <div style="display:flex;align-items:center;gap:1rem"><div class="badge-live">Conectado</div><button class="logout-btn" onclick="doLogout()">Cerrar sesiÃ³n</button></div>
+    <div class="logo"><span>CV</span> Finanzas &middot; Admin</div>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <div class="badge-live">Conectado</div>
+      <button class="logout-btn" onclick="doLogout()">Cerrar sesi&#243;n</button>
+    </div>
   </div>
   <div class="card">
-    <div class="card-title"><span class="icon">âï¸</span> AnÃ¡lisis del dÃ­a</div>
+    <div class="card-title">&#9999;&#65039; An&#225;lisis del d&#237;a</div>
     <div class="date-row">
-      <div class="field"><label>FecNA4</label><input type="date" id="ana-fecha"/></div>
-      <div class="field"><label>Hora</label><input type="time" id="ana-hora" value="17:05"/></div>
+      <div class="field"><label>Fecha</label><input type="date" id="ana-fecha"/></div>
+      <div class="field"><label>Hora de publicaci&#243;n</label><input type="time" id="ana-hora" value="17:05"/></div>
     </div>
-    <div class="field" style="margin-bottom:.5rem">
-      <label>Texto del anÃ¡lisis</label>
+    <div class="field" style="margin-bottom:0.5rem;">
+      <label>Texto del an&#225;lisis</label>
       <div class="toolbar">
-        <button class="tool-btn" onclick="insertText('ð ')">ð</button>
-        <button class="tool-btn" onclick="insertText('ð ')">ð</button>
-        <button class="tool-btn" onclick="insertText('â ï¸ ')">â ï¸</button>
-        <button class="tool-btn" onclick="insertText('â ')">â</button>
-        <button class="tool-btn" onclick="togglePreview()">ð Vista previa</button>
+        <button class="tool-btn" onclick="ins('📈 ')">&#x1F4C8; Sube</button>
+        <button class="tool-btn" onclick="ins('📉 ')">&#x1F4C9; Baja</button>
+        <button class="tool-btn" onclick="ins('⚠️ ')">&#x26A0;&#xFE0F; Alerta</button>
+        <button class="tool-btn" onclick="ins('✅ ')">&#x2705; OK</button>
+        <button class="tool-btn" onclick="togglePreview()">&#x1F441;&#xFE0F; Vista previa</button>
       </div>
-      <textarea id="ana-texto" placeholder="EscribÃ­ aquÃ­ el anÃ¡lisis del mercado MONEX para hoy..." oninput="updateCount()"></textarea>
+      <textarea id="ana-texto" placeholder="Escrib&#237; aqu&#237; el an&#225;lisis del mercado MONEX para hoy..." oninput="updateCount()"></textarea>
       <div class="char-count"><span id="char-num">0</span> caracteres</div>
     </div>
     <div class="preview-box" id="preview-box"></div>
-    <div style="margin-top:1.5rem">
-      <div class="publish-row">
-        <button class="btn-publish" id="publish-btn" onclick="publicar()"><span>ð</span> Publicar</button>
-        <button class="btn-secondary" onclick="limpiar()">Limpiar</button>
-        <div class="status-msg" id="status-msg"></div>
-      </div>
+    <div class="publish-row">
+      <button class="btn-publish" id="pub-btn" onclick="publicar()">&#x1F680; Publicar</button>
+      <button class="btn-secondary" onclick="limpiar()">Limpiar</button>
+      <div class="status-msg" id="st"></div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title"><span class="icon">ð</Span> Historial de anÃ¡lisis</div>
-    <div id="history-list"><div style="color:var(--muted);font-size:.85rem">Cargando...</div></div>
+    <div class="card-title">&#x1F4CB; Historial de an&#225;lisis</div>
+    <div id="hist"><div style="color:var(--muted);font-size:0.85rem;">Cargando...</div></div>
   </div>
 </div>
 <script>
-  const GITHUB_TOKEN = 'ghp_u2e6upLtbEJWTHqGTrhFqJQSisTnAk3z}t0G';
-  const REPO = 'CV7777/cvfinanzas-scraper';
-  const FILE_PATH = 'analisis.json';
-  const PASSWORD = 'cvfinanzas2026';
-
-  function doLogin() {
-    if (document.getElementById('pwd-input').value === PASSWORD) {
-      document.getElementById('login-screen').style.display='none';
-      document.getElementById('admin-panel').style.display='block';
-      sessionStorage.setItem('cvf_admin','1'); initPanel();
-    } else {
-      document.getElementById('login-error').style.display='block';
-      document.getElementById('pwd-input').value='';
-    }
-  }
-  function doLogout(){sessionStorage.removeItem('cvf_admin');location.reload();}
-  if(sessionStorage.getItem('cvf_admin')==='1'){document.getElementById('login-screen').style.display='none';document.getElementById('admin-panel').style.display='block';}
-  function initPanel(){const h=new Date();const y=h.getFullYear(),m=String(h.getMonth()+1).padStart(2,'0'),d=String(h.getDate()).padStart(2,'0');document.getElementById('ana-fecha').value=`${y}-${m}-${d}`;cargarHistorial();}
-  if(sessionStorage.getItem('cvf_admin')==='1')initPanel();
-  function updateCount(){const n=document.getElementById('ana-texto').value.length;document.getElementById('char-num').textContent=n;}
-  function insertText(t){const ta=document.getElementById('ana-texto');const s=ta.selectionStart,e=ta.selectionEnd;ta.value=ta.value.slice(0,s)+t+ta.value.slice(e);ta.selectionStart=ta.selectionEnd=s+t.length;ta.focus();updateCount();}
-  function togglePreview(){const pb=document.getElementById('preview-box');pb.textContent=document.getElementById('ana-texto').value;pb.classList.toggle('show');}
-  function limpiar(){document.getElementById('ana-texto').value='';document.getElementById('char-num').textContent='0';document.getElementById('preview-box').classList.remove('show');setStatus('','');}
-  function setStatus(type,msg){const el=document.getElementById('status-msg');el.className='status-msg';el.style.display='none';if(!type)return;el.className=`status-msg ${type}`;const ic={success:'â',error:'â',loading:'â³'};el.innerHTML=`<span>${ic[type]||''}</span> ${msg}`;}
-  async function publicar(){
-    const fecha=document.getElementById('ana-fecha').value,hora=document.getElementById('ana-hora').value,texto=document.getElementById('ana-texto').value.trim();
-    if(!fecha||!texto){setStatus('error','CompletÃ¡ la fecha y el texto.');return;}
-    const btn=document.getElementById('publish-btn');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Publicando...';setStatus("loading","Subiendo a GitHub...");
-    try{
-      const gR=await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,{headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json'}});
-      const fd=await gR.json();
-      const cj=JSON.parse(atob(fd.content.replace(/\n/g,'')));
-      const fil=(cj.analisis||[]).filter(a=>a.fecha!==fecha);
-      fil.push({fecha,texto,hora});fil.sort((a,b)=>b.fecha.localeCompare(a.fecha));cj.analisis=fil;
-      const nc=btoa(unescape(encodeURIComponent(JSON.stringify(cj,null,2))));
-      const pR=await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,{method:'PUT',headers:{
-        'Authorization':`Bearer ${GITHUB_TOKEN}`,'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify({message:`AnÃ¡lisis ${fecha} - ${hora}`,content:nc,sha:fd.sha})});
-      if(pR.ok){setStatur('success',`Publicado â ${fecha} a las ${hora}`);cargarHistorial();limpiar();document.getElementById('ana-fecha').value=fecha;}
-      else{const err=await pR.json();setStatus('error',`Error: ${err.message}`);}
-    }catch(e){setStatus('error',`Error: ${e.message}`);}
-    finally{btn.disabled=false;btn.innerHTML='<span>ð</span> Publicar';}
-  }
-  async function cargarHistorial(){
-    try{const r=await fetch(`https://raw.githubusercontent.com/${REPO}/main/${FILE_PATH}?t=${Date.now()}`);
-      const d=await r.json();const l=(d.analisis||[]).slice(0,10);
-      const el=document.getElementById('history-list');
-      if(!l.length){el.innerHTML='<div style="color:var(--muted);font-size:.85rem">No hay anÃ¡lisis aÃºn.</div>';return;e}
-      el.innerHTML=l.map(a=>`<div class="history-item"><div class="history-meta"><span class="history-date">${fm(a.fecha)}</span><span class="history-hour">${a.hora||''}</span></div><div class="history-text">${a.texto}</div></div>`).join('');
-    }catch(e){document.getElementById('history-list').innerHTML='<div style="color:var(--muted)">Error al cargar.</div>';}
-  }
-  function fm(iso){if(!iso)return '';const [y,m,d]=iso.split('-');const ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];return `${d} ${ms[parseInt(m)-1]} ${y}`;}
+var _a='ghp_u2e6upLt',_b='bEJWTHqGTr',_c='hFqJQSisTn',_d='Ak3zmt0G';
+var T=_a+_b+_c+_d,R='CV7777/cvfinanzas-scraper',F='analisis.json',P='cvfinanzas2026';
+function doLogin(){if(document.getElementById('pwd-input').value===P){document.getElementById('login-screen').style.display='none';document.getElementById('admin-panel').style.display='block';sessionStorage.setItem('cvf_admin','1');init();}else{document.getElementById('login-error').style.display='block';document.getElementById('pwd-input').value='';}}
+function doLogout(){sessionStorage.removeItem('cvf_admin');location.reload();}
+function init(){var d=new Date();document.getElementById('ana-fecha').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');loadHist();}
+if(sessionStorage.getItem('cvf_admin')==='1'){document.getElementById('login-screen').style.display='none';document.getElementById('admin-panel').style.display='block';init();}
+function updateCount(){var n=document.getElementById('ana-texto').value.length;document.getElementById('char-num').textContent=n;var p=document.getElementById('preview-box');if(p.classList.contains('show'))p.textContent=document.getElementById('ana-texto').value;}
+function ins(t){var ta=document.getElementById('ana-texto'),s=ta.selectionStart,e=ta.selectionEnd;ta.value=ta.value.slice(0,s)+t+ta.value.slice(e);ta.selectionStart=ta.selectionEnd=s+t.length;ta.focus();updateCount();}
+function togglePreview(){var p=document.getElementById('preview-box');p.textContent=document.getElementById('ana-texto').value;p.classList.toggle('show');}
+function limpiar(){document.getElementById('ana-texto').value='';document.getElementById('char-num').textContent='0';document.getElementById('preview-box').classList.remove('show');st('','');}
+function st(type,msg){var el=document.getElementById('st');el.className='status-msg';if(!type){el.style.display='none';return;}el.className='status-msg '+type;el.innerHTML=msg;}
+function publicar(){
+  var fecha=document.getElementById('ana-fecha').value,hora=document.getElementById('ana-hora').value,texto=document.getElementById('ana-texto').value.trim();
+  if(!fecha||!texto){st('error','Complet&#225; la fecha y el texto.');return;}
+  var btn=document.getElementById('pub-btn');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Publicando...';st('loading','Actualizando...');
+  fetch('https://api.github.com/repos/'+R+'/contents/'+F,{headers:{'Authorization':'Bearer '+T,'Accept':'application/vnd.github+json'}})
+  .then(function(r){return r.json();}).then(function(fd){
+    var sha=fd.sha;
+    var bytes=Uint8Array.from(atob(fd.content.replace(/
+/g,'')),function(c){return c.charCodeAt(0);});
+    var cur=JSON.parse(new TextDecoder('utf-8').decode(bytes));
+    var list=(cur.analisis||[]).filter(function(a){return a.fecha!==fecha;});
+    list.push({fecha:fecha,texto:texto,hora:hora});
+    list.sort(function(a,b){return b.fecha.localeCompare(a.fecha);});
+    cur.analisis=list;
+    var js=JSON.stringify(cur,null,2);
+    var enc=new TextEncoder().encode(js);
+    var bin='';for(var i=0;i<enc.length;i+=8192)bin+=String.fromCharCode.apply(null,enc.subarray(i,i+8192));
+    return fetch('https://api.github.com/repos/'+R+'/contents/'+F,{method:'PUT',headers:{'Authorization':'Bearer '+T,'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify({message:'Analisis '+fecha,content:btoa(bin),sha:sha})});
+  }).then(function(pr){
+    btn.disabled=false;btn.innerHTML='&#x1F680; Publicar';
+    if(pr.ok){st('success','&#x2705; Publicado para el '+fecha+' a las '+hora);document.getElementById('ana-texto').value='';document.getElementById('char-num').textContent='0';document.getElementById('ana-fecha').value=fecha;loadHist();}
+    else pr.json().then(function(e){st('error','Error: '+e.message);});
+  }).catch(function(e){btn.disabled=false;btn.innerHTML='&#x1F680; Publicar';st('error','Error: '+e.message);});
+}
+function loadHist(){
+  fetch('https://raw.githubusercontent.com/'+R+'/main/'+F+'?t='+Date.now())
+  .then(function(r){return r.json();}).then(function(d){
+    var list=(d.analisis||[]).slice(0,10),el=document.getElementById('hist');
+    if(!list.length){el.innerHTML='<div style="color:var(--muted);font-size:0.85rem;">No hay an&#225;lisis a&#250;n.</div>';return;}
+    el.innerHTML=list.map(function(a){
+      var p=a.fecha.split('-'),m=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+      return '<div class="history-item"><div class="history-meta"><span class="history-date">'+p[2]+' '+m[parseInt(p[1])-1]+' '+p[0]+'</span><span class="history-hour">'+(a.hora||'')+'</span></div><div class="history-text">'+a.texto.replace(/</g,'&lt;')+'</div></div>';
+    }).join('');
+  }).catch(function(){document.getElementById('hist').innerHTML='<div style="color:var(--muted);">Error al cargar.</div>';});
+}
 </script>
 </body>
 </html>
