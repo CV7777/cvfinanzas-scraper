@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tipo de Cambio MONEX — CV Finanzas</title>
+  <title>Tipo de Cambio MONEX â CV Finanzas</title>
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
@@ -25,7 +25,7 @@
       color: var(--navy-dark);
     }
 
-    /* ── GATE ── */
+    /* ââ GATE ââ */
     #gate {
       position: fixed; inset: 0; z-index: 100;
       background: var(--navy-dark);
@@ -99,7 +99,7 @@
       font-size: 0.68rem; color: var(--navy); opacity: 0.35;
     }
 
-    /* ── HEADER ── */
+    /* ââ HEADER ââ */
     header {
       background: var(--navy-dark);
       padding: 1rem 2rem;
@@ -136,10 +136,10 @@
     }
     .header-update strong { color: var(--orange); opacity: 1; }
 
-    /* ── MAIN ── */
+    /* ââ MAIN ââ */
     main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
-    /* ── HERO STATS ── */
+    /* ââ HERO STATS ââ */
     .hero-date {
       font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--orange); margin-bottom: 0.4rem;
@@ -183,7 +183,7 @@
     .stat-change.neutral { background: rgba(8,57,110,0.08); color: var(--navy); }
     .stat-disclaimer { font-size: 0.62rem; color: var(--navy); opacity: 0.45; margin-top: 0.5rem; font-style: italic; }
 
-    /* ── CHART ── */
+    /* ââ CHART ââ */
     .chart-section {
       background: var(--white); border-radius: 20px; padding: 1.75rem;
       box-shadow: 0 2px 20px rgba(10,31,55,0.06);
@@ -216,7 +216,7 @@
     }
     .chart-canvas-wrap { position: relative; height: 320px; }
 
-    /* ── TABLE ── */
+    /* ââ TABLE ââ */
     .table-section {
       background: var(--white); border-radius: 20px; padding: 1.75rem;
       box-shadow: 0 2px 20px rgba(10,31,55,0.06);
@@ -248,7 +248,7 @@
     .badge-13 { display: inline-block; font-size: 0.6rem; font-weight: 700; padding: 0.15rem 0.4rem; border-radius: 4px; background: rgba(242,124,34,0.12); color: var(--orange); margin-left: 0.3rem; letter-spacing: 0.05em; }
     .badge-17 { display: inline-block; font-size: 0.6rem; font-weight: 700; padding: 0.15rem 0.4rem; border-radius: 4px; background: rgba(8,57,110,0.1); color: var(--navy); margin-left: 0.3rem; letter-spacing: 0.05em; }
 
-    /* ── COMMENTS ── */
+    /* ââ COMMENTS ââ */
     .comments-section {
       background: var(--white); border-radius: 20px; padding: 1.75rem;
       box-shadow: 0 2px 20px rgba(10,31,55,0.06);
@@ -275,7 +275,7 @@
       font-size: 0.85rem; color: var(--navy); opacity: 0.35;
     }
 
-    /* ── FOOTER ── */
+    /* ââ FOOTER ââ */
     footer {
       border-top: 1px solid rgba(212,210,220,0.5);
       padding: 1.5rem 2rem;
@@ -338,8 +338,8 @@
         <span class="gate-error" id="eEdad"></span>
       </div>
     </div>
-    <button class="gate-submit" onclick="submitGate()">Ver el reporte →</button>
-    <p class="gate-privacy">🔒 Tu información está segura. No spam, nunca.</p>
+    <button class="gate-submit" onclick="submitGate()">Ver el reporte â</button>
+    <p class="gate-privacy">ð Tu información está segura. No spam, nunca.</p>
   </div>
 </div>
 
@@ -351,8 +351,8 @@
     <div class="header-divider"></div><span class="header-subtitle">Tipo de Cambio</span>
   </div>
   <div class="header-update">
-    Actualizado: <strong id="lastUpdate">—</strong>
-    <br/>Fuente: BCCR · MONEX
+    Actualizado: <strong id="lastUpdate">â</strong>
+    <br/>Fuente: BCCR Â· MONEX
   </div>
 </header>
 
@@ -366,24 +366,24 @@
     <div class="stat-card primary">
       <div class="stat-label">Promedio Ponderado</div>
       <div class="stat-value" id="statPromedio">478.26</div>
-      <div class="stat-unit">₡ por US$</div>
-      <div class="stat-change up" id="statCambio">↑ +2.56 vs ayer</div>
+      <div class="stat-unit">â¡ por US$</div>
+      <div class="stat-change up" id="statCambio">â +2.56 vs ayer</div>
       <div class="stat-disclaimer">* Cierre de sesión anterior</div>
     </div>
     <div class="stat-card secondary">
       <div class="stat-label">Volumen negociado</div>
       <div class="stat-value" id="statVolumen">63.4M</div>
-      <div class="stat-unit">USD · sesión 13:05</div>
+      <div class="stat-unit">USD Â· sesión 13:05</div>
     </div>
     <div class="stat-card tertiary">
       <div class="stat-label">Mínimo del día</div>
       <div class="stat-value" id="statMin">476.00</div>
-      <div class="stat-unit">₡ por US$</div>
+      <div class="stat-unit">â¡ por US$</div>
     </div>
     <div class="stat-card quaternary">
       <div class="stat-label">Máximo del día</div>
       <div class="stat-value" id="statMax">482.00</div>
-      <div class="stat-unit">₡ por US$</div>
+      <div class="stat-unit">â¡ por US$</div>
     </div>
   </div>
 
@@ -429,7 +429,7 @@
 
   <!-- COMMENTS -->
   <div class="comments-section">
-    <div class="section-title">💬 Análisis del día</div>
+    <div class="section-title">ð¬ Análisis del día</div>
     <div id="commentsContainer">
       <div id="noCommentMsg" style="font-size:0.85rem;color:var(--navy);opacity:0.4;text-align:center;padding:1.5rem 0;">No hay análisis publicado hoy.</div>
     </div>
@@ -452,11 +452,11 @@
       @carlosvalerincr
     </a>
   </div>
-  <div class="footer-source">Datos: Banco Central de Costa Rica · MONEX</div>
+  <div class="footer-source">Datos: Banco Central de Costa Rica Â· MONEX</div>
 </footer>
 
 <script>
-// ── DATOS REALES desde GitHub ──────────────────────────────
+// ââ DATOS REALES desde GitHub ââââââââââââââââââââââââââââââ
 const JSON_URL = "https://raw.githubusercontent.com/CV7777/cvfinanzas-scraper/main/datos.json";
 
 let allData = [];
@@ -513,9 +513,9 @@ async function loadData() {
 
     // DEBUG: ver qué formato viene en el JSON
     console.log('Primeros 3 registros raw:', json.datos.slice(0,3));
-    console.log('Últimos 3 registros raw:', json.datos.slice(-3));
+    console.log('Ãltimos 3 registros raw:', json.datos.slice(-3));
     console.log('Primeros 3 procesados:', allData.slice(0,3));
-    console.log('Últimos 3 procesados:', allData.slice(-3));
+    console.log('Ãltimos 3 procesados:', allData.slice(-3));
 
     updateHero();
     renderChart(currentRange);
@@ -564,7 +564,7 @@ function renderChart(days) {
       datasets: [
         {
           type: 'line',
-          label: 'Promedio Ponderado (₡)',
+          label: 'Promedio Ponderado (â¡)',
           data: data.map(d => d.promedio),
           borderColor: '#f27c22',
           backgroundColor: 'rgba(242,124,34,0.08)',
@@ -603,7 +603,7 @@ function renderChart(days) {
           cornerRadius: 10,
           callbacks: {
             label: ctx => ctx.dataset.label + ': ' +
-              (ctx.datasetIndex === 0 ? '₡' + ctx.raw.toFixed(2) : '$' + ctx.raw.toFixed(1) + 'M')
+              (ctx.datasetIndex === 0 ? 'â¡' + ctx.raw.toFixed(2) : '$' + ctx.raw.toFixed(1) + 'M')
           }
         }
       },
@@ -617,7 +617,7 @@ function renderChart(days) {
           grid: { color: 'rgba(212,210,220,0.4)' },
           ticks: {
             font: { family: 'Montserrat', size: 10 }, color: 'rgba(8,57,110,0.5)',
-            callback: v => '₡' + v.toFixed(0)
+            callback: v => 'â¡' + v.toFixed(0)
           },
           min: (ctx) => {
             const vals = ctx.chart.data.datasets[0].data;
@@ -650,13 +650,13 @@ function renderTable() {
     const prev = allData[allData.length - 1 - i - 1];
     const diff = prev ? (d.promedio - prev.promedio).toFixed(2) : null;
     const diffClass = diff > 0 ? 'up' : diff < 0 ? 'down' : '';
-    const diffStr = diff ? (diff > 0 ? '+' : '') + diff : '—';
+    const diffStr = diff ? (diff > 0 ? '+' : '') + diff : 'â';
     const badge = d.sesion === '13:05'
       ? '<span class="badge-13">13:05</span>'
       : '<span class="badge-17">17:00</span>';
     return `<tr>
       <td>${d.fecha}</td>
-      <td>₡${d.promedio.toFixed(2)}</td>
+      <td>â¡${d.promedio.toFixed(2)}</td>
       <td class="${diffClass}">${diffStr}</td>
       <td>$${(d.volumen / 1e6).toFixed(1)}M</td>
       <td>${badge}</td>
@@ -674,12 +674,12 @@ function updateHero() {
   document.getElementById('statMin').textContent = last.min.toFixed(2);
   document.getElementById('statMax').textContent = last.max.toFixed(2);
   const changeEl = document.getElementById('statCambio');
-  changeEl.textContent = (diff > 0 ? '↑ +' : '↓ ') + diff + ' vs ayer';
+  changeEl.textContent = (diff > 0 ? 'â +' : 'â ') + diff + ' vs ayer';
   changeEl.className = 'stat-change ' + (diff > 0 ? 'up' : diff < 0 ? 'down' : 'neutral');
-  document.getElementById('lastUpdate').textContent = last.fecha + ' · ' + last.sesion;
+  document.getElementById('lastUpdate').textContent = last.fecha + ' Â· ' + last.sesion;
 }
 
-// ── GATE ──
+// ââ GATE ââ
 function submitGate() {
   let valid = true;
   const nombre = document.getElementById('gNombre').value.trim();
@@ -719,7 +719,7 @@ function submitGate() {
   document.getElementById('gate').classList.add('hidden');
 }
 
-// ── ANÁLISIS DEL DÍA (desde GitHub) ──
+// ââ ANÃLISIS DEL DÃA (desde GitHub) ââ
 const ANALISIS_URL = 'https://raw.githubusercontent.com/CV7777/cvfinanzas-scraper/main/analisis.json';
 
 async function loadAnalisis() {
@@ -757,7 +757,7 @@ async function loadAnalisis() {
       <div class="comment-card">
         <div class="comment-meta">
           <span class="comment-author">Carlos Valerin</span>
-          <span class="comment-date">${fechaLabel}${horaLabel ? ' · ' + horaLabel : ''}</span>
+          <span class="comment-date">${fechaLabel}${horaLabel ? ' Â· ' + horaLabel : ''}</span>
         </div>
         <p class="comment-text">${mostrar.texto}</p>
       </div>`;
