@@ -1,8 +1,8 @@
 """
 CV Finanzas - Scraper MONEX (BCCR)
-Extrae: Promedio Simple y Monto Total del dÃÂ­a
+Extrae: Promedio Simple y Monto Total del dÃÂÃÂ­a
 Guarda en: Excel Online via Microsoft Graph API
-Ejecutar: 2 veces al dÃÂ­a (13:05 y 17:00 hora Costa Rica)
+Ejecutar: 2 veces al dÃÂÃÂ­a (13:05 y 17:00 hora Costa Rica)
 """
 
 import os
@@ -13,17 +13,17 @@ import pytz
 import json
 import sys
 
-# Ã¢ÂÂÃ¢ÂÂ CONFIGURACIÃÂN Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+# ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ CONFIGURACIÃÂÃÂN ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
 SHAREPOINT_SITE   = "cvfinanzas-my.sharepoint.com"
 SHAREPOINT_USER   = "carlos@cvfinanzas.com"
 EXCEL_FILE_NAME   = "CV Finanzas - Tipo de Cambio.xlsx"
 TABLE_NAME        = "TipoCambio"
 
-# Estos valores los obtenÃÂ©s en Azure (instrucciones abajo)
+# Estos valores los obtenÃÂÃÂ©s en Azure (instrucciones abajo)
 TENANT_ID     = os.environ["AZURE_TENANT_ID"]
 CLIENT_ID     = os.environ["AZURE_CLIENT_ID"]
 CLIENT_SECRET = os.environ["AZURE_CLIENT_SECRET"]
-# Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+# ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
 
 CR_TZ = pytz.timezone("America/Costa_Rica")
 
@@ -41,7 +41,7 @@ def get_token():
     return r.json()["access_token"]
 
 def get_excel_session(token, drive_id, item_id):
-    """Abre sesiÃÂ³n persistente en el Excel"""
+    """Abre sesiÃÂÃÂ³n persistente en el Excel"""
     url = f"https://graph.microsoft.com/v1.0/drives/{drive_id}/items/{item_id}/workbook/createSession"
     headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
     r = requests.post(url, headers=headers, json={"persistChanges": True})
@@ -57,13 +57,13 @@ def find_excel_item(token):
     r = requests.get(url, headers=headers)
 
     if r.status_code != 200:
-        print(f"  Ã¢ÂÂ  Intento 1 fallÃÂ³ ({r.status_code}), probando alternativa...")
+        print(f"  ÃÂ¢ÃÂÃÂ  Intento 1 fallÃÂÃÂ³ ({r.status_code}), probando alternativa...")
         # Fallback: buscar en el site de SharePoint directamente
         url2 = f"https://graph.microsoft.com/v1.0/sites/{SHAREPOINT_SITE}/drive/root/search(q='{EXCEL_FILE_NAME}')"
         r = requests.get(url2, headers=headers)
 
     if r.status_code != 200:
-        print(f"  Ã¢ÂÂ  Intento 2 fallÃÂ³ ({r.status_code}), probando alternativa...")
+        print(f"  ÃÂ¢ÃÂÃÂ  Intento 2 fallÃÂÃÂ³ ({r.status_code}), probando alternativa...")
         # Fallback 2: listar todos los drives del site
         url3 = f"https://graph.microsoft.com/v1.0/sites/{SHAREPOINT_SITE}/drives"
         r3 = requests.get(url3, headers=headers)
@@ -78,17 +78,17 @@ def find_excel_item(token):
                     if items:
                         item = items[0]
                         return item["parentReference"]["driveId"], item["id"]
-        raise Exception(f"No se pudo encontrar el archivo en ningÃÂºn drive.")
+        raise Exception(f"No se pudo encontrar el archivo en ningÃÂÃÂºn drive.")
 
     r.raise_for_status()
     items = r.json().get("value", [])
     if not items:
-        raise Exception(f"No se encontrÃÂ³ el archivo: {EXCEL_FILE_NAME}")
+        raise Exception(f"No se encontrÃÂÃÂ³ el archivo: {EXCEL_FILE_NAME}")
     item = items[0]
     return item["parentReference"]["driveId"], item["id"]
 
 def scrape_bccr():
-    """Extrae datos de MONEX del BCCR para el dÃÂ­a de hoy"""
+    """Extrae datos de MONEX del BCCR para el dÃÂÃÂ­a de hoy"""
     now_cr = datetime.now(CR_TZ)
     fecha_str = now_cr.strftime("%Y/%m/%d")
     fecha_label = now_cr.strftime("%Y-%m-%d")
@@ -139,13 +139,13 @@ def scrape_bccr():
         nums = [_parse_num(cell) for cell in cells if _is_number(cell)]
 
         if in_tipo_cambio:
-            if "promedio ponderado" in text and "sesiÃÂ³n anterior" not in text and "anterior" not in text:
+            if "promedio ponderado" in text and "sesiÃÂÃÂ³n anterior" not in text and "anterior" not in text:
                 if nums:
                     data["promedio_ponderado"] = nums[-1]
-            elif "mÃÂ­nimo" in text or "minimo" in text:
+            elif "mÃÂÃÂ­nimo" in text or "minimo" in text:
                 if nums:
                     data["minimo"] = nums[-1]
-            elif "mÃÂ¡ximo" in text or "maximo" in text:
+            elif "mÃÂÃÂ¡ximo" in text or "maximo" in text:
                 if nums:
                     data["maximo"] = nums[-1]
 
@@ -193,9 +193,9 @@ def _parse_num(s):
         return None
 
 def excel_serial_to_iso(val):
-    """Convierte serial numérico de Excel a YYYY-MM-DD.
-    El Excel envía las fechas como número serial (ej: 46065 = 2026-02-03).
-    NUNCA interpreta strings con / para evitar ambigüedad día/mes."""
+    """Convierte serial numÃ©rico de Excel a YYYY-MM-DD.
+    El Excel envÃ­a las fechas como nÃºmero serial (ej: 46065 = 2026-02-03).
+    NUNCA interpreta strings con / para evitar ambigÃ¼edad dÃ­a/mes."""
     from datetime import date, timedelta
     if val is None or val == "":
         return ""
@@ -203,7 +203,7 @@ def excel_serial_to_iso(val):
     s = str(val).strip()
     if len(s) == 10 and s[4] == '-' and s[7] == '-':
         return s
-    # Serial numérico de Excel (siempre preferir este camino)
+    # Serial numÃ©rico de Excel (siempre preferir este camino)
     try:
         num = float(val)
         if num > 40000:
@@ -213,7 +213,7 @@ def excel_serial_to_iso(val):
         pass
     return ""
 def excel_serial_to_time(val):
-    """Convierte fracciÃÂ³n de dÃÂ­a de Excel a string HH:MM. 0.7083 = 17:00"""
+    """Convierte fracciÃÂÃÂ³n de dÃÂÃÂ­a de Excel a string HH:MM. 0.7083 = 17:00"""
     if val is None or val == "":
         return ""
     try:
@@ -223,7 +223,7 @@ def excel_serial_to_time(val):
             h = total_minutes // 60
             m = total_minutes % 60
             return f"{h:02d}:{m:02d}"
-        # Si es mayor que 1, es un timestamp completo Ã¢ÂÂ extraer la parte decimal
+        # Si es mayor que 1, es un timestamp completo ÃÂ¢ÃÂÃÂ extraer la parte decimal
         if frac > 1:
             frac = frac - int(frac)
             total_minutes = round(frac * 24 * 60)
@@ -235,7 +235,7 @@ def excel_serial_to_time(val):
     return str(val)
 
 def read_all_rows(token, drive_id, item_id, session_id):
-    """Lee todas las filas. Usa valuesOnly=true para obtener seriales numéricos de fecha sin ambiguedad."""
+    """Lee todas las filas. Usa valuesOnly=true para obtener seriales numÃ©ricos de fecha sin ambiguedad."""
     url = (
         f"https://graph.microsoft.com/v1.0/drives/{drive_id}/items/{item_id}"
         f"/workbook/tables/{TABLE_NAME}/rows"
@@ -247,6 +247,13 @@ def read_all_rows(token, drive_id, item_id, session_id):
     r = requests.get(url, headers=headers)
     r.raise_for_status()
     rows = r.json().get("value", [])
+    # DIAGNOSTIC: show raw date values from Excel
+    print("=== DIAGNOSTIC: primeras 10 fechas crudas del Excel ===")
+    for i, row in enumerate(rows[:10]):
+        vals = row.get("values", [[]])[0]
+        if vals:
+            print(f"  [{i}] raw={repr(vals[0])} type={type(vals[0]).__name__} => iso={excel_serial_to_iso(vals[0])}")
+    print("=== FIN DIAGNOSTIC ===")
     result = []
     for row in rows:
         vals = row.get("values", [[]])[0]
@@ -274,24 +281,24 @@ def fix_future_date(fecha_str, sesion_str):
     return fecha_str, None
 def generate_json(all_rows):
     """Genera datos.json con el historial completo"""
-    # Corregir fechas futuras (dÃÂ­a/mes invertidos por error del scraper viejo)
+    # Corregir fechas futuras (dÃÂÃÂ­a/mes invertidos por error del scraper viejo)
     for r in all_rows:
         fecha_corregida, ts_corregido = fix_future_date(r["fecha"], r.get("sesion", "17:00"))
         if fecha_corregida != r["fecha"]:
-            print(f"  Corrigiendo fecha: {r['fecha']} Ã¢ÂÂ {fecha_corregida}")
+            print(f"  Corrigiendo fecha: {r['fecha']} ÃÂ¢ÃÂÃÂ {fecha_corregida}")
             r["fecha"] = fecha_corregida
             r["timestamp"] = ts_corregido
 
     # Ordenar por timestamp para deduplicar correctamente
     sorted_rows = sorted(all_rows, key=lambda x: str(x.get("timestamp", x.get("fecha", ""))))
-    # Deduplicar: si hay dos entradas del mismo dÃÂ­a, quedarse con la de 17:00
+    # Deduplicar: si hay dos entradas del mismo dÃÂÃÂ­a, quedarse con la de 17:00
     by_date = {}
     for r in sorted_rows:
         fecha = r["fecha"]
         sesion = r.get("sesion", "")
         if fecha not in by_date or sesion == "17:00":
             by_date[fecha] = r
-    # Ordenar el resultado final por timestamp ascendente (mÃÂ¡s antiguo primero)
+    # Ordenar el resultado final por timestamp ascendente (mÃÂÃÂ¡s antiguo primero)
     deduped = sorted(by_date.values(), key=lambda x: str(x.get("timestamp", x.get("fecha", ""))))
     output = {
         "actualizado": datetime.now(CR_TZ).strftime("%Y-%m-%d %H:%M:%S"),
@@ -324,7 +331,7 @@ def append_to_excel(token, drive_id, item_id, session_id, row_data):
     ]]
     r = requests.post(url, headers=headers, json={"values": values})
     if not r.ok:
-        print(f"  Ã¢ÂÂ Error {r.status_code}: {r.text}")
+        print(f"  ÃÂ¢ÃÂÃÂ Error {r.status_code}: {r.text}")
     r.raise_for_status()
     return r.json()
 
@@ -337,7 +344,7 @@ def main():
     # 1. Autenticar con Microsoft (siempre, para poder generar el JSON)
     print("\n[1/4] Autenticando con Microsoft Graph...")
     token = get_token()
-    print("  Ã¢ÂÂ Token obtenido")
+    print("  ÃÂ¢ÃÂÃÂ Token obtenido")
 
     drive_id, item_id = find_excel_item(token)
     session_id = get_excel_session(token, drive_id, item_id)
@@ -348,29 +355,29 @@ def main():
     try:
         datos = scrape_bccr()
     except Exception as e:
-        print(f"  Ã¢ÂÂ  Error al consultar BCCR: {e}")
+        print(f"  ÃÂ¢ÃÂÃÂ  Error al consultar BCCR: {e}")
         print("  Continuando con historial existente...")
 
     if datos is None:
         print("  Sin datos nuevos. Generando JSON con historial existente...")
     else:
-        print(f"  Ã¢ÂÂ Fecha: {datos['fecha']}")
-        print(f"  Ã¢ÂÂ Promedio Ponderado: {datos['promedio_ponderado']:.2f}")
-        print(f"  Ã¢ÂÂ Monto Total: {datos['monto_total']:,.2f}")
-        print(f"  Ã¢ÂÂ Sesion: {datos['sesion']}")
+        print(f"  ÃÂ¢ÃÂÃÂ Fecha: {datos['fecha']}")
+        print(f"  ÃÂ¢ÃÂÃÂ Promedio Ponderado: {datos['promedio_ponderado']:.2f}")
+        print(f"  ÃÂ¢ÃÂÃÂ Monto Total: {datos['monto_total']:,.2f}")
+        print(f"  ÃÂ¢ÃÂÃÂ Sesion: {datos['sesion']}")
 
         # 3. Guardar en Excel solo si hay datos nuevos
         print("\n[3/4] Guardando en Excel Online...")
         append_to_excel(token, drive_id, item_id, session_id, datos)
-        print("  Ã¢ÂÂ Fila agregada exitosamente")
+        print("  ÃÂ¢ÃÂÃÂ Fila agregada exitosamente")
 
     # 4. Siempre generar datos.json con el historial completo
     print("\n[4/4] Generando datos.json...")
     all_rows = read_all_rows(token, drive_id, item_id, session_id)
     generate_json(all_rows)
-    print("  Ã¢ÂÂ datos.json generado")
+    print("  ÃÂ¢ÃÂÃÂ datos.json generado")
 
-    print("\nÃ¢ÂÂ Completado exitosamente")
+    print("\nÃÂ¢ÃÂÃÂ Completado exitosamente")
     if datos:
         print(json.dumps(datos, indent=2, ensure_ascii=False))
 
