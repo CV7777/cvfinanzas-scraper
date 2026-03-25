@@ -4260,8 +4260,8 @@
     },
     {
       "fecha": "2026-02-03",
-      "promedio_ponderado": 470.93,
-      "monto_total": 18181000,
+      "promedio_ponderado": 497.19,
+      "monto_total": 23494000,
       "minimo": 469,
       "maximo": 471.5,
       "sesion": "17:00",
@@ -4431,8 +4431,8 @@
     },
     {
       "fecha": "2026-03-02",
-      "promedio_ponderado": 497.19,
-      "monto_total": 23494000,
+      "promedio_ponderado": 470.93,
+      "monto_total": 18180000,
       "minimo": 495.22,
       "maximo": 497.5,
       "sesion": "17:00",
