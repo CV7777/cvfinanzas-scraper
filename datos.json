@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-03-24 17:58:35",
+  "actualizado": "2026-03-25 14:39:39",
   "datos": [
     {
       "fecha": "2024-01-04",
@@ -4260,10 +4260,10 @@
     },
     {
       "fecha": "2026-02-03",
-      "promedio_ponderado": 497.19,
-      "monto_total": 23494000,
-      "minimo": null,
-      "maximo": null,
+      "promedio_ponderado": 470.93,
+      "monto_total": 18181000,
+      "minimo": 469,
+      "maximo": 471.5,
       "sesion": "17:00",
       "timestamp": "2026-02-03 17:00"
     },
@@ -4431,10 +4431,10 @@
     },
     {
       "fecha": "2026-03-02",
-      "promedio_ponderado": 470.93,
-      "monto_total": 18181000,
-      "minimo": null,
-      "maximo": null,
+      "promedio_ponderado": 497.19,
+      "monto_total": 23494000,
+      "minimo": 495.22,
+      "maximo": 497.5,
       "sesion": "17:00",
       "timestamp": "2026-03-02 17:00"
     },
@@ -4572,6 +4572,15 @@
       "maximo": 466,
       "sesion": "17:00",
       "timestamp": "2026-03-24 17:59"
+    },
+    {
+      "fecha": "2026-03-25",
+      "promedio_ponderado": 464.82,
+      "monto_total": 23883000,
+      "minimo": 463.8,
+      "maximo": 466,
+      "sesion": "13:05",
+      "timestamp": "2026-03-25 14:40"
     }
   ]
 }
