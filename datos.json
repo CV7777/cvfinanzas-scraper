@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-04-02 15:00:12",
+  "actualizado": "2026-04-02 18:03:10",
   "datos": [
     {
       "fecha": "2024-01-04",
@@ -4448,15 +4448,6 @@
       "timestamp": "2026-03-03 17:00"
     },
     {
-      "fecha": "2026-03-04",
-      "promedio_ponderado": 475.95,
-      "monto_total": 18762000,
-      "minimo": 472,
-      "maximo": 477.25,
-      "sesion": "17:00",
-      "timestamp": "2026-03-04 17:00"
-    },
-    {
       "fecha": "2026-03-05",
       "promedio_ponderado": 478.37,
       "monto_total": 63376000,
@@ -4626,6 +4617,15 @@
       "maximo": 466,
       "sesion": "17:00",
       "timestamp": "2026-04-01 18:01"
+    },
+    {
+      "fecha": "2026-04-03",
+      "promedio_ponderado": 475.95,
+      "monto_total": 18762000,
+      "minimo": 472,
+      "maximo": 477.25,
+      "sesion": "17:00",
+      "timestamp": "2026-04-03 17:00"
     }
   ]
 }
