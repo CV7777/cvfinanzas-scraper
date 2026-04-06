@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-04-03 18:00:56",
+  "actualizado": "2026-04-06 15:02:19",
   "datos": [
     {
       "fecha": "2024-01-04",
@@ -4626,6 +4626,15 @@
       "maximo": 477.25,
       "sesion": "17:00",
       "timestamp": "2026-04-03 17:00"
+    },
+    {
+      "fecha": "2026-04-06",
+      "promedio_ponderado": 465.39,
+      "monto_total": 35388000,
+      "minimo": 463,
+      "maximo": 465.7,
+      "sesion": "17:00",
+      "timestamp": "2026-04-06 15:02"
     }
   ]
 }
