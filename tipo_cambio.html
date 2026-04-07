@@ -1033,38 +1033,47 @@
         const res = await fetch(JSON_URL + "?t=" + Date.now());
         const json = await res.json();
 
-        allData = json.datos.map(d => {
-          const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-          let label = String(d.fecha);
-          let tsStr = ""; // siempre será YYYY-MM-DD al final
+        // Función para convertir cualquier formato de fecha a dd/mm/yyyy y YYYY-MM-DD
+        function parseFecha(raw) {
+          let dia, mes, anio;
 
-          const fechaNum = Number(d.fecha);
-
-          if (!isNaN(fechaNum) && fechaNum > 40000) {
-            // Serial de Excel (40000 = ~2009, evita falsos positivos)
+          if (typeof raw === 'number' || (!isNaN(Number(raw)) && Number(raw) > 40000)) {
+            // Serial de Excel
             const excelEpoch = new Date(1899, 11, 30);
-            const fecha = new Date(excelEpoch.getTime() + fechaNum * 86400000);
-            label = `${fecha.getDate()} ${meses[fecha.getMonth()]}`;
-            tsStr = fecha.getFullYear() + "-" + String(fecha.getMonth() + 1).padStart(2, '0') + "-" + String(fecha.getDate()).padStart(2, '0');
-          } else if (typeof d.fecha === 'string' && /^\d{4}-\d{2}-\d{2}/.test(d.fecha)) {
-            // YYYY-MM-DD
-            const parts = d.fecha.substring(0, 10).split('-');
-            label = `${parseInt(parts[2])} ${meses[parseInt(parts[1]) - 1]}`;
-            tsStr = d.fecha.substring(0, 10);
-          } else if (typeof d.fecha === 'string' && d.fecha.includes('/')) {
+            const fecha = new Date(excelEpoch.getTime() + Number(raw) * 86400000);
+            dia = fecha.getDate();
+            mes = fecha.getMonth() + 1;
+            anio = fecha.getFullYear();
+          } else if (typeof raw === 'string' && /^\d{4}-\d{2}-\d{2}/.test(raw)) {
+            // YYYY-MM-DD (formato principal de datos.json)
+            const parts = raw.substring(0, 10).split('-');
+            anio = parseInt(parts[0]);
+            mes = parseInt(parts[1]);
+            dia = parseInt(parts[2]);
+          } else if (typeof raw === 'string' && raw.includes('/')) {
             // DD/MM/YYYY
-            const parts = d.fecha.split('/');
-            label = `${parseInt(parts[0])} ${meses[parseInt(parts[1]) - 1]}`;
-            if (parts.length === 3) tsStr = parts[2] + "-" + parts[1].padStart(2, '0') + "-" + parts[0].padStart(2, '0');
+            const parts = raw.split('/');
+            dia = parseInt(parts[0]);
+            mes = parseInt(parts[1]);
+            anio = parseInt(parts[2]);
+          } else {
+            return { label: String(raw), labelCorto: String(raw), tsStr: '' };
           }
 
-          // Si aún no tenemos tsStr, intentar con d.timestamp
-          if (!tsStr && d.timestamp) {
-            tsStr = String(d.timestamp).substring(0, 10);
-          }
+          const label = String(dia).padStart(2, '0') + '/' + String(mes).padStart(2, '0') + '/' + anio;
+          const labelCorto = String(dia).padStart(2, '0') + '/' + String(mes).padStart(2, '0');
+          const tsStr = anio + '-' + String(mes).padStart(2, '0') + '-' + String(dia).padStart(2, '0');
+          return { label, labelCorto, tsStr };
+        }
+
+        allData = json.datos.map(d => {
+          const { label, labelCorto, tsStr: ts } = parseFecha(d.fecha);
+          // Si parseFecha no pudo extraer tsStr, intentar con d.timestamp
+          const tsStr = ts || (d.timestamp ? String(d.timestamp).substring(0, 10) : '');
 
           return {
             fecha: label,
+            fechaCorta: labelCorto,
             fechaRaw: d.fecha,
             promedio: parseFloat(d.promedio_ponderado) || 0,
             volumen: parseFloat(d.monto_total) || 0,
@@ -1125,7 +1134,7 @@
       chart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: data.map(d => d.fecha),
+          labels: data.map(d => d.fechaCorta),
           datasets: [
             {
               type: 'line',
@@ -1448,10 +1457,9 @@
 
         noMsg.style.display = 'none';
 
-        // Formatear fecha legible
-        const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+        // Formatear fecha legible dd/mm/yyyy
         const partes = mostrar.fecha.split('-');
-        const fechaLabel = parseInt(partes[2]) + ' ' + meses[parseInt(partes[1]) - 1] + ' ' + partes[0];
+        const fechaLabel = partes[2] + '/' + partes[1] + '/' + partes[0];
         const horaLabel = mostrar.hora || '';
 
         container.innerHTML = `

@@ -170,7 +170,7 @@ async function hist(){
     if(!li.length){box.innerHTML='<div class="histEmpty">Sin análisis publicados aún</div>';return;}
     const ms=['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
     box.innerHTML=li.slice(0,10).map(x=>{
-      const p=(x.fecha||'').split('-'),fs=p.length===3?parseInt(p[2])+' '+ms[parseInt(p[1])]+' '+p[0]:x.fecha||'';
+      const p=(x.fecha||'').split('-'),fs=p.length===3?p[2]+'/'+p[1]+'/'+p[0]:x.fecha||'';
       const tx=String(x.texto||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
       return '<div class="histItem"><div class="histMeta"><span>📅 '+fs+'</span><span>🕐 '+(x.hora||'')+'</span></div><div class="histText">'+tx+'</div></div>';
     }).join('');
