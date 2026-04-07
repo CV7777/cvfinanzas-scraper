@@ -193,8 +193,8 @@ def _parse_num(s):
         return None
 
 def excel_serial_to_iso(val):
-    """Convierte serial de Excel (número) o string DD/MM/YYYY a YYYY-MM-DD.
-    Si la fecha resultante es futura (>hoy), intenta invertir día/mes."""
+    """Convierte serial de Excel (número) o string de fecha a YYYY-MM-DD.
+    Microsoft Graph API devuelve fechas en formato M/D/YYYY (formato americano)."""
     from datetime import date
     hoy = date.today().isoformat()
 
@@ -209,21 +209,26 @@ def excel_serial_to_iso(val):
     except (ValueError, TypeError):
         pass
     s = str(val).strip()
-    # Puede venir como "D/M/YYYY", "DD/MM/YYYY", o "YYYY-MM-DD"
+
+    # Ya viene en formato YYYY-MM-DD — devolver directo
+    if len(s) >= 10 and s[4] == '-' and s[7] == '-':
+        return s[:10]
+
+    # Microsoft Graph API devuelve M/D/YYYY (formato americano: mes primero)
     if "/" in s:
         parts = s.split("/")
         if len(parts) == 3:
-            # Puede ser D/M/YYYY (sin ceros) — normalizar
-            d, m, y = parts[0].zfill(2), parts[1].zfill(2), parts[2]
+            m, d, y = parts[0].zfill(2), parts[1].zfill(2), parts[2]
             if len(y) == 2:
                 y = "20" + y
-            result = f"{y}-{m}-{d}"
-            # Si la fecha es futura, probablemente está invertida (M/D/YYYY)
-            if result > hoy:
-                result_inv = f"{y}-{d}-{m}"
-                if result_inv <= hoy:
-                    return result_inv
-            return result
+            # Validar que mes y día sean razonables
+            mi, di = int(m), int(d)
+            if 1 <= mi <= 12 and 1 <= di <= 31:
+                return f"{y}-{m}-{d}"
+            # Si mes > 12, probablemente viene como D/M/YYYY (invertido)
+            if mi > 12 and 1 <= di <= 12:
+                return f"{y}-{d}-{m}"
+            return f"{y}-{m}-{d}"
     return s[:10]
 
 def excel_serial_to_time(val):
@@ -300,26 +305,121 @@ def read_all_rows(token, drive_id, item_id, session_id):
     return result
 
 def fix_future_date(fecha_str, sesion_str):
-    """Si la fecha es futura, intenta invertir mes y día para corregirla."""
+    """Corrige fechas con día/mes invertido.
+    Detecta: fechas futuras y fechas que caen en fin de semana (MONEX no opera sáb/dom).
+    Si invertir día/mes produce una fecha válida en día laboral, la corrige."""
     from datetime import date
     hoy = date.today().isoformat()
-    if fecha_str > hoy:
+    try:
         partes = fecha_str.split("-")
-        if len(partes) == 3:
-            y, m, d = partes
-            invertida = f"{y}-{d}-{m}"
-            if invertida <= hoy:
-                hora = sesion_str if sesion_str else "17:00"
-                return invertida, f"{invertida} {hora}"
+        if len(partes) != 3:
+            return fecha_str, None
+        y, m, d = int(partes[0]), int(partes[1]), int(partes[2])
+        dt = date(y, m, d)
+        es_finde = dt.weekday() >= 5  # 5=sáb, 6=dom
+        es_futura = fecha_str > hoy
+
+        # Solo intentar invertir si día <= 12 (sino no puede ser un mes válido)
+        if (es_futura or es_finde) and d <= 12:
+            try:
+                invertida = date(y, d, m)
+                inv_str = invertida.isoformat()
+                inv_laboral = invertida.weekday() < 5
+                inv_pasada = inv_str <= hoy
+
+                if inv_pasada and inv_laboral:
+                    hora = sesion_str if sesion_str else "17:00"
+                    return inv_str, f"{inv_str} {hora}"
+            except ValueError:
+                pass  # fecha invertida inválida (ej: mes 13)
+
+    except (ValueError, IndexError):
+        pass
     return fecha_str, None
+
+def fix_ambiguous_dates(rows):
+    """Corrige fechas ambiguas (mes<=12, día<=12) cuyo valor es un outlier
+    respecto a sus vecinos. Si invertir mes/día hace que el valor encaje
+    mejor en la serie, se intercambian o reubican los registros.
+    Solo actúa sobre registros donde ambas interpretaciones caen en día laboral."""
+    from datetime import date
+    MAX_PASSES = 3  # máximo de pasadas para resolver intercambios cruzados
+
+    for _pass in range(MAX_PASSES):
+        cambios = 0
+        n = len(rows)
+        i = 1
+        while i < n - 1:
+            r = rows[i]
+            prev_r = rows[i - 1]
+            next_r = rows[i + 1]
+            val = r["promedio_ponderado"]
+            val_prev = prev_r["promedio_ponderado"]
+            val_next = next_r["promedio_ponderado"]
+
+            diff_prev = abs(val - val_prev)
+            diff_next = abs(val - val_next)
+            diff_neighbors = abs(val_prev - val_next)
+
+            # Detectar outlier: vecinos similares entre sí pero este difiere mucho
+            if diff_neighbors < 5 and (diff_prev > 10 or diff_next > 10):
+                parts = r["fecha"].split("-")
+                y, m, d = int(parts[0]), int(parts[1]), int(parts[2])
+
+                # Solo ambiguas: mes y día ambos <= 12
+                if m <= 12 and d <= 12 and m != d:
+                    try:
+                        inv = date(y, d, m)
+                        inv_str = inv.isoformat()
+                        inv_laboral = inv.weekday() < 5
+                        hoy = date.today().isoformat()
+                        inv_pasada = inv_str <= hoy
+
+                        if inv_laboral and inv_pasada:
+                            # Buscar si la fecha invertida ya existe
+                            idx_inv = None
+                            for j, rj in enumerate(rows):
+                                if rj["fecha"] == inv_str:
+                                    idx_inv = j
+                                    break
+
+                            if idx_inv is not None:
+                                # Ambas fechas existen: intercambiar valores
+                                campos = ["promedio_ponderado", "monto_total", "minimo", "maximo", "sesion"]
+                                for c in campos:
+                                    r[c], rows[idx_inv][c] = rows[idx_inv][c], r[c]
+                                r["timestamp"] = r["fecha"] + " " + r.get("sesion", "17:00")
+                                rows[idx_inv]["timestamp"] = rows[idx_inv]["fecha"] + " " + rows[idx_inv].get("sesion", "17:00")
+                                print(f"  Intercambiando valores: {r['fecha']} <-> {inv_str}")
+                                cambios += 1
+                            else:
+                                # La fecha invertida no existe: mover el registro
+                                hora = r.get("sesion", "17:00")
+                                print(f"  Moviendo fecha: {r['fecha']} → {inv_str}")
+                                r["fecha"] = inv_str
+                                r["timestamp"] = f"{inv_str} {hora}"
+                                cambios += 1
+                    except ValueError:
+                        pass
+            i += 1
+
+        # Reordenar después de cada pasada
+        rows.sort(key=lambda x: str(x.get("timestamp", x.get("fecha", ""))))
+
+        if cambios == 0:
+            break
+        print(f"  Pasada {_pass + 1}: {cambios} correcciones por outlier")
+
+    return rows
+
 
 def generate_json(all_rows):
     """Genera datos.json con el historial completo"""
-    # Corregir fechas futuras (día/mes invertidos por error del scraper viejo)
+    # Paso 1: Corregir fechas futuras y de fin de semana (día/mes invertidos)
     for r in all_rows:
         fecha_corregida, ts_corregido = fix_future_date(r["fecha"], r.get("sesion", "17:00"))
         if fecha_corregida != r["fecha"]:
-            print(f"  Corrigiendo fecha: {r['fecha']} → {fecha_corregida}")
+            print(f"  Corrigiendo fecha (finde/futura): {r['fecha']} → {fecha_corregida}")
             r["fecha"] = fecha_corregida
             r["timestamp"] = ts_corregido
 
@@ -334,6 +434,9 @@ def generate_json(all_rows):
             by_date[fecha] = r
     # Ordenar el resultado final por timestamp ascendente (más antiguo primero)
     deduped = sorted(by_date.values(), key=lambda x: str(x.get("timestamp", x.get("fecha", ""))))
+
+    # Paso 2: Corregir fechas ambiguas por continuidad de valores (outliers)
+    deduped = fix_ambiguous_dates(deduped)
     output = {
         "actualizado": datetime.now(CR_TZ).strftime("%Y-%m-%d %H:%M:%S"),
         "datos": deduped

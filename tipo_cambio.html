@@ -1300,11 +1300,9 @@
         const exists = await searchContactGHL(email);
 
         if (exists) {
-          statusEl.className = 'gate-status success';
-          statusEl.textContent = '¡Ya estabas registrado! Ingresando...';
-          setTimeout(() => {
-            document.getElementById('gate').classList.add('hidden');
-          }, 1000);
+          statusEl.className = 'gate-status error';
+          statusEl.textContent = 'Este correo ya está registrado. Usá "Iniciar sesión" para acceder.';
+          btnEl.disabled = false;
           return;
         }
 
