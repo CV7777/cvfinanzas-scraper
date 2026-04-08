@@ -701,6 +701,11 @@
       margin-bottom: 0.75rem;
     }
 
+    .comment-card.comment-today {
+      border-left-color: var(--green, #22c55e);
+      background: linear-gradient(135deg, rgba(34,197,94,0.06), var(--cream));
+    }
+
     .comment-card:last-child {
       margin-bottom: 0;
     }
@@ -1443,31 +1448,35 @@
         const crTime = new Date(now.getTime() + (crOffset - now.getTimezoneOffset()) * 60000);
         const hoy = crTime.toISOString().substring(0, 10);
 
-        // Buscar análisis de hoy (o el más reciente si no hay de hoy)
-        const lista = json.analisis || [];
-        const deHoy = lista.find(a => a.fecha === hoy);
-        const mostrar = deHoy || lista[0]; // fallback al más reciente
+        // Mostrar todos los análisis (más reciente primero)
+        const lista = (json.analisis || []).filter(a => a && a.texto);
 
-        if (!mostrar || !mostrar.texto) {
+        if (lista.length === 0) {
           noMsg.style.display = 'block';
           return;
         }
 
         noMsg.style.display = 'none';
 
-        // Formatear fecha legible dd/mm/yyyy
-        const partes = mostrar.fecha.split('-');
-        const fechaLabel = partes[2] + '/' + partes[1] + '/' + partes[0];
-        const horaLabel = mostrar.hora || '';
+        // Ordenar por fecha descendente (más reciente primero)
+        lista.sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
 
-        container.innerHTML = `
-      <div class="comment-card">
-        <div class="comment-meta">
-          <span class="comment-author">Carlos Valerin</span>
-          <span class="comment-date">${fechaLabel}${horaLabel ? ' · ' + horaLabel : ''}</span>
-        </div>
-        <p class="comment-text">${mostrar.texto}</p>
-      </div>`;
+        container.innerHTML = lista.map(item => {
+          const partes = (item.fecha || '').split('-');
+          const fechaLabel = partes.length === 3
+            ? partes[2] + '/' + partes[1] + '/' + partes[0]
+            : item.fecha || '';
+          const horaLabel = item.hora || '';
+          const esHoy = item.fecha === hoy;
+
+          return `<div class="comment-card${esHoy ? ' comment-today' : ''}">
+            <div class="comment-meta">
+              <span class="comment-author">Carlos Valerin</span>
+              <span class="comment-date">${fechaLabel}${horaLabel ? ' · ' + horaLabel : ''}${esHoy ? ' · Hoy' : ''}</span>
+            </div>
+            <p class="comment-text">${item.texto}</p>
+          </div>`;
+        }).join('');
       } catch (e) {
         noMsg.style.display = 'block';
       }
