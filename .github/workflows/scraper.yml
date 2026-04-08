@@ -26,11 +26,12 @@ jobs:
         run: pip install requests beautifulsoup4 pytz lxml
 
       - name: Correr scraper
-        run: python scraper_bccr.py
+        run: automatizadores/python scraper_bccr.py
 
       - name: Publicar datos.json
         run: |
           git config user.name "CV Finanzas Bot"
           git config user.email "bot@cvfinanzas.com"
-          git add datos.json || echo "datos.json no encontrado, saltando"
+          git add datos-json/datos.json || echo "datos.json no encontrado, saltando"
           git diff --staged --quiet && echo "Sin cambios" || (git commit -m "datos: actualizar tipo de cambio $(date +'%Y-%m-%d %H:%M')" && git push)
+
