@@ -26,7 +26,7 @@ jobs:
         run: pip install requests beautifulsoup4 pytz lxml
 
       - name: Correr scraper
-        run: automatizadores/python scraper_bccr.py
+        run: python scraper_bccr.py
 
       - name: Publicar datos.json
         run: |
