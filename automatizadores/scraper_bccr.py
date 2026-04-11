@@ -441,7 +441,7 @@ def generate_json(all_rows):
         "actualizado": datetime.now(CR_TZ).strftime("%Y-%m-%d %H:%M:%S"),
         "datos": deduped
     }
-    with open("datos.json", "w", encoding="utf-8") as f:
+    with open("datos-json/datos.json", "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
     print(f"  Generado datos.json con {len(deduped)} registros")
 
