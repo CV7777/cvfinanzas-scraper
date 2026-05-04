@@ -27,6 +27,26 @@ CLIENT_SECRET = os.environ["AZURE_CLIENT_SECRET"]
 
 CR_TZ = pytz.timezone("America/Costa_Rica")
 
+# Feriados Costa Rica 2026 (MONEX no opera en feriados)
+FERIADOS_2026 = [
+    "2026-01-01",  # Año Nuevo
+    "2026-04-02",  # Jueves Santo
+    "2026-04-03",  # Viernes Santo
+    "2026-04-11",  # Día de Juan Santamaría
+    "2026-05-01",  # Día Internacional del Trabajo
+    "2026-07-25",  # Anexión del Partido de Nicoya
+    "2026-08-02",  # Día de la Virgen de los Ángeles
+    "2026-08-15",  # Día de la Madre
+    "2026-08-31",  # Día de la Persona Negra y Cultura Afrocostarricense
+    "2026-09-15",  # Día de la Independencia
+    "2026-12-01",  # Día de la Abolición del Ejército
+    "2026-12-25",  # Navidad
+]
+
+def is_feriado(fecha_str):
+    """Valida si la fecha es un feriado (MONEX no opera)"""
+    return fecha_str in FERIADOS_2026
+
 def get_token():
     """Obtiene token de acceso a Microsoft Graph API"""
     url = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
@@ -93,6 +113,11 @@ def scrape_bccr():
     fecha_str = now_cr.strftime("%Y/%m/%d")
     fecha_label = now_cr.strftime("%Y-%m-%d")
     sesion = "13:05" if now_cr.hour < 15 else "17:00"
+
+    # Validar que no sea feriado
+    if is_feriado(fecha_label):
+        print(f"  ⓘ Hoy es feriado ({fecha_label}). MONEX no opera.")
+        return None
 
     url = (
         f"https://gee.bccr.fi.cr/indicadoreseconomicos/Cuadros/frmVerCatCuadro.aspx"
@@ -307,7 +332,8 @@ def read_all_rows(token, drive_id, item_id, session_id):
 def fix_future_date(fecha_str, sesion_str):
     """Corrige fechas con día/mes invertido.
     Detecta: fechas futuras y fechas que caen en fin de semana (MONEX no opera sáb/dom).
-    Si invertir día/mes produce una fecha válida en día laboral, la corrige."""
+    Si invertir día/mes produce una fecha válida en día laboral, la corrige.
+    También valida que no sea feriado."""
     from datetime import date
     hoy = date.today().isoformat()
     try:
@@ -318,16 +344,18 @@ def fix_future_date(fecha_str, sesion_str):
         dt = date(y, m, d)
         es_finde = dt.weekday() >= 5  # 5=sáb, 6=dom
         es_futura = fecha_str > hoy
+        es_feriado_actual = is_feriado(fecha_str)
 
         # Solo intentar invertir si día <= 12 (sino no puede ser un mes válido)
-        if (es_futura or es_finde) and d <= 12:
+        if (es_futura or es_finde or es_feriado_actual) and d <= 12:
             try:
                 invertida = date(y, d, m)
                 inv_str = invertida.isoformat()
                 inv_laboral = invertida.weekday() < 5
                 inv_pasada = inv_str <= hoy
+                inv_no_feriado = not is_feriado(inv_str)
 
-                if inv_pasada and inv_laboral:
+                if inv_pasada and inv_laboral and inv_no_feriado:
                     hora = sesion_str if sesion_str else "17:00"
                     return inv_str, f"{inv_str} {hora}"
             except ValueError:
@@ -393,12 +421,13 @@ def fix_ambiguous_dates(rows):
                                 print(f"  Intercambiando valores: {r['fecha']} <-> {inv_str}")
                                 cambios += 1
                             else:
-                                # La fecha invertida no existe: mover el registro
-                                hora = r.get("sesion", "17:00")
-                                print(f"  Moviendo fecha: {r['fecha']} → {inv_str}")
-                                r["fecha"] = inv_str
-                                r["timestamp"] = f"{inv_str} {hora}"
-                                cambios += 1
+                                # La fecha invertida no existe: mover el registro (si no es feriado)
+                                if not is_feriado(inv_str):
+                                    hora = r.get("sesion", "17:00")
+                                    print(f"  Moviendo fecha: {r['fecha']} → {inv_str}")
+                                    r["fecha"] = inv_str
+                                    r["timestamp"] = f"{inv_str} {hora}"
+                                    cambios += 1
                     except ValueError:
                         pass
             i += 1
