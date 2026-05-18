@@ -2,8 +2,8 @@ name: CV Finanzas - Scraper MONEX
 
 on:
   schedule:
-    - cron: '05 19 * * *'  # 13:05 Costa Rica (UTC-6 = 19:05 UTC) - todos los días
-    - cron: '00 23 * * *'  # 17:00 Costa Rica (UTC-6 = 23:00 UTC) - todos los días
+    - cron: '05 18 * * *'  # 13:05 Costa Rica (UTC-5 en mayo) - todos los días
+    - cron: '00 22 * * *'  # 17:00 Costa Rica (UTC-5 en mayo) - todos los días
   workflow_dispatch:          # permite correrlo manualmente cuando quieras
 
 jobs:
