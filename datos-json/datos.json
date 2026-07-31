@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-07-30 17:06:46",
+  "actualizado": "2026-07-31 13:45:33",
   "datos": [
     {
       "fecha": "2024-01-04",
@@ -5328,6 +5328,15 @@
       "maximo": 452.5,
       "sesion": "17:00",
       "timestamp": "2026-07-30 17:07"
+    },
+    {
+      "fecha": "2026-07-31",
+      "promedio_ponderado": 451.1,
+      "monto_total": 33564000,
+      "minimo": 450.5,
+      "maximo": 452,
+      "sesion": "13:05",
+      "timestamp": "2026-07-31 13:46"
     }
   ]
 }
