@@ -1,17 +1,14 @@
 """
-CV Finanzas - Scraper MONEX (BCCR)
-Extrae: Promedio Simple y Monto Total del día
-Guarda en: Excel Online via Microsoft Graph API
-Ejecutar: 2 veces al día (13:05 y 17:00 hora Costa Rica)
+CV Finanzas - Importador MONEX (BCCR)
+Consume la API publica SDDE del BCCR y guarda el resultado en Excel Online.
+Ejecutar: 2 veces al dia (13:05 y 17:00 hora Costa Rica).
 """
 
 import os
 import requests
-from bs4 import BeautifulSoup
 from datetime import datetime
 import pytz
 import json
-import sys
 
 # ── CONFIGURACIÓN ──────────────────────────────────────────
 SHAREPOINT_SITE   = "cvfinanzas-my.sharepoint.com"
@@ -20,12 +17,24 @@ EXCEL_FILE_NAME   = "CV Finanzas - Tipo de Cambio.xlsx"
 TABLE_NAME        = "TipoCambio"
 
 # Estos valores los obtenés en Azure (instrucciones abajo)
-TENANT_ID     = os.environ["AZURE_TENANT_ID"]
-CLIENT_ID     = os.environ["AZURE_CLIENT_ID"]
-CLIENT_SECRET = os.environ["AZURE_CLIENT_SECRET"]
+TENANT_ID     = os.environ.get("AZURE_TENANT_ID")
+CLIENT_ID     = os.environ.get("AZURE_CLIENT_ID")
+CLIENT_SECRET = os.environ.get("AZURE_CLIENT_SECRET")
 # ───────────────────────────────────────────────────────────
 
 CR_TZ = pytz.timezone("America/Costa_Rica")
+BCCR_API_URL = (
+    "https://apim.bccr.fi.cr/SDDE/api/"
+    "Bccr.GE.SDDE.Publico.Indicadores.API/cuadro/219/series"
+)
+BCCR_CODIGO_CUADRO = "219"
+BCCR_API_BEARER_TOKEN = os.environ.get("BCCR_API_BEARER_TOKEN")
+BCCR_INDICADORES = {
+    "3436": "minimo",
+    "3437": "maximo",
+    "3439": "promedio_ponderado",
+    "3446": "monto_total",
+}
 
 # Feriados Costa Rica 2026 (MONEX no opera en feriados)
 FERIADOS_2026 = [
@@ -49,6 +58,10 @@ def is_feriado(fecha_str):
 
 def get_token():
     """Obtiene token de acceso a Microsoft Graph API"""
+    if not all((TENANT_ID, CLIENT_ID, CLIENT_SECRET)):
+        raise RuntimeError(
+            "Faltan AZURE_TENANT_ID, AZURE_CLIENT_ID o AZURE_CLIENT_SECRET."
+        )
     url = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
     data = {
         "grant_type": "client_credentials",
@@ -107,115 +120,106 @@ def find_excel_item(token):
     item = items[0]
     return item["parentReference"]["driveId"], item["id"]
 
-def scrape_bccr():
-    """Extrae datos de MONEX del BCCR para el día de hoy"""
-    now_cr = datetime.now(CR_TZ)
-    fecha_str = now_cr.strftime("%Y/%m/%d")
+def parse_bccr_response(payload, fecha_label, sesion, timestamp):
+    """Convierte la respuesta del cuadro 219 al formato interno de MONEX."""
+    if not isinstance(payload, dict) or payload.get("estado") is not True:
+        mensaje = (
+            payload.get("mensaje", "respuesta invalida")
+            if isinstance(payload, dict)
+            else "respuesta invalida"
+        )
+        raise ValueError(f"La API del BCCR rechazo la consulta: {mensaje}")
+
+    valores = {}
+    bloques = payload.get("datos") or []
+    for bloque in bloques:
+        for indicador in bloque.get("indicadores") or []:
+            campo = BCCR_INDICADORES.get(str(indicador.get("codigoIndicador")))
+            if not campo:
+                continue
+            for punto in indicador.get("series") or []:
+                if str(punto.get("fecha", ""))[:10] == fecha_label:
+                    valor = punto.get("valorDatoPorPeriodo")
+                    if not isinstance(valor, (int, float)) or isinstance(valor, bool):
+                        raise ValueError(
+                            f"El indicador {campo} no contiene un valor numerico."
+                        )
+                    valores[campo] = valor
+                    break
+
+    faltantes = [campo for campo in BCCR_INDICADORES.values() if campo not in valores]
+    if faltantes:
+        print(f"  Sin datos completos para {fecha_label}: faltan {', '.join(faltantes)}.")
+        return None
+
+    if valores["promedio_ponderado"] <= 0 or valores["monto_total"] <= 0:
+        print(f"  Sin negociacion publicada para {fecha_label}.")
+        return None
+    if not (
+        0
+        < valores["minimo"]
+        <= valores["promedio_ponderado"]
+        <= valores["maximo"]
+    ):
+        raise ValueError(
+            "El minimo, promedio ponderado y maximo del BCCR son inconsistentes."
+        )
+
+    return {
+        "fecha": fecha_label,
+        "promedio_ponderado": valores["promedio_ponderado"],
+        "monto_total": valores["monto_total"],
+        "minimo": valores["minimo"],
+        "maximo": valores["maximo"],
+        "sesion": sesion,
+        "timestamp": timestamp,
+    }
+
+
+def scrape_bccr(now_cr=None):
+    """Consulta la API SDDE del BCCR para el dia actual de Costa Rica."""
+    now_cr = now_cr or datetime.now(CR_TZ)
+    fecha_api = now_cr.strftime("%Y/%m/%d")
     fecha_label = now_cr.strftime("%Y-%m-%d")
     sesion = "13:05" if now_cr.hour < 15 else "17:00"
 
-    # Validar que no sea feriado
     if is_feriado(fecha_label):
         print(f"  ⓘ Hoy es feriado ({fecha_label}). MONEX no opera.")
         return None
 
-    url = (
-        f"https://gee.bccr.fi.cr/indicadoreseconomicos/Cuadros/frmVerCatCuadro.aspx"
-        f"?CodCuadro=770&Idioma=1"
-        f"&FecInicial={fecha_str}&FecFinal={fecha_str}&Filtro=0"
+    if not BCCR_API_BEARER_TOKEN:
+        raise RuntimeError(
+            "Falta configurar la variable secreta BCCR_API_BEARER_TOKEN."
+        )
+
+    response = requests.get(
+        BCCR_API_URL,
+        params={
+            "codigo": BCCR_CODIGO_CUADRO,
+            "fechaInicio": fecha_api,
+            "fechafin": fecha_api,
+            "idioma": "ES",
+        },
+        headers={
+            "Accept": "application/json",
+            "Authorization": f"Bearer {BCCR_API_BEARER_TOKEN}",
+            "User-Agent": "CVFinanzas/1.0",
+        },
+        timeout=60,
     )
+    response.raise_for_status()
 
-    headers = {"User-Agent": "Mozilla/5.0 (compatible; CVFinanzas/1.0)"}
-    r = requests.get(url, headers=headers, timeout=60)
-    r.raise_for_status()
-
-    soup = BeautifulSoup(r.text, "html.parser")
-    rows = soup.find_all("tr")
-
-    data = {
-        "promedio_ponderado": None,
-        "monto_total": None,
-        "minimo": None,
-        "maximo": None,
-    }
-
-    # Track which section we are in (tipo de cambio vs monto negociado)
-    in_tipo_cambio = False
-    in_monto = False
-
-    for row in rows:
-        cells = [td.get_text(strip=True).replace("\xa0", " ").strip() for td in row.find_all("td")]
-        text = " ".join(cells).lower()
-
-        # Detect section headers
-        if "tipo de cambio negociado" in text:
-            in_tipo_cambio = True
-            in_monto = False
-            continue
-        if "monto negociado" in text:
-            in_tipo_cambio = False
-            in_monto = True
-            continue
-        if "mejores ofertas" in text:
-            in_tipo_cambio = False
-            in_monto = False
-            continue
-
-        nums = [_parse_num(cell) for cell in cells if _is_number(cell)]
-
-        if in_tipo_cambio:
-            if "promedio ponderado" in text and "sesión anterior" not in text and "anterior" not in text:
-                if nums:
-                    data["promedio_ponderado"] = nums[-1]
-            elif "mínimo" in text or "minimo" in text:
-                if nums:
-                    data["minimo"] = nums[-1]
-            elif "máximo" in text or "maximo" in text:
-                if nums:
-                    data["maximo"] = nums[-1]
-
-        if in_monto:
-            if "monto total" in text or ("total" in text and "calces" not in text and "calce" not in text):
-                if nums:
-                    data["monto_total"] = nums[-1]
-
-    if not data["promedio_ponderado"]:
-        print("  Sin datos disponibles aun para hoy (el BCCR publica a las 13:05 y 17:00).")
-        return None
-
-    return {
-        "fecha": fecha_label,
-        "promedio_ponderado": data["promedio_ponderado"],
-        "monto_total": data["monto_total"] or 0,
-        "minimo": data["minimo"] or 0,
-        "maximo": data["maximo"] or 0,
-        "sesion": sesion,
-        "timestamp": now_cr.strftime("%Y-%m-%d %H:%M:%S")
-    }
-
-def _is_number(s):
     try:
-        float(s.replace(".", "").replace(",", "").replace("-", ""))
-        return len(s) > 0
-    except:
-        return False
+        payload = response.json()
+    except requests.exceptions.JSONDecodeError as exc:
+        raise ValueError("La API del BCCR no devolvio JSON valido.") from exc
 
-def _parse_num(s):
-    try:
-        s = s.strip()
-        # BCCR usa punto como separador de miles y coma como decimal
-        # Ej: 478.260,00 o 63.376.000,00
-        if "," in s and "." in s:
-            # tiene ambos: puntos = miles, coma = decimal
-            cleaned = s.replace(".", "").replace(",", ".")
-        elif "," in s:
-            # solo coma: puede ser decimal
-            cleaned = s.replace(",", ".")
-        else:
-            cleaned = s
-        return float(cleaned)
-    except:
-        return None
+    return parse_bccr_response(
+        payload,
+        fecha_label=fecha_label,
+        sesion=sesion,
+        timestamp=now_cr.strftime("%Y-%m-%d %H:%M:%S"),
+    )
 
 def excel_serial_to_iso(val):
     """Convierte serial de Excel (número) o string de fecha a YYYY-MM-DD.
