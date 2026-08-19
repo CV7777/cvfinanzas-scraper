@@ -253,21 +253,101 @@ const profiles={
   M:{name:"El Idealista",label:"Monje del Dinero",color:"#5a9e8f",icon:"🌿",quote:"El dinero es energía neutral — lo que hacés con él es lo que define su impacto.",description:"Tenés valores muy claros y el dinero no encaja fácilmente en ellos. Lo asociás con el egoísmo, la corrupción o la pérdida de autenticidad. Esa postura es honesta, pero también te puede estar limitando sin que te des cuenta. La abundancia no es incompatible con los buenos valores — de hecho, tener más recursos te da más capacidad de hacer el bien que tanto valorás.",strengths:["Valores muy claros","No materialista","Coherente con sus principios"],challenges:["Bloqueos para generar dinero","Asociar riqueza con maldad","Limitarse económicamente por creencias"],traits:["Íntegro","Espiritual","Con bloqueos económicos","Idealista"]},
   F:{name:"El Fluido",label:"Amante del Dinero",color:"#5a9e6f",icon:"✨",quote:"Cuando le decís arigato al dinero — con gratitud — este fluye hacia vos con más facilidad.",description:"Tenés una de las relaciones más saludables que existen con el dinero. Lo recibís con gratitud, lo administrás con intención y lo compartís sin miedo. Para vos el dinero es una herramienta, no una fuente de ansiedad ni de identidad. Ese equilibrio es raro y valioso. Tu siguiente paso es seguir creciendo con conciencia, para que esa abundancia se multiplique y alcance a más personas.",strengths:["Relación sana con el dinero","Generoso y agradecido","Toma decisiones financieras con calma"],challenges:["Mantener ese equilibrio bajo presión","No contagiarse del estrés financiero ajeno","Seguir creciendo sin perder el piso"],traits:["Equilibrado","Agradecido","Fluido","Consciente"]}
 };
-let current=-1,answers=new Array(questions.length).fill(null),userEmail='';
+let current=-1,answers=new Array(questions.length).fill(null),userEmail=(sessionStorage.getItem('cvfinanzas_user_email')||localStorage.getItem('cvfinanzas_user_email')||'');
 const quizContent=document.getElementById('quizContent'),progressWrap=document.getElementById('progressWrap'),progressBar=document.getElementById('progressBar'),progressLabel=document.getElementById('progressLabel'),progressPct=document.getElementById('progressPct');
 function updateProgress(){const p=Math.round((current/questions.length)*100);progressBar.style.width=p+'%';progressLabel.textContent=`Pregunta ${current+1} de ${questions.length}`;progressPct.textContent=p+'%';}
 function renderIntro(){progressWrap.style.display='none';quizContent.innerHTML=`<div class="intro-screen screen"><span class="intro-emoji">💰</span><h2>¿Cómo te relacionás con el dinero?</h2><div class="intro-author">Basado en Ken Honda · Dinero Feliz</div><p>Ken Honda dice que la forma en que nos relacionamos con el dinero dice mucho más sobre nosotros que cualquier número en nuestra cuenta. En 10 preguntas vas a descubrir tu personalidad financiera — y qué hacer con ella.</p><button class="btn-primary orange" style="margin:0 auto;" onclick="startQuiz()">Descubrir mi personalidad →</button></div>`;}
 function renderQuestion(){progressWrap.style.display='block';updateProgress();const q=questions[current],selected=answers[current];quizContent.innerHTML=`<div class="screen"><p class="question-counter">Pregunta ${current+1} de ${questions.length}</p><h2 class="question-text">"${q.text}"</h2><div class="scale-wrap"><div class="scale-labels"><span>Nada parecido<br>a mí</span><span>Muy parecido<br>a mí</span></div><div class="scale-dots">${[0,1,2,3,4].map(i=>`<button class="dot-btn ${selected===i?'selected':''}" onclick="selectDot(${i})" title="${scaleLabels[i]}"></button>`).join('')}</div><div class="scale-value-label" id="scaleValueLabel">${selected!==null?scaleLabels[selected]:'&nbsp;'}</div></div><div class="quiz-nav"><button class="btn-back" onclick="goBack()" ${current===0?'disabled':''}>← Anterior</button><button class="btn-primary" id="nextBtn" onclick="goNext()" ${selected===null?'disabled':''}>${current===questions.length-1?'Casi listo →':'Siguiente →'}</button></div></div>`;}
 function selectDot(i){answers[current]=i;document.querySelectorAll('.dot-btn').forEach((b,j)=>b.classList.toggle('selected',j===i));document.getElementById('scaleValueLabel').textContent=scaleLabels[i];document.getElementById('nextBtn').disabled=false;}
-function renderEmailGate(){progressWrap.style.display='none';quizContent.innerHTML=`<div class="email-screen screen"><span style="font-size:2.5rem;display:block;margin-bottom:1rem;">🎯</span><h2>¡Ya casi está tu resultado!</h2><p>Ingresá tu correo y te enviamos tu personalidad financiera completa. También la vas a ver acá mismo.</p><div class="email-input-wrap"><input type="email" id="emailInput" class="email-input" placeholder="tu@correo.com" value="${userEmail}" onkeydown="if(event.key==='Enter')submitEmail()"/><span class="email-error" id="emailError">Por favor ingresá un correo válido.</span><button class="btn-primary orange" style="margin:0 auto;width:100%;justify-content:center;" onclick="submitEmail()">Ver mi personalidad →</button><p class="privacy-note">🔒 Tu correo está seguro. No spam, nunca.</p></div></div>`;setTimeout(()=>document.getElementById('emailInput').focus(),100);}
-function submitEmail(){const input=document.getElementById('emailInput'),error=document.getElementById('emailError'),val=input.value.trim(),valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);if(!valid){input.classList.add('error');error.classList.add('show');return;}input.classList.remove('error');error.classList.remove('show');userEmail=val;console.log('Email:',userEmail);showResult();}
-function getProfile(){const scores={G:0,A:0,D:0,I:0,M:0,F:0};questions.forEach((q,i)=>{if(answers[i]!==null)scores[q.type]+=answers[i];});return profiles[Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0]];}
-function showResult(){progressWrap.style.display='block';progressBar.style.width='100%';progressLabel.textContent='¡Completado!';progressPct.textContent='100%';const p=getProfile();quizContent.innerHTML=`<div class="result-screen screen"><div class="result-hero" style="background:${p.color}18;"><div class="result-badge" style="background:${p.color};">${p.icon}</div><p class="result-eyebrow" style="color:${p.color};">Tu personalidad financiera</p><h2 class="result-type" style="color:${p.color};">${p.name}</h2><span class="result-profile-label" style="background:${p.color}22;color:${p.color};">${p.label}</span></div><div class="honda-quote"><p>"${p.quote}"</p><cite>— Ken Honda, Dinero Feliz</cite></div><p class="result-description">${p.description}</p><p class="result-section-title">Fortalezas y oportunidades</p><div class="strength-weakness"><div class="sw-box strengths"><h4>Fortalezas</h4><ul>${p.strengths.map(s=>`<li>${s}</li>`).join('')}</ul></div><div class="sw-box challenges"><h4>A trabajar</h4><ul>${p.challenges.map(c=>`<li>${c}</li>`).join('')}</ul></div></div><div class="result-traits">${p.traits.map(t=>`<span class="trait-tag" style="background:${p.color}15;color:${p.color};">${t}</span>`).join('')}</div><div class="result-divider"></div><p class="result-cta-text">¿Querés trabajar tu relación con el dinero?</p><div class="cta-stack"><div class="cta-primary-box"><p class="cta-label-top">RECOMENDADO</p><p class="cta-heading">Quiero mejorar mi relación con el dinero</p><p class="cta-sub">Una sesión de claridad totalmente gratuita para revisar tu situación y relación con el dinero. Juntos definiremos cómo podemos ayudarte a alcanzar tus metas financieras.</p><button class="btn-primary orange" style="margin:0 auto;width:100%;justify-content:center;" onclick="window.open('https://calendly.com/asesoriacv/sesion-claridad','_blank')">Quiero conversar con Carlos →</button></div><div class="cta-divider-or"><span>o si preferís empezar por tu cuenta</span></div><div class="cta-secondary-box"><p class="cta-heading-sm">📖 Guía de Finanzas para No Financieros</p><p class="cta-sub-sm">Un libro práctico para empezar a tomar control de tu dinero hoy. Solo $20.</p><button class="btn-secondary-cta" onclick="window.open('https://carlos1762365460.hotmart.host/guia-finanzas-para-no-financieros-dc1f6fd7-1fa5-42f2-82d8-0ab2353ba022','_blank')">Conseguir el libro — $20 →</button></div></div><button class="btn-restart" onclick="restartQuiz()">↩ Volver a intentarlo</button></div>`;}
+function renderEmailGate(){
+  progressWrap.style.display='none';quizContent.innerHTML=`<div class="email-screen screen"><span style="font-size:2.5rem;display:block;margin-bottom:1rem;">🎯</span><h2>¡Ya casi está tu resultado!</h2><p>Veras el resultado en breve.</p><button class="btn-primary orange" style="margin:0 auto;width:100%;justify-content:center;" onclick="submitEmail()">Ver mi personalidad →</button><p class="privacy-note">🔒 Tus resultados están seguros.</p></div></div>`;
+}
+
+function submitEmail(){
+  showResult();
+}
+
+function getProfile(){
+  const scores = {G:0, A:0, D:0, I:0, M:0, F:0};
+  questions.forEach((q,i)=>{
+    if (answers[i] !== null) scores[q.type] += answers[i];
+  });
+  const top = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0];
+  return profiles[top[0]];
+}
+
+// Supabase existente: https://oflgixvgsskehsbftkuz.supabase.co/rest/v1/quiz_honda_results
+const SUPABASE_URL = 'https://oflgixvgsskehsbftkuz.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_OfH_ePr74kI3nWS8bFuPbg_uBf_aRwx';
+const SUPABASE_RESULTS_TABLE = 'quiz_honda_results';
+
+function _calculateScores(){const s={G:0,A:0,D:0,I:0,M:0,F:0};questions.forEach((q,i)=>{if(answers[i]!==null)s[q.type]+=answers[i];});return s}
+
+function _buildPayload(){const scores=_calculateScores();const top=Object.entries(scores).sort((a,b)=>b[1]-a[1])[0];const profileType=top[0];const profileScore=top[1];const p=profiles[profileType]||{};const payload={
+  user_email: userEmail||null,
+  q1: answers[0] ?? 0, q2: answers[1] ?? 0, q3: answers[2] ?? 0, q4: answers[3] ?? 0, q5: answers[4] ?? 0,
+  q6: answers[5] ?? 0, q7: answers[6] ?? 0, q8: answers[7] ?? 0, q9: answers[8] ?? 0, q10: answers[9] ?? 0,
+  profile_type: profileType,
+  profile_label: p.label || null,
+  profile_color: p.color || null,
+  profile_score: profileScore,
+  scores: scores,
+  raw_payload: {answers: answers, calculatedAt: new Date().toISOString()},
+  user_agent: (navigator && navigator.userAgent) ? navigator.userAgent : null
+};
+return payload}
+
+async function sendToSupabase(){
+  try{
+    if(SUPABASE_URL && SUPABASE_ANON_KEY){
+      const row = _buildPayload();
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_RESULTS_TABLE}`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+          'Prefer': 'return=representation'
+        },
+        body: JSON.stringify(row)
+      });
+      if(!res.ok){
+        console.warn('Supabase insert failed:', res.status, await res.text());
+      } else {
+        const data = await res.json();
+        console.log('Resultado guardado en Supabase:', data);
+      }
+    } else {
+      console.warn('Supabase URL/KEY no configurados.');
+    }
+  }catch(err){
+    console.warn('Error al enviar a Supabase:', err);
+  }
+}
+
+function showResult(){
+  progressWrap.style.display='block';progressBar.style.width='100%';progressLabel.textContent='¡Completado!';progressPct.textContent='100%';const p=getProfile();
+  quizContent.innerHTML=`<div class="result-screen screen"><div class="result-hero" style="background:${p.color}18;"><div class="result-badge" style="background:${p.color};">${p.icon}</div><p class="result-eyebrow" style="color:${p.color};">Tu personalidad financiera</p><h2 class="result-type" style="color:${p.color};">${p.name}</h2><span class="result-profile-label" style="background:${p.color}22;color:${p.color};">${p.label}</span></div><div class="honda-quote"><p>"${p.quote}"</p><cite>— Ken Honda, Dinero Feliz</cite></div><p class="result-description">${p.description}</p><p class="result-section-title">Fortalezas y oportunidades</p><div class="strength-weakness"><div class="sw-box strengths"><h4>Fortalezas</h4><ul>${p.strengths.map(s=>`<li>${s}</li>`).join('')}</ul></div><div class="sw-box challenges"><h4>A trabajar</h4><ul>${p.challenges.map(c=>`<li>${c}</li>`).join('')}</ul></div></div><div class="result-traits">${p.traits.map(t=>`<span class="trait-tag" style="background:${p.color}15;color:${p.color};">${t}</span>`).join('')}</div><div class="result-divider"></div><p class="result-cta-text">¿Querés trabajar tu relación con el dinero?</p><div class="cta-stack"><div class="cta-primary-box"><p class="cta-label-top">RECOMENDADO</p><p class="cta-heading">Quiero mejorar mi relación con el dinero</p><p class="cta-sub">Una sesión de claridad totalmente gratuita para revisar tu situación y relación con el dinero. Juntos definiremos cómo podemos ayudarte a alcanzar tus metas financieras.</p><button class="btn-primary orange" style="margin:0 auto;width:100%;justify-content:center;" onclick="window.open('https://api.leadconnectorhq.com/widget/booking/UaGsUqWFGraPHBmZFxPG','_blank')">Quiero conversar con alguien del equipo →</button></div><div class="cta-divider-or"><span>o si preferís empezar por tu cuenta</span></div><div class="cta-secondary-box"><p class="cta-heading-sm">📖 Guía de Finanzas para No Financieros</p><p class="cta-sub-sm">Un libro práctico para empezar a tomar control de tu dinero hoy. Solo $20.</p><button class="btn-secondary-cta" onclick="window.open('https://carlos1762365460.hotmart.host/guia-finanzas-para-no-financieros-dc1f6fd7-1fa5-42f2-82d8-0ab2353ba022','_blank')">Conseguir el libro — $20 →</button></div></div><button class="btn-restart" onclick="restartQuiz()">↩ Volver a intentarlo</button></div>`;
+
+  // Enviar resultado a Supabase (asíncrono, no bloquea la UI)
+  sendToSupabase();
+}
+
 function startQuiz(){current=0;renderQuestion();}
 function goNext(){if(answers[current]===null)return;if(current<questions.length-1){current++;renderQuestion();}else renderEmailGate();}
 function goBack(){if(current>0){current--;renderQuestion();}else{current=-1;renderIntro();}}
 function restartQuiz(){current=-1;answers=new Array(questions.length).fill(null);userEmail='';renderIntro();}
+
+function updateWelcome(){
+  try{
+    const el = document.getElementById('welcomeEmail');
+    if(!el) return;
+    el.textContent = userEmail ? `Bienvenido — ${userEmail}` : 'Bienvenido';
+  }catch(e){/* no-op */}
+}
+
 renderIntro();
+updateWelcome();
 </script>
 </body>
 </html>

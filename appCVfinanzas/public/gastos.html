@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gastos - CV Finanzas</title>
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('cvf-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if ((savedTheme && savedTheme === 'dark') || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (error) {}
+    }());
+  </script>
+  <link href="/styles/tailwind.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-800">
+  <div id="sidebarOverlay" class="fixed inset-0 z-30 hidden bg-gray-900 bg-opacity-50 lg:hidden"></div>
+
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full transform border-r border-gray-200 bg-white transition duration-200 lg:translate-x-0">
+    <div class="flex h-16 items-center justify-between border-b border-gray-200 px-5">
+      <a href="/dashboard" class="flex items-center gap-3">
+        <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-700 text-xs font-black text-white">CV</span>
+        <span>
+          <span class="block text-sm font-black text-gray-900">CV Finanzas</span>
+          <span class="block text-xs font-semibold uppercase tracking-widest text-gray-400">Admin</span>
+        </span>
+      </a>
+      <button id="sidebarClose" class="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700 lg:hidden" type="button" aria-label="Cerrar menu">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="space-y-1 px-3 py-5" aria-label="Principal">
+      <a data-nav-link href="/dashboard" class="flex items-center gap-3 rounded-lg border-l-4 border-transparent px-3 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 13h8V3H3v10ZM13 21h8V3h-8v18ZM3 21h8v-6H3v6Z"></path>
+        </svg>
+        Dashboard
+      </a>
+      <a data-nav-link href="/search" class="flex items-center gap-3 rounded-lg border-l-4 border-transparent px-3 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m21 21-4.35-4.35"></path>
+          <circle cx="11" cy="11" r="7"></circle>
+        </svg>
+        Resultados
+      </a>
+      <a data-nav-link href="/gastos" class="flex items-center gap-3 rounded-lg border-l-4 border-blue-600 bg-blue-50 px-3 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-50">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7h16"></path>
+          <path d="M4 12h16"></path>
+          <path d="M4 17h10"></path>
+          <path d="M18 15v6"></path>
+          <path d="M15 18h6"></path>
+        </svg>
+        Gastos
+      </a>
+      <a data-nav-link href="/tipo-cambio" class="flex items-center gap-3 rounded-lg border-l-4 border-transparent px-3 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 9h8M8 15h8M10 6l-2 3 2 3M14 12l2 3-2 3"></path>
+        </svg>
+        Tipo de cambio
+      </a>
+      <a href="/test-postgres" class="flex items-center gap-3 rounded-lg border-l-4 border-transparent px-3 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <ellipse cx="12" cy="5" rx="8" ry="3"></ellipse>
+          <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"></path>
+          <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"></path>
+        </svg>
+        Estado DB
+      </a>
+    </nav>
+
+    <div class="absolute bottom-0 left-0 right-0 border-t border-gray-200 p-4">
+      <div class="mb-3 rounded-lg bg-gray-50 p-3">
+        <p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Sesion activa</p>
+        <p data-user-display class="mt-1 truncate text-sm font-bold text-gray-900">Cargando...</p>
+      </div>
+      <button data-theme-toggle class="mb-3 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 hover:bg-gray-50" type="button" aria-label="Cambiar tema">
+        <svg data-theme-icon="dark" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+        </svg>
+        <svg data-theme-icon="light" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <span data-theme-label>Tema oscuro</span>
+      </button>
+      <button data-logout class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 hover:border-red-200 hover:bg-red-50 hover:text-red-700" type="button">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <path d="m16 17 5-5-5-5"></path>
+          <path d="M21 12H9"></path>
+        </svg>
+        Cerrar sesion
+      </button>
+    </div>
+  </aside>
+
+  <div class="lg:ml-64">
+    <header class="sticky top-0 z-20 border-b border-gray-200 bg-white">
+      <div class="flex h-16 items-center justify-between px-4 sm:px-6">
+        <div class="flex items-center gap-3">
+          <button id="sidebarToggle" class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 lg:hidden" type="button" aria-label="Abrir menu">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-blue-700">Panel privado</p>
+            <h1 class="text-lg font-black text-gray-900 sm:text-xl">Gastos</h1>
+          </div>
+        </div>
+        <div class="hidden items-center gap-3 sm:flex">
+          <span class="text-sm font-semibold text-gray-500">Hola, <span data-user-display>Usuario</span></span>
+          <button data-theme-toggle class="rounded-lg border border-gray-200 p-2 text-gray-600 hover:bg-gray-50" type="button" aria-label="Cambiar tema">
+            <svg data-theme-icon="dark" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+            <svg data-theme-icon="light" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+            </svg>
+          </button>
+          <button data-logout class="rounded-lg border border-gray-200 px-3 py-2 text-sm font-bold text-gray-600 hover:bg-gray-50" type="button">Salir</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-4 py-6 sm:px-6 lg:px-8">
+      <section class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 class="text-2xl font-black text-gray-900">Registrar gastos</h2>
+          <p class="mt-1 text-sm text-gray-500">Captura una factura, toma solo el monto total neto y la fecha, y prueba el flujo sin guardar en BD.</p>
+        </div>
+        <span class="inline-flex w-max rounded-full bg-blue-50 px-3 py-1.5 text-xs font-black uppercase tracking-widest text-blue-700">Demo temporal</span>
+      </section>
+
+      <section class="grid gap-4 md:grid-cols-3">
+        <article class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Total capturado</p>
+          <p id="expenseTotal" class="mt-3 text-3xl font-black text-gray-900">CRC 0</p>
+        </article>
+        <article class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Tickets</p>
+          <p id="expenseCount" class="mt-3 text-3xl font-black text-gray-900">0</p>
+        </article>
+        <article class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Ultima categoria</p>
+          <p id="lastCategory" class="mt-3 text-2xl font-black text-gray-900">Sin datos</p>
+        </article>
+      </section>
+
+      <section class="mt-6 grid gap-6 xl:grid-cols-12">
+        <form id="expenseForm" class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm xl:col-span-7">
+          <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h3 class="text-base font-black text-gray-900">Detalle del gasto</h3>
+              <p class="text-sm text-gray-500">La factura solo llena monto total neto y fecha. El resto queda editable manualmente.</p>
+            </div>
+            <button id="clearExpense" class="rounded-lg border border-gray-200 px-3 py-2 text-sm font-bold text-gray-600 hover:bg-gray-50" type="button">Limpiar</button>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <label>
+              <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Comercio</span>
+              <input id="merchant" class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100" type="text" placeholder="Supermercado, restaurante...">
+            </label>
+            <label>
+              <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Fecha</span>
+              <input id="expenseDate" class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100" type="date">
+            </label>
+            <label>
+              <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Monto total neto</span>
+              <input id="amount" class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100" type="number" min="0" step="0.01" placeholder="0.00">
+            </label>
+            <label>
+              <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Moneda</span>
+              <select id="currency" class="block w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
+                <option value="CRC">CRC</option>
+                <option value="USD">USD</option>
+              </select>
+            </label>
+            <label>
+              <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Categoria</span>
+              <select id="category" class="block w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
+                <option value="Comida">Comida</option>
+                <option value="Transporte">Transporte</option>
+                <option value="Servicios">Servicios</option>
+                <option value="Compras">Compras</option>
+                <option value="Salud">Salud</option>
+                <option value="Entretenimiento">Entretenimiento</option>
+                <option value="Otros">Otros</option>
+              </select>
+            </label>
+            <label>
+              <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Metodo de pago</span>
+              <select id="paymentMethod" class="block w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
+                <option value="Tarjeta">Tarjeta</option>
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+                <option value="Sinpe">Sinpe</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="mt-4 block">
+            <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Notas</span>
+            <textarea id="notes" class="block min-h-24 w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100" placeholder="Detalle adicional o referencia de factura"></textarea>
+          </label>
+
+          <div id="expenseMessage" class="mt-4 hidden rounded-lg border px-4 py-3 text-sm font-semibold"></div>
+
+          <button class="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 py-3 text-sm font-black text-white shadow-sm hover:bg-blue-800" type="submit">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14"></path>
+              <path d="M5 12h14"></path>
+            </svg>
+            Agregar a la lista temporal
+          </button>
+        </form>
+
+        <aside class="space-y-6 xl:col-span-5">
+          <section class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+            <div class="mb-4">
+              <h3 class="text-base font-black text-gray-900">Factura por camara</h3>
+              <p class="text-sm text-gray-500">Usa la camara o sube una imagen. Solo se detecta total neto y fecha.</p>
+            </div>
+
+            <div class="grid gap-3 sm:grid-cols-2">
+              <button id="startCamera" class="rounded-lg border border-gray-200 px-4 py-3 text-sm font-black text-gray-700 hover:bg-gray-50" type="button">Abrir camara</button>
+              <label class="cursor-pointer rounded-lg border border-gray-200 px-4 py-3 text-center text-sm font-black text-gray-700 hover:bg-gray-50">
+                Subir factura
+                <input id="receiptUpload" class="sr-only" type="file" accept="image/*" capture="environment">
+              </label>
+            </div>
+
+            <div class="mt-4 overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
+              <video id="cameraPreview" class="hidden aspect-video w-full object-cover" autoplay playsinline></video>
+              <img id="receiptPreview" class="hidden max-h-80 w-full object-contain" alt="Vista previa de factura">
+              <div id="emptyReceiptState" class="flex aspect-video items-center justify-center px-6 text-center text-sm font-semibold text-gray-400">
+                La vista previa de la factura aparece aqui.
+              </div>
+            </div>
+
+            <canvas id="receiptCanvas" class="hidden"></canvas>
+
+            <div class="mt-4 grid gap-3 sm:grid-cols-2">
+              <button id="capturePhoto" class="rounded-lg bg-blue-700 px-4 py-3 text-sm font-black text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60" type="button" disabled>Tomar foto</button>
+              <button id="analyzeReceipt" class="rounded-lg border border-gray-200 px-4 py-3 text-sm font-black text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60" type="button" disabled>Detectar total y fecha</button>
+            </div>
+          </section>
+
+          <section class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+            <h3 class="text-base font-black text-gray-900">Total neto y fecha</h3>
+            <div id="detectedData" class="mt-4 space-y-3 text-sm text-gray-600">
+              <p class="rounded-lg bg-gray-50 px-4 py-3 font-semibold text-gray-400">Sin total neto ni fecha detectados.</p>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="mt-6 rounded-lg border border-gray-200 bg-white shadow-sm">
+        <div class="flex flex-col gap-2 border-b border-gray-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h3 class="text-base font-black text-gray-900">Lista temporal</h3>
+            <p class="text-sm text-gray-500">Se borra al refrescar. No se guarda en base de datos.</p>
+          </div>
+          <button id="clearList" class="rounded-lg border border-gray-200 px-3 py-2 text-sm font-bold text-gray-600 hover:bg-gray-50" type="button">Vaciar lista</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-5 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Fecha</th>
+                <th class="px-5 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Comercio</th>
+                <th class="px-5 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Categoria</th>
+                <th class="px-5 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Metodo</th>
+                <th class="px-5 py-3 text-right text-xs font-black uppercase tracking-widest text-gray-500">Monto</th>
+              </tr>
+            </thead>
+            <tbody id="expenseRows" class="divide-y divide-gray-100 bg-white">
+              <tr>
+                <td colspan="5" class="px-5 py-4 text-sm text-gray-500">Aun no hay gastos agregados.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <cv-footer></cv-footer>
+  </div>
+
+  <script src="/js/site-footer.js"></script>
+  <script src="/js/admin-layout.js"></script>
+  <script src="/js/receipt-parser.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="/js/gastos.js"></script>
+</body>
+</html>

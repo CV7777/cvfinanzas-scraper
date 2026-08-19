@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin · CV Finanzas</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy-dark: #0a1f37;
+            --navy: #08396e;
+            --orange: #f27c22;
+            --lavender: #d4d2dc;
+            --white: #fefefe;
+            --cream: #fdf8f4;
+            --text-muted: rgba(8, 57, 110, 0.5);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            min-height: 100vh;
+            color: var(--navy-dark);
+        }
+
+        /* ── GATE ── */
+        #gate {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: var(--navy-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        #gate.hidden {
+            display: none;
+        }
+
+        .gate-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy), var(--orange));
+        }
+
+        .gate-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .gate-logo img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+
+        .gate-logo span {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--navy-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .gate-logo span em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .gate-eyebrow {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .gate-title {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--navy-dark);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .gate-sub {
+            font-size: 0.82rem;
+            color: var(--navy);
+            opacity: 0.6;
+            line-height: 1.6;
+            margin-bottom: 1.75rem;
+        }
+
+        .gate-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .gate-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .gate-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .gate-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--navy);
+            opacity: 0.5;
+        }
+
+        .gate-input {
+            padding: 0.75rem 1rem;
+            border: 1.5px solid var(--lavender);
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.88rem;
+            color: var(--navy-dark);
+            background: var(--white);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .gate-input:focus {
+            border-color: var(--navy);
+        }
+
+        .gate-input.error {
+            border-color: #e05050;
+        }
+
+        .gate-error {
+            font-size: 0.72rem;
+            color: #e05050;
+            font-weight: 600;
+            min-height: 1rem;
+        }
+
+        .gate-submit {
+            width: 100%;
+            margin-top: 1rem;
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--orange), #d96c15);
+            border: none;
+            border-radius: 12px;
+            padding: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 18px rgba(242, 124, 34, 0.3);
+        }
+
+        .gate-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 28px rgba(242, 124, 34, 0.4);
+        }
+
+        .gate-privacy {
+            text-align: center;
+            margin-top: 0.75rem;
+            font-size: 0.68rem;
+            color: var(--navy);
+            opacity: 0.35;
+        }
+
+        /* ── GATE TABS ── */
+        .gate-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 1.2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1.5px solid rgba(15, 32, 65, 0.12);
+        }
+
+        .gate-tab {
+            flex: 1;
+            text-align: center;
+            padding: 0.65rem 0.5rem;
+            font-family: 'League Spartan', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: rgba(15, 32, 65, 0.04);
+            color: var(--navy);
+            opacity: 0.5;
+            transition: all 0.25s;
+            border: none;
+        }
+
+        .gate-tab.active {
+            background: var(--navy-dark);
+            color: var(--white);
+            opacity: 1;
+        }
+
+        .gate-tab:hover:not(.active) {
+            opacity: 0.75;
+            background: rgba(15, 32, 65, 0.08);
+        }
+
+        .gate-panel {
+            display: none;
+        }
+
+        .gate-panel.active {
+            display: block;
+        }
+
+        .gate-status {
+            text-align: center;
+            font-size: 0.78rem;
+            margin-top: 0.5rem;
+            min-height: 1.2rem;
+            font-weight: 600;
+        }
+
+        .gate-status.error {
+            color: #e05050;
+        }
+
+        .gate-status.success {
+            color: #2ecc71;
+        }
+
+        .gate-status.loading {
+            color: var(--navy);
+            opacity: 0.5;
+        }
+
+        .gate-link {
+            text-align: center;
+            margin-top: 0.6rem;
+            font-size: 0.76rem;
+            color: var(--navy);
+            opacity: 0.6;
+        }
+
+        .gate-link a {
+            color: var(--orange);
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .gate-link a:hover {
+            text-decoration: underline;
+        }
+
+        .gate-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: var(--navy-dark);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .header-brand img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .header-brand span {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        .header-brand span em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .header-divider {
+            width: 1px;
+            height: 22px;
+            background: rgba(255, 255, 255, 0.15);
+            margin: 0 0.75rem;
+        }
+
+        .header-subtitle {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--white);
+            opacity: 0.35;
+        }
+
+        .header-tag {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--white);
+            opacity: 0.4;
+        }
+
+        .header-update {
+            font-size: 0.7rem;
+            color: var(--white);
+            opacity: 0.35;
+            text-align: right;
+            line-height: 1.4;
+        }
+
+        .header-update strong {
+            color: var(--orange);
+            opacity: 1;
+        }
+
+        /* ── MAIN ── */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        /* ── HERO STATS ── */
+        .hero-date {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-title {
+            font-family: 'League Spartan', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 900;
+            color: var(--navy-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        /* ... (remaining CSS omitted for brevity) ... */
+
+        @media (max-width: 600px) {
+            header {
+                padding: 0.85rem 1rem;
+            }
+
+            .header-tag {
+                display: none;
+            }
+
+            main {
+                padding: 1.25rem 1rem 3rem;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Responsive: tablet y móvil */
+        @media (max-width: 900px) {
+            .gate-card {
+                max-width: 520px;
+                padding: 1.8rem;
+                border-radius: 18px;
+            }
+
+            .gate-row {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+            }
+
+            .gate-logo img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .gate-logo span {
+                font-size: 0.98rem;
+            }
+
+            .gate-title {
+                font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+            }
+
+            .gate-sub {
+                font-size: 0.78rem;
+            }
+
+            .gate-input {
+                font-size: 0.95rem;
+                padding: 0.7rem 0.9rem;
+            }
+
+            .gate-submit {
+                padding: 0.85rem;
+                font-size: 0.95rem;
+            }
+
+            header {
+                padding: 0.9rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #gate {
+                padding: 0.7rem;
+            }
+
+            .gate-card {
+                width: 100%;
+                max-width: 100%;
+                padding: 1.1rem;
+                border-radius: 12px;
+                box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+            }
+
+            .gate-card::before {
+                height: 3px;
+            }
+
+            .gate-logo img {
+                width: 26px;
+                height: 26px;
+            }
+
+            .gate-logo span {
+                font-size: 0.95rem;
+            }
+
+            .gate-eyebrow {
+                font-size: 0.6rem;
+            }
+
+            .gate-title {
+                font-size: 1.15rem;
+                line-height: 1.15;
+            }
+
+            .gate-sub {
+                font-size: 0.75rem;
+            }
+
+            .gate-row {
+                grid-template-columns: 1fr;
+            }
+
+            .gate-label {
+                font-size: 0.64rem;
+            }
+
+            .gate-input {
+                font-size: 0.9rem;
+                padding: 0.6rem 0.8rem;
+            }
+
+            .gate-submit {
+                padding: 0.7rem;
+                font-size: 0.95rem;
+            }
+
+            header .header-brand span {
+                font-size: 1rem;
+            }
+        }
+
+        /* body{margin:0;padding:0;font-family:'League Spartan', 'Montserrat', Arial, sans-serif;min-height:100vh;} */
+        #loginScreen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .loginBox {
+            background: #181818;
+            border-radius: 16px;
+            padding: 40px 36px 32px 36px;
+            box-shadow: 0 2px 16px #0002;
+            width: 100%;
+            max-width: 370px;
+            text-align: center;
+            border: 1px solid #232323;
+        }
+
+        .loginBox .logo {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            font-family: 'League Spartan', Arial, sans-serif;
+        }
+
+        .loginBox .logo span {
+            color: #f5a623;
+        }
+
+        .loginBox p {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 26px;
+        }
+
+        .loginBox input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #232323;
+            border: 1px solid #333;
+            border-radius: 9px;
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 13px;
+            outline: none;
+            transition: .2s;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        .loginBox input:focus {
+            border-color: #f5a623;
+        }
+
+        .loginBox button {
+            width: 100%;
+            padding: 14px;
+            background: #f5a623;
+            color: #000;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: .2s;
+            font-family: 'League Spartan', Arial, sans-serif;
+        }
+
+        .loginBox button:hover {
+            background: #e09416;
+        }
+
+        #loginError {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="loginScreen">
+        <div class="gate-panel" id="loginBox">
+            <div class="gate-row full">
+                <div class="logo"><span>CV</span> Finanzas</div>
+                <p class="gate-title">Panel de administración</p>
+                <div class="gate-field">
+                    <label class="gate-label">Correo electrónico</label>
+                    <input type="text" id="userInput" class="gate-input" placeholder="maria@correo.com" />
+                </div>
+                <div class="gate-field">
+                    <label class="gate-label">Contraseña</label>
+                    <input type="password" id="pwInput" class="gate-input" placeholder="****" />
+                </div>
+            </div>
+            <button class="gate-submit" id="btnLogin" onclick="doLogin()">Iniciar sesión →</button>
+            <div class="gate-status" id="loginError"></div>
+        </div>
+    </div>
+
+    <div id="adminPanel">
+        <div class="topBar">
+            <div class="logo"><span>CV</span> Finanzas · Admin</div>
+            <div class="right">
+                <div class="statusDot">Conectado</div>
+                <button class="btnLogout" onclick="doLogout()">Cerrar sesión</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="card">
+                <h2>✏️ Análisis del día</h2>
+                <div class="formRow">
+                    <div class="formGroup"><label>Fecha</label><input type="date" id="fechaInput"></div>
+                    <div class="formGroup"><label>Hora</label><input type="time" id="horaInput"></div>
+                </div>
+                <div class="formGroup">
+                    <label>Texto del análisis</label>
+                    <div class="emojiBar">
+                        <button class="emojiBtn" onclick="ins('📈')">📈 Sube</button>
+                        <button class="emojiBtn" onclick="ins('📉')">📉 Baja</button>
+                        <button class="emojiBtn" onclick="ins('⚠️')">⚠️ Alerta</button>
+                        <button class="emojiBtn" onclick="ins('✅')">✅ OK</button>
+                        <button class="previewBtn" id="prevBtn" onclick="togglePreview()">👁 Vista previa</button>
+                    </div>
+                    <textarea id="textoInput" placeholder="Escribí el análisis aquí..."></textarea>
+                    <div class="charCount"><span id="charCount">0</span> caracteres</div>
+                    <div class="preview" id="previewBox"></div>
+                </div>
+                <div class="btnRow">
+                    <button class="btnPublish" id="btnPublish" onclick="publicar()">🚀 Publicar</button>
+                    <button class="btnClear" onclick="limpiar()">Limpiar</button>
+                </div>
+            </div>
+            <div class="card">
+                <h2>📋 Historial</h2>
+                <div id="historialBox">
+                    <div class="histEmpty">Cargando...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toast" id="toast"></div>
+    <script>
+        REPO = 'CV7777/cvfinanzas-scraper', FILE = 'analisis.json';
+        // Obtener el token desde la variable de entorno
+        // Copiado de tipo_cambio.html — GoHighLevel proxy + login
+        const GHL_PROXY_URL = 'https://script.google.com/macros/s/AKfycbxRPAehrKHm-iOfpZdOPrXJMQGgm58KNHXxuzXW0Fnm3bQuLAFVs4nXi0-sITEXDfG7/exec';
+        const TOKEN = "";
+
+        function $(i) { return document.getElementById(i); }
+
+        async function validateCredentialsAndUpdate(username, password) {
+            if (GHL_PROXY_URL.includes('REEMPLAZAR')) return null;
+
+            try {
+                const response = await fetch(GHL_PROXY_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: "validateCredentialsAndUpdate", username, password }),
+                    redirect: 'follow'
+                });
+
+                const result = await response.json();
+                console.log(result);
+                if (result.success) {
+                    return result;
+                }
+                return null;
+            } catch (err) {
+                console.warn('Error en validateCredentialsAndUpdate:', err.message);
+                return null;
+            }
+        }
+
+        async function doLogin() {
+            const username = $('userInput').value.trim();
+            const password = $('pwInput').value.trim();
+
+            try {
+                const result = await validateCredentialsAndUpdate(username, password);
+
+                if (result && result.success) {
+                    sessionStorage.setItem('cvadmin', '1');
+                    sessionStorage.setItem('cvadmin_time', Date.now().toString());
+                    $('loginScreen').style.display = 'none';
+                    $('adminPanel').style.display = 'block';
+                    init();
+                } else {
+                    $('loginError').textContent = 'Credenciales incorrectas';
+                    $('loginError').style.display = 'block';
+                }
+            } catch (err) {
+                console.error('Error al iniciar sesión:', err);
+                $('loginError').textContent = 'Error al validar credenciales';
+                $('loginError').style.display = 'block';
+            }
+        }
+
+        function checkSession() {
+            const t = sessionStorage.getItem('cvadmin_time');
+            if (!t) return false;
+            const now = Date.now();
+            if (now - parseInt(t, 10) > 3600000) { // 1 hora = 3600000 ms
+                sessionStorage.removeItem('cvadmin');
+                sessionStorage.removeItem('cvadmin_time');
+                sessionStorage.removeItem('cvtk');
+                return false;
+            }
+            return true;
+        }
+        if (sessionStorage.getItem('cvadmin') === '1' && checkSession() && sessionStorage.getItem('cvtk')) {
+            TOKEN = sessionStorage.getItem('cvtk');
+            $('loginScreen').style.display = 'none';
+            $('adminPanel').style.display = 'block';
+            init();
+        } else {
+            sessionStorage.removeItem('cvadmin');
+            sessionStorage.removeItem('cvadmin_time');
+            sessionStorage.removeItem('cvtk');
+        }
+        function init() {
+            const n = new Date();
+            $('fechaInput').value = n.getFullYear() + '-' + String(n.getMonth() + 1).padStart(2, '0') + '-' + String(n.getDate()).padStart(2, '0');
+            $('horaInput').value = String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0');
+            $('textoInput').addEventListener('input', cnt);
+            hist();
+        }
+        function ins(e) { const ta = $('textoInput'); const s = ta.selectionStart, en = ta.selectionEnd; ta.value = ta.value.substring(0, s) + e + ' ' + ta.value.substring(en); ta.selectionStart = ta.selectionEnd = s + e.length + 1; ta.focus(); cnt(); if ($('previewBox').classList.contains('visible')) prev(); }
+        function cnt() { $('charCount').textContent = $('textoInput').value.length; if ($('previewBox').classList.contains('visible')) prev(); }
+        function togglePreview() { $('previewBox').classList.toggle('visible'); $('prevBtn').classList.toggle('active'); if ($('previewBox').classList.contains('visible')) prev(); }
+        function prev() { $('previewBox').textContent = $('textoInput').value; }
+        function limpiar() { $('textoInput').value = ''; $('charCount').textContent = '0'; $('previewBox').textContent = ''; }
+        async function publicar() {
+            const fe = $('fechaInput').value, ho = $('horaInput').value, tx = $('textoInput').value.trim();
+            if (!fe) return toast('Seleccioná una fecha', 'error');
+            if (!ho) return toast('Indicá la hora', 'error');
+            if (!tx) return toast('El análisis no puede estar vacío', 'error');
+            const btn = $('btnPublish'); btn.disabled = true; btn.textContent = '⏳ Publicando...';
+            try {
+                const gr = await fetch('https://api.github.com/repos/' + REPO + '/contents/' + FILE, { headers: { 'Authorization': 'Bearer ' + TOKEN, 'Accept': 'application/vnd.github+json' } });
+                if (!gr.ok) throw new Error('Error al leer archivo (' + gr.status + ')');
+                const fd = await gr.json();
+                let ad; try { ad = JSON.parse(atob(fd.content.replace(/\n/g, ''))); } catch (e) { ad = { analisis: [] }; }
+                if (!ad.analisis) ad.analisis = [];
+                const pp = ho.split(':'), h = parseInt(pp[0]), am = h >= 12 ? 'PM' : 'AM', h12 = String(h % 12 || 12).padStart(2, '0'), hd = h12 + ':' + pp[1] + ' ' + am;
+                ad.analisis.unshift({ fecha: fe, texto: tx, hora: hd });
+                if (ad.analisis.length > 30) ad.analisis = ad.analisis.slice(0, 30);
+                const nc = btoa(unescape(encodeURIComponent(JSON.stringify(ad, null, 2))));
+                const pr = await fetch('https://api.github.com/repos/' + REPO + '/contents/' + FILE, { method: 'PUT', headers: { 'Authorization': 'Bearer ' + TOKEN, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github+json' }, body: JSON.stringify({ message: 'Analisis ' + fe, content: nc, sha: fd.sha }) });
+                if (!pr.ok) { const er = await pr.json(); throw new Error(er.message || 'Error al publicar (' + pr.status + ')'); }
+                toast('✅ Análisis publicado correctamente', 'success'); limpiar(); setTimeout(hist, 2500);
+            } catch (err) { toast('❌ ' + err.message, 'error'); console.error(err); }
+            finally { btn.disabled = false; btn.innerHTML = '🚀 Publicar'; }
+        }
+        async function hist() {
+            const box = $('historialBox'); box.innerHTML = '<div class="histEmpty">Cargando...</div>';
+            try {
+                const r = await fetch('https://raw.githubusercontent.com/' + REPO + '/main/' + FILE + '?t=' + Date.now());
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                const d = await r.json(); const li = d.analisis || [];
+                if (!li.length) { box.innerHTML = '<div class="histEmpty">Sin análisis publicados aún</div>'; return; }
+                const ms = ['', 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+                box.innerHTML = li.slice(0, 10).map(x => {
+                    const p = (x.fecha || '').split('-'), fs = p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : x.fecha || '';
+                    const tx = String(x.texto || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                    return '<div class="histItem"><div class="histMeta"><span>📅 ' + fs + '</span><span>🕐 ' + (x.hora || '') + '</span></div><div class="histText">' + tx + '</div></div>';
+                }).join('');
+            } catch (e) { box.innerHTML = '<div class="histEmpty" style="color:#e74c3c">Error al cargar: ' + e.message + '</div>'; }
+        }
+
+        function toast(m, t) { const el = $('toast'); el.textContent = m; el.className = 'toast ' + (t || 'success') + ' show'; setTimeout(() => el.classList.remove('show'), 3500); }
+    </script>
+</body>
+
+</html>

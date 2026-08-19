@@ -1,74 +1,615 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin · CV Finanzas</title>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0a;color:#e0e0e0;font-family:'Segoe UI',sans-serif;min-height:100vh}
-#loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
-.loginBox{background:#141414;border:1px solid #2a2a2a;border-radius:12px;padding:40px;width:100%;max-width:380px;text-align:center}
-.loginBox .logo{font-size:28px;font-weight:900;margin-bottom:8px}.loginBox .logo span{color:#f5a623}
-.loginBox p{color:#666;font-size:13px;margin-bottom:28px}
-.loginBox input{width:100%;padding:12px 16px;background:#1e1e1e;border:1px solid #333;border-radius:8px;color:#fff;font-size:15px;margin-bottom:12px;outline:none}
-.loginBox input:focus{border-color:#f5a623}
-.loginBox button{width:100%;padding:13px;background:#f5a623;color:#000;font-weight:700;font-size:15px;border:none;border-radius:8px;cursor:pointer}
-#loginError{color:#e74c3c;font-size:13px;margin-top:10px;display:none}
-#adminPanel{display:none}
-.topBar{background:#111;border-bottom:1px solid #222;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
-.topBar .logo{font-size:20px;font-weight:900}.topBar .logo span{color:#f5a623}
-.topBar .right{display:flex;align-items:center;gap:16px}
-.statusDot{display:flex;align-items:center;gap:6px;font-size:13px;color:#4caf50}
-.statusDot::before{content:'';width:8px;height:8px;background:#4caf50;border-radius:50%;animation:pulse 2s infinite}
+    *,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --navy-dark: #0a1f37;
+  --navy: #08396e;
+  --orange: #f27c22;
+  --lavender: #d4d2dc;
+  --white: #fefefe;
+  --cream: #fdf8f4;
+  --text-muted: rgba(8, 57, 110, 0.5);
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--cream);
+  min-height: 100vh;
+  color: var(--navy-dark);
+}
+
+/* ── GATE ── */
+#gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--navy-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+#gate.hidden {
+  display: none;
+}
+
+.gate-card {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.gate-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--navy), var(--orange));
+}
+
+.gate-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.gate-logo img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.gate-logo span {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--navy-dark);
+  letter-spacing: -0.01em;
+}
+
+.gate-logo span em {
+  color: var(--orange);
+  font-style: normal;
+}
+
+.gate-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 0.5rem;
+}
+
+.gate-title {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--navy-dark);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.gate-sub {
+  font-size: 0.82rem;
+  color: var(--navy);
+  opacity: 0.6;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.gate-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.gate-row.full {
+  grid-template-columns: 1fr;
+}
+
+.gate-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.gate-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+  opacity: 0.5;
+}
+
+.gate-input {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--lavender);
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  color: var(--navy-dark);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.gate-input:focus {
+  border-color: var(--navy);
+}
+
+.gate-input.error {
+  border-color: #e05050;
+}
+
+.gate-error {
+  font-size: 0.72rem;
+  color: #e05050;
+  font-weight: 600;
+  min-height: 1rem;
+}
+
+.gate-submit {
+  width: 100%;
+  margin-top: 1rem;
+  font-family: 'League Spartan', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--orange), #d96c15);
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 18px rgba(242, 124, 34, 0.3);
+}
+
+.gate-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(242, 124, 34, 0.4);
+}
+
+.gate-privacy {
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.68rem;
+  color: var(--navy);
+  opacity: 0.35;
+}
+
+/* ── GATE TABS ── */
+.gate-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.2rem;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid rgba(15, 32, 65, 0.12);
+}
+
+.gate-tab {
+  flex: 1;
+  text-align: center;
+  padding: 0.65rem 0.5rem;
+  font-family: 'League Spartan', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: rgba(15, 32, 65, 0.04);
+  color: var(--navy);
+  opacity: 0.5;
+  transition: all 0.25s;
+  border: none;
+}
+
+.gate-tab.active {
+  background: var(--navy-dark);
+  color: var(--white);
+  opacity: 1;
+}
+
+.gate-tab:hover:not(.active) {
+  opacity: 0.75;
+  background: rgba(15, 32, 65, 0.08);
+}
+
+.gate-panel {
+  display: none;
+}
+
+.gate-panel.active {
+  display: block;
+}
+
+.gate-status {
+  text-align: center;
+  font-size: 0.78rem;
+  margin-top: 0.5rem;
+  min-height: 1.2rem;
+  font-weight: 600;
+}
+
+.gate-status.error {
+  color: #e05050;
+}
+
+.gate-status.success {
+  color: #2ecc71;
+}
+
+.gate-status.loading {
+  color: var(--navy);
+  opacity: 0.5;
+}
+
+.gate-link {
+  text-align: center;
+  margin-top: 0.6rem;
+  font-size: 0.76rem;
+  color: var(--navy);
+  opacity: 0.6;
+}
+
+.gate-link a {
+  color: var(--orange);
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.gate-link a:hover {
+  text-decoration: underline;
+}
+
+.gate-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--navy-dark);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header-brand img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.header-brand span {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.header-brand span em {
+  color: var(--orange);
+  font-style: normal;
+}
+
+.header-divider {
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 0.75rem;
+}
+
+.header-subtitle {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+  opacity: 0.35;
+}
+
+.header-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+  opacity: 0.4;
+}
+
+.header-update {
+  font-size: 0.7rem;
+  color: var(--white);
+  opacity: 0.35;
+  text-align: right;
+  line-height: 1.4;
+}
+
+.header-update strong {
+  color: var(--orange);
+  opacity: 1;
+}
+
+/* ── MAIN ── */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ── HERO STATS ── */
+.hero-date {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 0.4rem;
+}
+
+.hero-title {
+  font-family: 'League Spartan', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 900;
+  color: var(--navy-dark);
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+/* ... (remaining CSS omitted for brevity) ... */
+
+@media (max-width: 600px) {
+  header {
+    padding: 0.85rem 1rem;
+  }
+
+  .header-tag {
+    display: none;
+  }
+
+  main {
+    padding: 1.25rem 1rem 3rem;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Responsive: tablet y móvil */
+@media (max-width: 900px) {
+  .gate-card {
+    max-width: 520px;
+    padding: 1.8rem;
+    border-radius: 18px;
+  }
+
+  .gate-row {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .gate-logo img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .gate-logo span {
+    font-size: 0.98rem;
+  }
+
+  .gate-title {
+    font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+  }
+
+  .gate-sub {
+    font-size: 0.78rem;
+  }
+
+  .gate-input {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .gate-submit {
+    padding: 0.85rem;
+    font-size: 0.95rem;
+  }
+
+  header {
+    padding: 0.9rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #gate {
+    padding: 0.7rem;
+  }
+
+  .gate-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.1rem;
+    border-radius: 12px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+  }
+
+  .gate-card::before {
+    height: 3px;
+  }
+
+  .gate-logo img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .gate-logo span {
+    font-size: 0.95rem;
+  }
+
+  .gate-eyebrow {
+    font-size: 0.6rem;
+  }
+
+  .gate-title {
+    font-size: 1.15rem;
+    line-height: 1.15;
+  }
+
+  .gate-sub {
+    font-size: 0.75rem;
+  }
+
+  .gate-row {
+    grid-template-columns: 1fr;
+  }
+
+  .gate-label {
+    font-size: 0.64rem;
+  }
+
+  .gate-input {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .gate-submit {
+    padding: 0.7rem;
+    font-size: 0.95rem;
+  }
+
+  header .header-brand span {
+    font-size: 1rem;
+  }
+}
+/* body{margin:0;padding:0;font-family:'League Spartan', 'Montserrat', Arial, sans-serif;min-height:100vh;} */
+#loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
+.loginBox{background:#181818;border-radius:16px;padding:40px 36px 32px 36px;box-shadow:0 2px 16px #0002;width:100%;max-width:370px;text-align:center;border:1px solid #232323;}
+.loginBox .logo{font-size:32px;font-weight:900;margin-bottom:10px;letter-spacing:-1px;font-family:'League Spartan',Arial,sans-serif;}
+.loginBox .logo span{color:#f5a623;}
+.loginBox p{color:#888;font-size:14px;margin-bottom:26px;}
+.loginBox input{width:100%;padding:14px 16px;background:#232323;border:1px solid #333;border-radius:9px;color:#fff;font-size:16px;margin-bottom:13px;outline:none;transition:.2s;font-family:'Montserrat',Arial,sans-serif;}
+.loginBox input:focus{border-color:#f5a623;}
+.loginBox button{width:100%;padding:14px;background:#f5a623;color:#000;font-weight:700;font-size:16px;border:none;border-radius:9px;cursor:pointer;transition:.2s;font-family:'League Spartan',Arial,sans-serif;}
+.loginBox button:hover{background:#e09416;}
+#loginError{color:#e74c3c;font-size:14px;margin-top:10px;display:none;}
+/* #adminPanel{display:none;}
+.topBar{background:#111;border-bottom:1px solid #232323;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;}
+.topBar .logo{font-size:22px;font-weight:900;letter-spacing:-1px;font-family:'League Spartan',Arial,sans-serif;}
+.topBar .logo span{color:#f5a623;}
+.topBar .right{display:flex;align-items:center;gap:16px;}
+.statusDot{display:flex;align-items:center;gap:6px;font-size:14px;color:#4caf50;}
+.statusDot::before{content:'';width:9px;height:9px;background:#4caf50;border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.btnLogout{padding:7px 16px;background:transparent;border:1px solid #444;border-radius:6px;color:#aaa;font-size:13px;cursor:pointer}
-.btnLogout:hover{border-color:#e74c3c;color:#e74c3c}
-.content{padding:28px;max-width:760px;margin:0 auto}
-.card{background:#141414;border:1px solid #222;border-radius:12px;padding:28px;margin-bottom:20px}
-.card h2{font-size:16px;font-weight:700;margin-bottom:22px}
-.formRow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
-.formGroup{display:flex;flex-direction:column;gap:6px}
-.formGroup label{font-size:11px;font-weight:700;letter-spacing:.08em;color:#888;text-transform:uppercase}
-.formGroup input{padding:10px 14px;background:#1e1e1e;border:1px solid #333;border-radius:8px;color:#fff;font-size:14px;outline:none}
-.formGroup input:focus{border-color:#f5a623}
-.emojiBar{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;align-items:center}
-.emojiBtn{padding:5px 10px;background:#1e1e1e;border:1px solid #333;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;color:#ccc}
-.emojiBtn:hover{border-color:#f5a623;color:#fff}
-.previewBtn{margin-left:auto;padding:5px 12px;background:transparent;border:1px solid #444;border-radius:6px;cursor:pointer;font-size:12px;color:#aaa}
-.previewBtn.active{border-color:#f5a623;color:#f5a623}
-textarea{width:100%;min-height:140px;padding:14px;background:#1e1e1e;border:1px solid #333;border-radius:8px;color:#e0e0e0;font-size:14px;line-height:1.6;resize:vertical;outline:none;font-family:inherit}
-textarea:focus{border-color:#f5a623}
-.charCount{text-align:right;font-size:12px;color:#555;margin-top:4px}
-.preview{display:none;padding:16px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;margin-top:10px;font-size:14px;line-height:1.7;color:#ccc;white-space:pre-wrap}
-.preview.visible{display:block}
-.btnRow{display:flex;gap:10px;margin-top:20px}
-.btnPublish{padding:12px 28px;background:#f5a623;color:#000;font-weight:700;font-size:15px;border:none;border-radius:8px;cursor:pointer}
-.btnPublish:hover{background:#e09416}.btnPublish:disabled{background:#555;color:#888;cursor:not-allowed}
-.btnClear{padding:12px 20px;background:transparent;border:1px solid #444;border-radius:8px;color:#aaa;font-size:14px;cursor:pointer}
-.btnClear:hover{border-color:#e74c3c;color:#e74c3c}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:999}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.toast.success{background:#1b4d2e;border:1px solid #27ae60;color:#2ecc71}
-.toast.error{background:#4d1b1b;border:1px solid #c0392b;color:#e74c3c}
-.histItem{padding:14px 16px;border:1px solid #222;border-radius:8px;margin-bottom:10px;background:#1a1a1a}
-.histMeta{font-size:12px;color:#666;margin-bottom:6px;display:flex;gap:10px}
-.histMeta span{color:#888}
-.histText{font-size:13px;color:#ccc;line-height:1.6;white-space:pre-wrap}
-.histEmpty{color:#555;font-size:14px;text-align:center;padding:24px 0}
-.tokenNote{font-size:11px;color:#555;margin-top:4px;text-align:left}
+.btnLogout{padding:8px 18px;background:transparent;border:1px solid #444;border-radius:7px;color:#aaa;font-size:14px;cursor:pointer;transition:.2s;font-family:'Montserrat',Arial,sans-serif;}
+.btnLogout:hover{border-color:#e74c3c;color:#e74c3c;}
+.content{padding:32px;max-width:800px;margin:0 auto;}
+.card{background:#181818;border:1px solid #232323;border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 2px 12px #0001;}
+.card h2{font-size:18px;font-weight:700;margin-bottom:24px;font-family:'League Spartan',Arial,sans-serif;}
+.formRow{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px;}
+.formGroup{display:flex;flex-direction:column;gap:7px;}
+.formGroup label{font-size:12px;font-weight:700;letter-spacing:.08em;color:#888;text-transform:uppercase;font-family:'Montserrat',Arial,sans-serif;}
+.formGroup input{padding:11px 15px;background:#232323;border:1px solid #333;border-radius:9px;color:#fff;font-size:15px;outline:none;font-family:'Montserrat',Arial,sans-serif;}
+.formGroup input:focus{border-color:#f5a623;}
+.emojiBar{display:flex;gap:9px;margin-bottom:9px;flex-wrap:wrap;align-items:center;}
+.emojiBtn{padding:6px 11px;background:#232323;border:1px solid #333;border-radius:7px;cursor:pointer;font-size:13px;font-weight:600;color:#ccc;transition:.2s;font-family:'Montserrat',Arial,sans-serif;}
+.emojiBtn:hover{border-color:#f5a623;color:#fff;}
+.previewBtn{margin-left:auto;padding:6px 13px;background:transparent;border:1px solid #444;border-radius:7px;cursor:pointer;font-size:13px;color:#aaa;transition:.2s;font-family:'Montserrat',Arial,sans-serif;}
+.previewBtn.active{border-color:#f5a623;color:#f5a623;}
+textarea{width:100%;min-height:150px;padding:15px;background:#232323;border:1px solid #333;border-radius:9px;color:#e0e0e0;font-size:15px;line-height:1.6;resize:vertical;outline:none;font-family:'Montserrat',Arial,sans-serif;}
+textarea:focus{border-color:#f5a623;}
+.charCount{text-align:right;font-size:13px;color:#555;margin-top:5px;}
+.preview{display:none;padding:17px;background:#202020;border:1px solid #2a2a2a;border-radius:9px;margin-top:11px;font-size:15px;line-height:1.7;color:#ccc;white-space:pre-wrap;font-family:'Montserrat',Arial,sans-serif;}
+.preview.visible{display:block;}
+.btnRow{display:flex;gap:11px;margin-top:22px;}
+.btnPublish{padding:13px 29px;background:#f5a623;color:#000;font-weight:700;font-size:16px;border:none;border-radius:9px;cursor:pointer;transition:.2s;font-family:'League Spartan',Arial,sans-serif;}
+.btnPublish:hover{background:#e09416;}.btnPublish:disabled{background:#555;color:#888;cursor:not-allowed;}
+.btnClear{padding:13px 21px;background:transparent;border:1px solid #444;border-radius:9px;color:#aaa;font-size:15px;cursor:pointer;transition:.2s;font-family:'Montserrat',Arial,sans-serif;}
+.btnClear:hover{border-color:#e74c3c;color:#e74c3c;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);padding:13px 25px;border-radius:9px;font-size:15px;font-weight:600;opacity:0;transition:all .3s;z-index:999;font-family:'Montserrat',Arial,sans-serif;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.success{background:#1b4d2e;border:1px solid #27ae60;color:#2ecc71;}
+.toast.error{background:#4d1b1b;border:1px solid #c0392b;color:#e74c3c;}
+.histItem{padding:15px 17px;border:1px solid #232323;border-radius:9px;margin-bottom:11px;background:#202020;}
+.histMeta{font-size:13px;color:#666;margin-bottom:7px;display:flex;gap:11px;}
+.histMeta span{color:#888;}
+.histText{font-size:14px;color:#ccc;line-height:1.6;white-space:pre-wrap;font-family:'Montserrat',Arial,sans-serif;}
+.histEmpty{color:#555;font-size:15px;text-align:center;padding:25px 0;}
+.tokenNote{font-size:12px;color:#555;margin-top:5px;text-align:left;font-family:'Montserrat',Arial,sans-serif;} */
 </style>
 </head>
 <body>
-<div id="loginScreen">
+  <div id="loginScreen">
+    <div class="gate-panel" id="loginBox">
+      <div class="gate-row full">
+        <div class="logo"><span>CV</span> Finanzas</div>
+        <p class="gate-title">Panel de administración</p>
+        <div class="gate-field">
+          <label class="gate-label">Correo electrónico</label>
+          <input type="text" id="userInput" class="gate-input" placeholder="maria@correo.com" />
+        </div>
+        <div class="gate-field">
+          <label class="gate-label">Contraseña</label>
+          <input type="password" id="pwInput" class="gate-input" placeholder="****" />
+        </div>
+      </div>
+      <button class="gate-submit" id="btnLogin" onclick="doLogin()">Iniciar sesión →</button>
+      <div class="gate-status" id="loginError"></div>
+    </div>
+  </div>
+    
+
+<!-- <div id="loginScreen">
   <div class="loginBox">
     <div class="logo"><span>CV</span> Finanzas</div>
     <p>Panel de administración</p>
-    <input type="password" id="pwInput" placeholder="Contraseña de acceso">
-    <input type="password" id="tokenInput" placeholder="GitHub Token" autocomplete="off">
+    <input type="text" id="userInput" placeholder="Usuario de acceso">
+    <input type="password" id="pwInput" placeholder="Contraseña de acceso" autocomplete="off">
     <p class="tokenNote">El token se guarda en esta sesión solamente</p>
     <button onclick="doLogin()">Ingresar</button>
     <div id="loginError">Credenciales incorrectas</div>
   </div>
-</div>
+</div> -->
+
 <div id="adminPanel">
   <div class="topBar">
     <div class="logo"><span>CV</span> Finanzas · Admin</div>
@@ -110,22 +651,81 @@ textarea:focus{border-color:#f5a623}
 </div>
 <div class="toast" id="toast"></div>
 <script>
-const PASS='cvfinanzas2026',REPO='CV7777/cvfinanzas-scraper',FILE='analisis.json';
-let TOKEN='';
-function $(i){return document.getElementById(i);}
-function doLogin(){
-  const pw=$('pwInput').value,tk=$('tokenInput').value.trim();
-  if(pw===PASS&&tk.length>10){
-    TOKEN=tk;sessionStorage.setItem('cvadmin','1');sessionStorage.setItem('cvtk',tk);
-    $('loginScreen').style.display='none';$('adminPanel').style.display='block';init();
-  }else{$('loginError').style.display='block';}
+REPO='CV7777/cvfinanzas-scraper',FILE='analisis.json';
+  // Obtener el token desde la variable de entorno
+  // Copiado de tipo_cambio.html — GoHighLevel proxy + login
+  const GHL_PROXY_URL = 'https://script.google.com/macros/s/AKfycbxRPAehrKHm-iOfpZdOPrXJMQGgm58KNHXxuzXW0Fnm3bQuLAFVs4nXi0-sITEXDfG7/exec';
+  const TOKEN ="";
+
+  function $(i){return document.getElementById(i);}
+
+   async function validateCredentialsAndUpdate(username, password) {
+  if (GHL_PROXY_URL.includes('REEMPLAZAR')) return null;
+
+  try {
+    const response = await fetch(GHL_PROXY_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: "validateCredentialsAndUpdate", username, password }),
+      redirect: 'follow'
+    });
+
+    const result = await response.json();
+    console.log(result);
+    if (result.success) {
+      return result;
+    }
+    return null;
+  } catch (err) {
+    console.warn('Error en validateCredentialsAndUpdate:', err.message);
+    return null;
+  }
 }
-function doLogout(){sessionStorage.clear();location.reload();}
-$('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('tokenInput').focus();});
-$('tokenInput').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
-if(sessionStorage.getItem('cvadmin')==='1'&&sessionStorage.getItem('cvtk')){
-  TOKEN=sessionStorage.getItem('cvtk');
-  $('loginScreen').style.display='none';$('adminPanel').style.display='block';init();
+
+  async function doLogin() {
+  const username = $('userInput').value.trim();
+  const password = $('pwInput').value.trim();
+
+  try {
+    const result = await validateCredentialsAndUpdate(username, password);
+
+    if (result && result.success) {
+      sessionStorage.setItem('cvadmin', '1');
+      sessionStorage.setItem('cvadmin_time', Date.now().toString());
+      $('loginScreen').style.display = 'none';
+      $('adminPanel').style.display = 'block';
+      init();
+    } else {
+      $('loginError').textContent = 'Credenciales incorrectas';
+      $('loginError').style.display = 'block';
+    }
+  } catch (err) {
+    console.error('Error al iniciar sesión:', err);
+    $('loginError').textContent = 'Error al validar credenciales';
+    $('loginError').style.display = 'block';
+  }
+}
+
+function checkSession() {
+  const t = sessionStorage.getItem('cvadmin_time');
+  if (!t) return false;
+  const now = Date.now();
+  if (now - parseInt(t, 10) > 3600000) { // 1 hora = 3600000 ms
+    sessionStorage.removeItem('cvadmin');
+    sessionStorage.removeItem('cvadmin_time');
+    sessionStorage.removeItem('cvtk');
+    return false;
+  }
+  return true;
+}
+if (sessionStorage.getItem('cvadmin') === '1' && checkSession() && sessionStorage.getItem('cvtk')) {
+  TOKEN = sessionStorage.getItem('cvtk');
+  $('loginScreen').style.display = 'none';
+  $('adminPanel').style.display = 'block';
+  init();
+} else {
+  sessionStorage.removeItem('cvadmin');
+  sessionStorage.removeItem('cvadmin_time');
+  sessionStorage.removeItem('cvtk');
 }
 function init(){
   const n=new Date();
@@ -176,6 +776,7 @@ async function hist(){
     }).join('');
   }catch(e){box.innerHTML='<div class="histEmpty" style="color:#e74c3c">Error al cargar: '+e.message+'</div>';}
 }
+
 function toast(m,t){const el=$('toast');el.textContent=m;el.className='toast '+(t||'success')+' show';setTimeout(()=>el.classList.remove('show'),3500);}
 </script>
 </body>

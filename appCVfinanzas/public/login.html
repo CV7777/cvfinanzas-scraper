@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Iniciar sesion - CV Finanzas</title>
+  <link href="/styles/tailwind.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 px-5 py-10 font-sans text-gray-900">
+  <main class="flex min-h-screen items-center justify-center">
+    <section class="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl">
+      <div class="h-1.5 bg-gradient-to-r from-blue-800 to-orange-500"></div>
+
+      <div class="p-6 sm:p-8">
+        <div class="mb-7 flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-900 to-orange-500 text-sm font-black text-white">CV</div>
+          <div>
+            <p class="text-lg font-black tracking-tight text-gray-900">CV <span class="text-orange-500">Finanzas</span></p>
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Panel privado</p>
+          </div>
+        </div>
+
+        <p class="mb-2 text-xs font-bold uppercase tracking-widest text-orange-500">Bienvenido</p>
+        <h1 class="mb-2 text-3xl font-black tracking-tight text-gray-900">Iniciar sesion</h1>
+        <p class="mb-7 text-sm leading-6 text-gray-500"></p>
+
+        <form id="loginForm" class="space-y-4">
+          <div>
+            <label for="email" class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Usuario o correo</label>
+            <input
+              id="email"
+              name="usuario"
+              class="block w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-base transition focus:border-blue-800 focus:outline-none"
+              type="text"
+              autocomplete="username"
+              placeholder="prueba@gmail.com"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="password" class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Contrasena</label>
+            <input
+              id="password"
+              name="password"
+              class="block w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-base transition focus:border-blue-800 focus:outline-none"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Tu contrasena"
+              required
+            >
+          </div>
+
+          <div id="message" class="hidden rounded-xl border px-4 py-3 text-sm font-semibold"></div>
+
+          <button
+            id="loginButton"
+            class="w-full rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 px-5 py-3 font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
+            type="submit"
+          >
+            Ingresar
+          </button>
+        </form>
+
+        <a
+          href="https://cvfinanzas.com"
+          target="_blank"
+          rel="noreferrer"
+          class="mt-7 flex items-center justify-center gap-4 text-sm font-black text-gray-300 transition hover:text-blue-900"
+          aria-label="cvfinanzas.com"
+        >
+          <svg class="h-8 w-8 text-blue-900" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7.2 7.1 10.9 17l6-14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M5.2 4.8h.1" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+          </svg>
+          <span>cvfinanzas.com</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const button = document.getElementById('loginButton');
+    const message = document.getElementById('message');
+
+    function showMessage(text, type = 'error') {
+      message.textContent = text;
+      message.className = type === 'success'
+        ? 'rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-semibold text-green-800'
+        : 'rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-800';
+    }
+
+    function setLoading(isLoading) {
+      button.disabled = isLoading;
+      button.textContent = isLoading ? 'Verificando...' : 'Entrar al buscador';
+    }
+
+    async function redirectIfLoggedIn() {
+      try {
+        const response = await fetch('/auth/me');
+        if (response.ok) {
+          window.location.href = '/search';
+        }
+      } catch (error) {
+        console.warn('No hay sesion activa.');
+      }
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      message.className = 'hidden';
+
+      const usuario = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!usuario || !password) {
+        showMessage('Ingresa tu correo y contrasena.');
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        const response = await fetch('/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ usuario, email: usuario, password })
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          showMessage(data.message || 'No pudimos iniciar sesion. Revisa tus credenciales.');
+          return;
+        }
+
+        showMessage('Login correcto. Abriendo buscador...', 'success');
+        window.location.href = data.redirectTo || '/search';
+      } catch (error) {
+        console.error(error);
+        showMessage('Error conectando con el servidor. Intenta de nuevo.');
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    redirectIfLoggedIn();
+  </script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lector de Estado Bancario</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6fa;
+      margin: 0;
+      padding: 30px;
+      color: #1b2a4a
+    }
+
+    .box {
+      max-width: 850px;
+      margin: auto;
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .08)
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 24px
+    }
+
+    .upload {
+      border: 2px dashed #1e4d8c;
+      border-radius: 14px;
+      padding: 35px;
+      text-align: center;
+      background: #eef5ff;
+      cursor: pointer;
+      margin: 20px 0
+    }
+
+    input {
+      display: none
+    }
+
+    button {
+      background: #1b2a4a;
+      color: white;
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-weight: bold;
+      cursor: pointer
+    }
+
+    button:disabled {
+      background: #b8c0cc;
+      cursor: not-allowed
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin: 22px 0
+    }
+
+    .card {
+      background: #f4f6fa;
+      border-radius: 12px;
+      padding: 18px;
+      border-left: 5px solid #1e4d8c
+    }
+
+    .card.deb {
+      border-left-color: #ef4444
+    }
+
+    .card.cre {
+      border-left-color: #22c55e
+    }
+
+    .lbl {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: bold;
+      text-transform: uppercase
+    }
+
+    .val {
+      font-size: 24px;
+      font-weight: 900;
+      margin-top: 6px
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 13px
+    }
+
+    th {
+      background: #1b2a4a;
+      color: white;
+      text-align: left;
+      padding: 10px
+    }
+
+    td {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 9px
+    }
+
+    td.num {
+      text-align: right;
+      font-weight: bold
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 12px;
+      padding: 14px;
+      max-height: 260px;
+      overflow: auto;
+      font-size: 12px
+    }
+
+    .msg {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 10px
+    }
+
+    .ok {
+      color: #15803d
+    }
+
+    .err {
+      color: #b91c1c
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h1>Lector simple de débitos y créditos</h1>
+    <p>Subí un estado de cuenta PDF. Primero te muestra qué leyó y luego resume débitos y créditos.</p>
+
+    <div class="upload" onclick="fileInput.click()">
+      <strong>📄 Clic para subir PDF</strong><br>
+      <span id="fileName">Ningún archivo seleccionado</span>
+    </div>
+    <input id="fileInput" type="file" accept="application/pdf,.pdf">
+    <button id="btn" disabled>Leer archivo</button>
+    <div id="status" class="msg"></div>
+
+    <div id="result" style="display:none">
+      <div class="cards">
+        <div class="card deb">
+          <div class="lbl">Total débitos / gastos</div>
+          <div class="val" id="totalDebitos">0</div>
+        </div>
+        <div class="card cre">
+          <div class="lbl">Total créditos / ingresos</div>
+          <div class="val" id="totalCreditos">0</div>
+        </div>
+        <div class="card">
+          <div class="lbl">Cuentas detectadas</div>
+          <div class="val" id="cuentas">0</div>
+        </div>
+      </div>
+
+      <h3>Resumen por cuenta</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Cuenta / Moneda</th>
+            <th class="num">Cantidad débitos</th>
+            <th class="num">Monto débitos</th>
+            <th class="num">Cantidad créditos</th>
+            <th class="num">Monto créditos</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+
+      <h3>Texto leído del PDF</h3>
+      <pre id="textoLeido"></pre>
+    </div>
+  </div>
+
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+    let selectedFile = null;
+    const fileInput = document.getElementById('fileInput');
+    const btn = document.getElementById('btn');
+
+    fileInput.addEventListener('change', () => {
+      selectedFile = fileInput.files[0];
+      document.getElementById('fileName').textContent = selectedFile ? selectedFile.name : 'Ningún archivo seleccionado';
+      btn.disabled = !selectedFile;
+    });
+
+    btn.addEventListener('click', async () => {
+      if (!selectedFile) return;
+      setStatus('Leyendo PDF...');
+      document.getElementById('result').style.display = 'none';
+
+      try {
+        const text = await readPdfText(selectedFile);
+        const resumen = extraerResumenBAC(text);
+        pintarResultado(text, resumen);
+        setStatus('Archivo leído correctamente.', 'ok');
+      } catch (e) {
+        console.error(e);
+        setStatus('No se pudo leer el PDF. Revisá consola para más detalle.', 'err');
+      }
+    });
+
+    async function readPdfText(file) {
+      const buffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+      let fullText = '';
+
+      for (let p = 1; p <= pdf.numPages; p++) {
+        const page = await pdf.getPage(p);
+        const content = await page.getTextContent();
+        const items = content.items.map(i => i.str).join(' ');
+        fullText += `\n\n--- PÁGINA ${p} ---\n` + items;
+      }
+      return fullText;
+    }
+
+    function parseMonto(valor) {
+      if (!valor) return 0;
+      let limpio = valor.replace(/,/g, '').trim();
+      if (limpio.startsWith('.')) limpio = '0' + limpio;
+      return Number(limpio) || 0;
+    }
+
+    function fmt(n) {
+      return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function extraerResumenBAC(text) {
+      const pages = text.split(/--- PÁGINA \d+ ---/).filter(x => x.trim());
+      const cuentas = [];
+
+      for (const page of pages) {
+        const iban = (page.match(/Cuenta IBAN:\s*(CR\d{2}(?:\s?\d{4}){4}\s?\d{2})/i) || [])[1] || 'Cuenta no detectada';
+        const moneda = (page.match(/Moneda:\s*(COLONES|U\.S\. DOLLAR|USD|CRC)/i) || [])[1] || '';
+
+        // Patrón del cuadro resumen BAC:
+        // débito cantidad, débito monto, crédito cantidad, crédito monto, saldos...
+        const match = page.match(/Intereses acreditables mensualmente\s*(?:Cuenta no paga intereses\s*)?(\d+)\s+([\d,.]+|\.\d+)\s+(\d+)\s+([\d,.]+|\.\d+)\s+/i)
+          || page.match(/Cuenta no paga intereses\s*(\d+)\s+([\d,.]+|\.\d+)\s+(\d+)\s+([\d,.]+|\.\d+)\s+/i);
+
+        if (match) {
+          cuentas.push({
+            iban,
+            moneda,
+            debitosCant: Number(match[1]),
+            debitosMonto: parseMonto(match[2]),
+            creditosCant: Number(match[3]),
+            creditosMonto: parseMonto(match[4])
+          });
+        }
+      }
+
+      const totalDebitos = cuentas.reduce((s, c) => s + c.debitosMonto, 0);
+      const totalCreditos = cuentas.reduce((s, c) => s + c.creditosMonto, 0);
+      return { cuentas, totalDebitos, totalCreditos };
+    }
+
+    function pintarResultado(text, resumen) {
+      document.getElementById('result').style.display = 'block';
+      document.getElementById('totalDebitos').textContent = fmt(resumen.totalDebitos);
+      document.getElementById('totalCreditos').textContent = fmt(resumen.totalCreditos);
+      document.getElementById('cuentas').textContent = resumen.cuentas.length;
+      document.getElementById('textoLeido').textContent = text.slice(0, 18000);
+
+      const tbody = document.getElementById('tbody');
+      tbody.innerHTML = '';
+
+      resumen.cuentas.forEach(c => {
+        tbody.innerHTML += `
+      <tr>
+        <td>${c.iban}<br><small>${c.moneda}</small></td>
+        <td class="num">${c.debitosCant}</td>
+        <td class="num">${fmt(c.debitosMonto)}</td>
+        <td class="num">${c.creditosCant}</td>
+        <td class="num">${fmt(c.creditosMonto)}</td>
+      </tr>`;
+      });
+
+      if (!resumen.cuentas.length) {
+        tbody.innerHTML = '<tr><td colspan="5">No encontré cuadros resumen con débitos/créditos.</td></tr>';
+      }
+    }
+
+    function setStatus(msg, type = '') {
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = 'msg ' + type;
+    }
+  </script>
+</body>
+
+</html>

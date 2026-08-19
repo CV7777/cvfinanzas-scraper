@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Resultados - CV Finanzas</title>
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('cvf-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if ((savedTheme && savedTheme === 'dark') || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (error) {}
+    }());
+  </script>
+  <link href="/styles/tailwind.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-800">
+  <div id="sidebarOverlay" class="fixed inset-0 z-30 hidden bg-gray-900 bg-opacity-50 lg:hidden"></div>
+
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full transform border-r border-gray-200 bg-white transition duration-200 lg:translate-x-0">
+    <div class="flex h-16 items-center justify-between border-b border-gray-200 px-5">
+      <a href="/dashboard" class="flex items-center gap-3">
+        <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-700 text-xs font-black text-white">CV</span>
+        <span>
+          <span class="block text-sm font-black text-gray-900">CV Finanzas</span>
+          <span class="block text-xs font-semibold uppercase tracking-widest text-gray-400">Admin</span>
+        </span>
+      </a>
+      <button id="sidebarClose" class="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700 lg:hidden" type="button" aria-label="Cerrar menu">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="space-y-1 px-3 py-5" aria-label="Principal">
+      <a data-nav-link href="/dashboard" class="flex items-center gap-3 rounded-lg border-l-4 border-transparent px-3 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 13h8V3H3v10ZM13 21h8V3h-8v18ZM3 21h8v-6H3v6Z"></path>
+        </svg>
+        Dashboard
+      </a>
+      <a data-nav-link href="/search" class="flex items-center gap-3 rounded-lg border-l-4 border-blue-600 bg-blue-50 px-3 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-50">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m21 21-4.35-4.35"></path>
+          <circle cx="11" cy="11" r="7"></circle>
+        </svg>
+        Resultados
+      </a>
+      <a data-nav-link href="/gastos" class="flex items-center gap-3 rounded-lg border-l-4 border-transparent px-3 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7h16"></path>
+          <path d="M4 12h16"></path>
+          <path d="M4 17h10"></path>
+          <path d="M18 15v6"></path>
+          <path d="M15 18h6"></path>
+        </svg>
+        Gastos
+      </a>
+      <a data-nav-link href="/tipo-cambio" class="flex items-center gap-3 rounded-lg border-l-4 border-transparent px-3 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 9h8M8 15h8M10 6l-2 3 2 3M14 12l2 3-2 3"></path>
+        </svg>
+        Tipo de cambio
+      </a>
+      <a href="/test-postgres" class="flex items-center gap-3 rounded-lg border-l-4 border-transparent px-3 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <ellipse cx="12" cy="5" rx="8" ry="3"></ellipse>
+          <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"></path>
+          <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"></path>
+        </svg>
+        Estado DB
+      </a>
+    </nav>
+
+    <div class="absolute bottom-0 left-0 right-0 border-t border-gray-200 p-4">
+      <div class="mb-3 rounded-lg bg-gray-50 p-3">
+        <p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Sesion activa</p>
+        <p data-user-display class="mt-1 truncate text-sm font-bold text-gray-900">Cargando...</p>
+      </div>
+      <button data-theme-toggle class="mb-3 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 hover:bg-gray-50" type="button" aria-label="Cambiar tema">
+        <svg data-theme-icon="dark" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+        </svg>
+        <svg data-theme-icon="light" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <span data-theme-label>Tema oscuro</span>
+      </button>
+      <button data-logout class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 hover:border-red-200 hover:bg-red-50 hover:text-red-700" type="button">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <path d="m16 17 5-5-5-5"></path>
+          <path d="M21 12H9"></path>
+        </svg>
+        Cerrar sesion
+      </button>
+    </div>
+  </aside>
+
+  <div class="lg:ml-64">
+    <header class="sticky top-0 z-20 border-b border-gray-200 bg-white">
+      <div class="flex h-16 items-center justify-between px-4 sm:px-6">
+        <div class="flex items-center gap-3">
+          <button id="sidebarToggle" class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 lg:hidden" type="button" aria-label="Abrir menu">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-blue-700">Panel privado</p>
+            <h1 class="text-lg font-black text-gray-900 sm:text-xl">Resultados del Quiz</h1>
+          </div>
+        </div>
+        <div class="hidden items-center gap-3 sm:flex">
+          <span class="text-sm font-semibold text-gray-500">Hola, <span data-user-display>Usuario</span></span>
+          <button data-theme-toggle class="rounded-lg border border-gray-200 p-2 text-gray-600 hover:bg-gray-50" type="button" aria-label="Cambiar tema">
+            <svg data-theme-icon="dark" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+            <svg data-theme-icon="light" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+            </svg>
+          </button>
+          <button data-logout class="rounded-lg border border-gray-200 px-3 py-2 text-sm font-bold text-gray-600 hover:bg-gray-50" type="button">Salir</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-4 py-6 sm:px-6 lg:px-8">
+      <section class="mb-6 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
+        <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 class="text-base font-black text-gray-900">Busqueda</h2>
+            <p class="text-sm text-gray-500">Consulta todos los resultados o filtra por email y tipo de perfil.</p>
+          </div>
+          <button id="clearFilters" class="self-start rounded-lg border border-gray-200 px-3 py-2 text-sm font-bold text-gray-600 hover:bg-gray-50 sm:self-auto" type="button">Limpiar</button>
+        </div>
+
+        <div class="grid gap-3 lg:grid-cols-12" aria-label="Buscar resultados">
+          <label class="lg:col-span-5">
+            <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Email</span>
+            <input id="email" class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100" type="email" placeholder="usuario@ejemplo.com">
+          </label>
+
+          <label class="lg:col-span-4">
+            <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-gray-500">Tipo de perfil</span>
+            <select id="profileType" class="block w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
+              <option value="">Todos los perfiles</option>
+              <option value="G">El Gastador</option>
+              <option value="A">El Ahorrador</option>
+              <option value="D">El Ambicioso</option>
+              <option value="I">El Indiferente</option>
+              <option value="M">El Idealista</option>
+              <option value="F">El Fluido</option>
+            </select>
+          </label>
+
+          <div class="flex items-end lg:col-span-3">
+            <button id="search" class="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 py-3 text-sm font-black text-white shadow-sm hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60" type="button">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m21 21-4.35-4.35"></path>
+                <circle cx="11" cy="11" r="7"></circle>
+              </svg>
+              Buscar
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div id="loading" class="hidden rounded-lg border border-blue-100 bg-blue-50 px-4 py-4 text-sm font-semibold text-blue-800">
+        Buscando resultados...
+      </div>
+
+      <div id="msg" class="hidden"></div>
+
+      <section class="mt-6 rounded-lg border border-gray-200 bg-white shadow-sm" aria-label="Resultados">
+        <div class="flex flex-col gap-2 border-b border-gray-200 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 class="text-base font-black text-gray-900">Tabla de resultados</h2>
+            <p id="resultSummary" class="text-sm text-gray-500">Presiona buscar para cargar registros.</p>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table id="results" class="hidden min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Fecha</th>
+                <th class="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Email</th>
+                <th class="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Perfil</th>
+                <th class="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Label</th>
+                <th class="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Score</th>
+                <th class="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Color</th>
+                <th class="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-gray-500">Scores</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 bg-white"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <cv-footer></cv-footer>
+  </div>
+
+  <script src="/js/site-footer.js"></script>
+  <script src="/js/admin-layout.js"></script>
+  <script>
+    const btn = document.getElementById('search');
+    const clearFiltersButton = document.getElementById('clearFilters');
+    const emailInput = document.getElementById('email');
+    const profileTypeInput = document.getElementById('profileType');
+    const table = document.getElementById('results');
+    const tbody = table.querySelector('tbody');
+    const msg = document.getElementById('msg');
+    const loading = document.getElementById('loading');
+    const resultSummary = document.getElementById('resultSummary');
+
+    const cellClass = 'whitespace-nowrap px-4 py-3 text-sm text-gray-600';
+    const messageBaseClass = 'mt-4 rounded-lg border px-4 py-3 text-sm font-semibold';
+
+    function showMessage(text, type = 'error') {
+      msg.textContent = text;
+      msg.className = type === 'success'
+        ? `${messageBaseClass} border-green-200 bg-green-50 text-green-800`
+        : `${messageBaseClass} border-red-200 bg-red-50 text-red-800`;
+    }
+
+    function clearState() {
+      msg.textContent = '';
+      msg.className = 'hidden';
+      tbody.innerHTML = '';
+      table.classList.add('hidden');
+      loading.classList.add('hidden');
+      resultSummary.textContent = 'Presiona buscar para cargar registros.';
+    }
+
+    function setSearchLoading(isLoading) {
+      btn.disabled = isLoading;
+      loading.classList.toggle('hidden', !isLoading);
+    }
+
+    function renderRows(data) {
+      data.forEach((row) => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-gray-50';
+
+        const date = row.createdAt ? new Date(row.createdAt).toLocaleString('es-ES') : 'N/A';
+        const scoresStr = row.scores ? JSON.stringify(row.scores, null, 2) : '{}';
+
+        tr.innerHTML = `
+          <td class="${cellClass}">${date}</td>
+          <td class="${cellClass}">${row.email || row.user_email || 'N/A'}</td>
+          <td class="${cellClass}">
+            <span class="inline-flex rounded-full bg-blue-50 px-2.5 py-1 text-xs font-black text-blue-700">${row.name || 'N/A'}</span>
+          </td>
+          <td class="${cellClass}">${row.label || 'N/A'}</td>
+          <td class="${cellClass}">${row.score || 'N/A'}</td>
+          <td class="${cellClass}"><span class="inline-block h-6 w-6 rounded-full border border-gray-200" style="background: ${row.color || '#ccc'}"></span></td>
+          <td class="min-w-max px-4 py-3 text-sm text-gray-600"><pre class="max-w-xs overflow-x-auto rounded bg-gray-50 px-3 py-2 font-mono text-xs text-gray-600">${scoresStr}</pre></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function runSearch() {
+      const email = emailInput.value.trim();
+      const profileType = profileTypeInput.value.trim();
+      clearState();
+      setSearchLoading(true);
+
+      try {
+        const params = new URLSearchParams();
+        if (email) params.set('email', email);
+        if (profileType) params.set('profile_type', profileType);
+
+        const res = await fetch('/search-results?' + params.toString());
+        setSearchLoading(false);
+
+        if (res.status === 401) {
+          window.location.href = '/login';
+          return;
+        }
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          showMessage('Error: ' + (err.error || res.statusText), 'error');
+          return;
+        }
+
+        const data = await res.json();
+        if (!data || data.length === 0) {
+          showMessage('No se encontraron resultados para estos filtros.', 'error');
+          return;
+        }
+
+        renderRows(data);
+        table.classList.remove('hidden');
+        resultSummary.textContent = `${data.length} resultado(s) encontrados.`;
+        showMessage(`Se encontraron ${data.length} resultado(s).`, 'success');
+      } catch (e) {
+        setSearchLoading(false);
+        console.error(e);
+        showMessage('Error conectando con el servidor. Intenta de nuevo.', 'error');
+      }
+    }
+
+    btn.addEventListener('click', runSearch);
+    clearFiltersButton.addEventListener('click', () => {
+      emailInput.value = '';
+      profileTypeInput.value = '';
+      clearState();
+    });
+
+    emailInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') runSearch();
+    });
+  </script>
+</body>
+</html>

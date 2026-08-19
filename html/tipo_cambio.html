@@ -962,7 +962,7 @@
 
   <script>
     // ── DATOS REALES desde GitHub ──────────────────────────────
-    const JSON_URL = "https://raw.githubusercontent.com/CV7777/cvfinanzas-scraper/main/datos.json";
+    const JSON_URL = "https://raw.githubusercontent.com/CV7777/cvfinanzas-scraper/main/datos-json/datos.json";
 
     let allData = [];
     let chart = null;
@@ -1333,42 +1333,8 @@
       }
     }
 
-    // Registrar contacto en GHL
-    async function sendToGoHighLevel({ nombre, apellido, email, edad }) {
-      if (GHL_PROXY_URL.includes('REEMPLAZAR')) {
-        console.warn('GoHighLevel CRM: Proxy no configurado.');
-        return;
-      }
-
-      try {
-        const response = await fetch(GHL_PROXY_URL, {
-          method: 'POST',
-          body: JSON.stringify({
-            action: 'register',
-            firstName: nombre,
-            lastName: apellido,
-            email: email,
-            source: 'CV Finanzas - Tipo de Cambio',
-            tags: ['cvfinanzas', 'tipo-cambio', 'lead-web'],
-            customFields: [
-              {
-                key: 'edad',
-                field_value: String(edad)
-              }
-            ]
-          })
-        });
-        const result = await response.json();
-        console.log('GoHighLevel CRM:', result);
-        return result;
-      } catch (err) {
-        console.warn('GoHighLevel CRM: error al enviar contacto', err.message);
-        throw err;
-      }
-    }
-
     // ── ANÁLISIS DEL DÍA (desde GitHub) ──
-    const ANALISIS_URL = 'https://raw.githubusercontent.com/CV7777/cvfinanzas-scraper/main/analisis.json';
+    const ANALISIS_URL = 'https://raw.githubusercontent.com/CV7777/cvfinanzas-scraper/main/datos-json/analisis.json';
 
     async function loadAnalisis() {
       const container = document.getElementById('commentsContainer');
