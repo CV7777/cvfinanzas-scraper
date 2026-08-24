@@ -197,7 +197,7 @@ def scrape_bccr(now_cr=None):
         params={
             "codigo": BCCR_CODIGO_CUADRO,
             "fechaInicio": fecha_api,
-            "fechafin": fecha_api,
+            "fechaFin": fecha_api,
             "idioma": "ES",
         },
         headers={
@@ -525,8 +525,8 @@ def main():
     try:
         datos = scrape_bccr()
     except Exception as e:
-        print(f"  ⚠ Error al consultar BCCR: {e}")
-        print("  Continuando con historial existente...")
+        print(f"  ✗ Error al consultar BCCR: {e}")
+        raise
 
     if datos is None:
         print("  Sin datos nuevos. Generando JSON con historial existente...")
