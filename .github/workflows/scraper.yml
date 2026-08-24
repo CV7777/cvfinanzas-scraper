@@ -6,6 +6,10 @@ on:
     - cron: '00 23 * * *'  # 17:00 Costa Rica (UTC-6) - todos los días
   workflow_dispatch:          # permite correrlo manualmente cuando quieras
 
+concurrency:
+  group: cv-finanzas-scraper-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   scraper:
     runs-on: ubuntu-latest
@@ -17,6 +21,8 @@ jobs:
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Instalar Python
         uses: actions/setup-python@v5
@@ -34,4 +40,23 @@ jobs:
           git config user.name "CV Finanzas Bot"
           git config user.email "bot@cvfinanzas.com"
           git add datos-json/datos.json || echo "datos.json no encontrado, saltando"
-          git diff --staged --quiet && echo "Sin cambios" || (git commit -m "datos: actualizar tipo de cambio $(date +'%Y-%m-%d %H:%M')" && git push)
+
+          if git diff --staged --quiet; then
+            echo "Sin cambios"
+            exit 0
+          fi
+
+          git commit -m "datos: actualizar tipo de cambio $(date +'%Y-%m-%d %H:%M')"
+
+          for intento in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Push rechazado (intento $intento). Sincronizando con origin/main..."
+            git fetch origin main
+            git rebase -X theirs origin/main
+          done
+
+          echo "No se pudo publicar datos.json después de 3 intentos."
+          exit 1
