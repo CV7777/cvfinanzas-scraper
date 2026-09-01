@@ -5493,10 +5493,10 @@
     },
     {
       "fecha": "2026-09-01",
-      "promedio_ponderado": 498.31,
-      "monto_total": 40419000,
-      "minimo": 497.26,
-      "maximo": 498.95,
+      "promedio_ponderado": 449.24,
+      "monto_total": 46584000,
+      "minimo": 448.75,
+      "maximo": 450,
       "sesion": "17:00",
       "timestamp": "2026-09-01 17:00"
     }
