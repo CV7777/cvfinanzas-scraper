@@ -39,6 +39,10 @@ html.dark {
   background-color: #7f1d1d !important;
 }
 
+.dark .bg-yellow-50 {
+  background-color: #78350f !important;
+}
+
 .dark .border-gray-100,
 .dark .border-gray-200,
 .dark .border-gray-300,
@@ -86,6 +90,10 @@ html.dark {
   color: #fecaca !important;
 }
 
+.dark .text-yellow-800 {
+  color: #fde68a !important;
+}
+
 .dark .hover\:bg-gray-50:hover,
 .dark .hover\:bg-gray-100:hover {
   background-color: #263244 !important;
@@ -117,6 +125,48 @@ html.dark {
 .dark pre {
   background-color: #111827 !important;
   color: #d1d5db !important;
+}
+
+.dashboard-chart-grid {
+  stroke: #e5e7eb;
+  stroke-dasharray: 4 5;
+  stroke-width: 1;
+}
+
+.dashboard-chart-label {
+  fill: #6b7280;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.dashboard-chart-line {
+  fill: none;
+  stroke: #2563eb;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+
+.dashboard-chart-point {
+  fill: #2563eb;
+  stroke: #fff;
+  stroke-width: 3;
+}
+
+#profileDonut {
+  transition: background 300ms ease;
+}
+
+.dark .dashboard-chart-grid {
+  stroke: #374151;
+}
+
+.dark .dashboard-chart-label {
+  fill: #9ca3af;
+}
+
+.dark .dashboard-chart-point {
+  stroke: #1f2937;
 }
 
 .cv-site-footer {

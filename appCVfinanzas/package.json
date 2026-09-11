@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build:css": "NODE_ENV=production tailwindcss -i ./src/styles/tailwind.css -o ./public/styles/tailwind.css",
+    "test": "node --test",
     "importar-monex": "node scripts/importar-datos-monex.js",
     "migrar-monex": "node scripts/migrar-monex.js",
     "migrar-comentarios-tipo-cambio": "node scripts/migrar-comentarios-tipo-cambio.js",

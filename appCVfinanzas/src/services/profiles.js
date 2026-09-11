@@ -231,6 +231,26 @@ async function searchResults({ email, profileType } = {}) {
     return [];
 }
 
+function buildDailyActivity(results, days = 14, now = new Date()) {
+    const totals = new Map();
+
+    results.forEach((row) => {
+        if (!row.createdAt) return;
+        const date = new Date(row.createdAt);
+        if (Number.isNaN(date.getTime())) return;
+        const key = date.toISOString().slice(0, 10);
+        totals.set(key, (totals.get(key) || 0) + 1);
+    });
+
+    return Array.from({ length: days }, (_item, index) => {
+        const date = new Date(now);
+        date.setUTCHours(0, 0, 0, 0);
+        date.setUTCDate(date.getUTCDate() - (days - index - 1));
+        const day = date.toISOString().slice(0, 10);
+        return { date: day, total: totals.get(day) || 0 };
+    });
+}
+
 async function getDashboardStats() {
     if (!hasPostgresConfig) {
         const results = await searchResults();
@@ -251,7 +271,8 @@ async function getDashboardStats() {
                 profiles[key].total += 1;
                 return profiles;
             }, {})),
-            latestResults: results.slice(0, 5)
+            latestResults: results.slice(0, 5),
+            dailyActivity: buildDailyActivity(results)
         };
     }
 
@@ -260,7 +281,7 @@ async function getDashboardStats() {
         process.env.SUPABASE_RESULTS_TABLE ||
         'quiz_honda_results';
     const quotedTableName = quoteTableName(tableName);
-    const [totals, byProfile, latestResults] = await Promise.all([
+    const [totals, byProfile, latestResults, dailyActivity] = await Promise.all([
         queryPostgres(`
             select
                 count(*)::int as total_results,
@@ -285,6 +306,21 @@ async function getDashboardStats() {
             from ${quotedTableName}
             order by created_at desc
             limit 5
+        `),
+        queryPostgres(`
+            select
+                to_char(days.day, 'YYYY-MM-DD') as date,
+                count(results.created_at)::int as total
+            from generate_series(
+                current_date - interval '13 days',
+                current_date,
+                interval '1 day'
+            ) as days(day)
+            left join ${quotedTableName} as results
+                on results.created_at >= days.day
+                and results.created_at < days.day + interval '1 day'
+            group by days.day
+            order by days.day asc
         `)
     ]);
 
@@ -297,7 +333,11 @@ async function getDashboardStats() {
             profileLabel: row.profile_label,
             total: row.total
         })),
-        latestResults: latestResults.map(profileFromQuizResult)
+        latestResults: latestResults.map(profileFromQuizResult),
+        dailyActivity: dailyActivity.map((row) => ({
+            date: row.date,
+            total: row.total
+        }))
     };
 }
 
@@ -306,6 +346,7 @@ async function searchResultsByEmail(email) {
 }
 
 module.exports = {
+    buildDailyActivity,
     getDashboardStats,
     getFinancialProfile,
     getFinancialProfileByEmail,

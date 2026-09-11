@@ -9,6 +9,8 @@ const {
     createExchangeRateComment,
     listExchangeRateComments
 } = require('../services/tipo-cambio-comentarios');
+const { listMonexExchangeRates } = require('../services/monex');
+const { getMonexBackgroundStatus } = require('../background/monex-background-service');
 
 const showResult = async (req, res, next) => {
     try {
@@ -174,6 +176,11 @@ router.get('/dashboard-stats', requireAuth, async (req, res) => {
     }
 });
 
+router.get('/api/background-service/status', requireAuth, async (req, res) => {
+    res.set('Cache-Control', 'no-store');
+    return res.json(await getMonexBackgroundStatus());
+});
+
 router.get('/api/tipo-cambio/comentarios', requireAuth, async (req, res) => {
     try {
         const comentarios = await listExchangeRateComments();
@@ -183,6 +190,21 @@ router.get('/api/tipo-cambio/comentarios', requireAuth, async (req, res) => {
         return res.status(500).json({
             error: 'internal_error',
             message: 'No se pudieron cargar los comentarios.'
+        });
+    }
+});
+
+router.get('/api/tipo-cambio/monex', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Cache-Control', 'public, max-age=60');
+
+    try {
+        return res.json(await listMonexExchangeRates());
+    } catch (error) {
+        console.error('tipo-cambio MONEX GET error:', error.message);
+        return res.status(500).json({
+            error: 'internal_error',
+            message: 'No se pudieron cargar los datos MONEX.'
         });
     }
 });

@@ -181,6 +181,59 @@ nuevas, actualiza solo las que cambiaron y usa `(fecha, sesion)` como llave unic
 npm run importar-monex -- /ruta/al/datos.json
 ```
 
+La aplicacion expone los datos guardados en PostgreSQL mediante un endpoint
+publico de solo lectura. La pagina `html/tipo_cambio.html` consume este endpoint
+en lugar del archivo `datos-json/datos.json`:
+
+```text
+GET /api/tipo-cambio/monex
+```
+
+La respuesta conserva el formato `{ "actualizado": ..., "datos": [...] }` usado
+por la visualizacion del tipo de cambio.
+
+### Actualizacion automatica desde el BCCR
+
+El servidor Node.js incluye un background service que consulta directamente la
+API SDDE del BCCR y hace UPSERT en `monex_tipo_cambio`. Revisa cada minuto y
+procesa las sesiones a partir de las 13:20 y 17:20, hora de Costa Rica, de lunes
+a viernes. Si el BCCR aun no publico todos los indicadores, reintenta cinco
+minutos despues.
+
+Variables requeridas:
+
+```text
+BCCR_API_BEARER_TOKEN=token_generado_en_el_BCCR
+MONEX_BACKGROUND_ENABLED=true
+AZURE_PG_MONEX_TABLE=monex_tipo_cambio
+```
+
+La llave primaria `(fecha, sesion)` y el UPSERT evitan filas duplicadas. En Azure
+App Service se requiere un plan compatible con `Always On` para que el proceso
+en segundo plano sea confiable cuando el sitio no recibe trafico.
+
+El dashboard muestra el estado del servicio, el ultimo intento, los errores y
+los reintentos en una linea de actividad que se actualiza cada 30 segundos. La
+informacion se obtiene del endpoint autenticado `GET /api/background-service/status`
+y el historial se reconstruye desde los archivos de log, incluso despues de
+reiniciar el proceso Node.js.
+
+### Logs de la aplicacion
+
+La carpeta `logs/` contiene archivos JSON Lines separados por dia:
+
+```text
+api-AAAA-MM-DD.log
+application-AAAA-MM-DD.log
+background-service-AAAA-MM-DD.log
+```
+
+Los logs de API incluyen metodo, ruta, codigo HTTP, duracion, usuario, IP y user
+agent. No se guardan cuerpos, cookies, tokens ni valores de los parametros. El
+directorio puede cambiarse con `APP_LOG_DIR`; por ejemplo, en Azure App Service
+se puede usar `/home/LogFiles/cvfinanzas` para conservarlos en el almacenamiento
+persistente del servicio.
+
 Ejemplo de consulta para una API con paginacion por fecha:
 
 ```sql

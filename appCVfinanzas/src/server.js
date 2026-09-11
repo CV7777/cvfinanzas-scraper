@@ -33,8 +33,12 @@ try {
 const app = express();
 const PORT = process.env.PORT || 3000;
 const { requireAuth } = require('./middleware/auth');
+const { requestLogger } = require('./middleware/request-logger');
+const { writeApplicationLog } = require('./lib/app-logger');
+const { startMonexBackgroundService } = require('./background/monex-background-service');
 
 // Middleware
+app.use(requestLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -91,6 +95,14 @@ app.use('/', indexRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);
+  void writeApplicationLog({
+    event: 'unhandled_request_error',
+    level: 'error',
+    method: req.method,
+    path: req.path,
+    message: err.message,
+    stack: err.stack
+  }).catch((logError) => console.error('[LOGS] No se pudo escribir el log:', logError.message));
   res.status(500).send('Error al procesar la solicitud');
 });
 
@@ -98,6 +110,13 @@ app.use((err, req, res, next) => {
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
+    void writeApplicationLog({
+      event: 'server_started',
+      level: 'info',
+      port: Number(PORT),
+      nodeEnv: process.env.NODE_ENV || 'development'
+    }).catch((error) => console.error('[LOGS] No se pudo escribir el log:', error.message));
+    startMonexBackgroundService();
   });
 }
 

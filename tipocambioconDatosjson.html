@@ -828,7 +828,7 @@
 <body>
 
   <!-- GATE -->
-  
+
 
   <!-- HEADER -->
   <header>
@@ -961,8 +961,8 @@
   </footer>
 
   <script>
-    // ── DATOS REALES desde PostgreSQL vía el API Node.js ───────
-    const MONEX_API_URL = "https://cvfinanzas.azurewebsites.net/api/tipo-cambio/monex";
+    // ── DATOS REALES desde GitHub ──────────────────────────────
+    const JSON_URL = "https://raw.githubusercontent.com/CV7777/cvfinanzas-scraper/main/datos-json/datos.json";
 
     let allData = [];
     let chart = null;
@@ -970,15 +970,8 @@
 
     async function loadData() {
       try {
-        const res = await fetch(MONEX_API_URL + "?t=" + Date.now());
-        if (!res.ok) {
-          throw new Error('El API MONEX respondió con estado ' + res.status);
-        }
+        const res = await fetch(JSON_URL + "?t=" + Date.now());
         const json = await res.json();
-
-        if (!json || !Array.isArray(json.datos)) {
-          throw new Error('El API MONEX devolvió una respuesta inválida');
-        }
 
         // Función para convertir cualquier formato de fecha a dd/mm/yyyy y YYYY-MM-DD
         function parseFecha(raw) {
@@ -992,7 +985,7 @@
             mes = fecha.getMonth() + 1;
             anio = fecha.getFullYear();
           } else if (typeof raw === 'string' && /^\d{4}-\d{2}-\d{2}/.test(raw)) {
-            // YYYY-MM-DD (formato entregado por el API)
+            // YYYY-MM-DD (formato principal de datos.json)
             const parts = raw.substring(0, 10).split('-');
             anio = parseInt(parts[0]);
             mes = parseInt(parts[1]);
@@ -1031,6 +1024,12 @@
           };
         }).filter(d => d.promedio > 0)
           .sort((a, b) => String(a.timestamp || '').localeCompare(String(b.timestamp || '')));
+
+        // DEBUG: ver qué formato viene en el JSON
+        console.log('Primeros 3 registros raw:', json.datos.slice(0, 3));
+        console.log('Últimos 3 registros raw:', json.datos.slice(-3));
+        console.log('Primeros 3 procesados:', allData.slice(0, 3));
+        console.log('Últimos 3 procesados:', allData.slice(-3));
 
         updateHero();
         renderChart(currentRange);
@@ -1331,6 +1330,40 @@
       } catch (err) {
         console.warn('GHL Search error:', err.message);
         return null;
+      }
+    }
+
+    // Registrar contacto en GHL
+    async function sendToGoHighLevel({ nombre, apellido, email, edad }) {
+      if (GHL_PROXY_URL.includes('REEMPLAZAR')) {
+        console.warn('GoHighLevel CRM: Proxy no configurado.');
+        return;
+      }
+
+      try {
+        const response = await fetch(GHL_PROXY_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'register',
+            firstName: nombre,
+            lastName: apellido,
+            email: email,
+            source: 'CV Finanzas - Tipo de Cambio',
+            tags: ['cvfinanzas', 'tipo-cambio', 'lead-web'],
+            customFields: [
+              {
+                key: 'edad',
+                field_value: String(edad)
+              }
+            ]
+          })
+        });
+        const result = await response.json();
+        console.log('GoHighLevel CRM:', result);
+        return result;
+      } catch (err) {
+        console.warn('GoHighLevel CRM: error al enviar contacto', err.message);
+        throw err;
       }
     }
 
